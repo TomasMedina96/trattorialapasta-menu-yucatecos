@@ -176,60 +176,57 @@ export default function App() {
   // En celular muestra automáticamente que existen más categorías sin bloquear el gesto manual.
 // Mueve automáticamente las categorías de un lado al otro.
 useEffect(() => {
-  if (!window.matchMedia("(max-width: 760px)").matches) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
   const scroller = categoryScrollRef.current;
   if (!scroller) return;
 
   let animationFrame = 0;
   let direction = 1;
   let lastTime = performance.now();
-  let edgePauseUntil = 0;
+  let pauseUntil = 0;
 
-  // Velocidad del movimiento.
-  const SPEED = 35;
+  const SPEED = 55;
 
-  const animate = (currentTime: number) => {
-    const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+  const move = (now: number) => {
+    const maxScroll =
+      scroller.scrollWidth - scroller.clientWidth;
 
-    const delta = Math.min(
-      (currentTime - lastTime) / 1000,
+    const elapsed = Math.min(
+      (now - lastTime) / 1000,
       0.05
     );
 
-    lastTime = currentTime;
+    lastTime = now;
 
     if (
-      maxScroll > 5 &&
+      maxScroll > 0 &&
       Date.now() >= pauseCategoryUntilRef.current &&
-      currentTime >= edgePauseUntil
+      now >= pauseUntil
     ) {
-      scroller.scrollLeft += direction * SPEED * delta;
+      const nextPosition =
+        scroller.scrollLeft +
+        direction * SPEED * elapsed;
 
-      // Llegamos al lado derecho.
+      scroller.scrollLeft = nextPosition;
+
+      // Llegó a la derecha
       if (scroller.scrollLeft >= maxScroll - 1) {
         scroller.scrollLeft = maxScroll;
         direction = -1;
-
-        // Espera un momento antes de volver.
-        edgePauseUntil = currentTime + 1000;
+        pauseUntil = now + 800;
       }
 
-      // Llegamos al lado izquierdo.
-      if (scroller.scrollLeft <= 1) {
+      // Llegó a la izquierda
+      if (scroller.scrollLeft <= 0) {
         scroller.scrollLeft = 0;
         direction = 1;
-
-        // Espera un momento antes de avanzar otra vez.
-        edgePauseUntil = currentTime + 1000;
+        pauseUntil = now + 800;
       }
     }
 
-    animationFrame = requestAnimationFrame(animate);
+    animationFrame = requestAnimationFrame(move);
   };
 
-  animationFrame = requestAnimationFrame(animate);
+  animationFrame = requestAnimationFrame(move);
 
   return () => {
     cancelAnimationFrame(animationFrame);

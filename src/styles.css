@@ -293,10 +293,19 @@ p {
   width: min(1240px, 100%);
   margin: 0 auto;
   padding: 9px 16px;
+
   overflow-x: auto;
+  overflow-y: hidden;
+
   overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity;
+
+  /* IMPORTANTE: sin scroll snap */
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+
   touch-action: pan-x pan-y;
 }
 
@@ -317,7 +326,6 @@ p {
   font-size: 13px;
   font-weight: 750;
   text-decoration: none;
-  scroll-snap-align: center;
   transition: 180ms ease;
 }
 
