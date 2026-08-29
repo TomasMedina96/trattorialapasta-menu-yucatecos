@@ -1124,7 +1124,12 @@ footer p {
   }
 
   .dish-title-row h3 {
-    font-size: 22px;
+    overflow: visible;
+    font-size: 19px;
+    line-height: 1.18;
+    white-space: normal;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .dish-content p {
