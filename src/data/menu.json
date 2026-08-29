@@ -1,0 +1,1040 @@
+{
+  "restaurante": "Trattoria La Pasta",
+  "moneda": "MXN",
+  "fechaActualizacion": "2026-08-28",
+  "categorias": [
+    {
+      "id": "vinos",
+      "nombre": "Vinos",
+      "productos": [
+        {
+          "id": "chateau-du-soleil",
+          "nombre": "Chateau du Soleil",
+          "descripcion": "Francia · Merlot",
+          "precio": 750,
+          "imagen": "/menu/chateau-du-soleil.webp",
+          "destacada": false
+        },
+        {
+          "id": "bella-storia",
+          "nombre": "Bella Storia",
+          "descripcion": "Italia Veneto · Chardonnay",
+          "precio": 790,
+          "imagen": "/menu/bella-storia.webp",
+          "destacada": false
+        },
+        {
+          "id": "tortel",
+          "nombre": "Tortel",
+          "descripcion": "Chile · Carmenere",
+          "precio": 720,
+          "imagen": "/menu/tortel.webp",
+          "destacada": false
+        },
+        {
+          "id": "andiamo-rosato",
+          "nombre": "Andiamo Rosato",
+          "descripcion": "Italia Emilia · Lambrusco",
+          "precio": 590,
+          "imagen": "/menu/andiamo-rosato.webp",
+          "destacada": false
+        },
+        {
+          "id": "tua-rosa",
+          "nombre": "Tua Rosa",
+          "descripcion": "Italia Toscana · San Giovese",
+          "precio": 890,
+          "imagen": "/menu/tua-rosa.webp",
+          "destacada": false
+        },
+        {
+          "id": "casa-madero-v",
+          "nombre": "Casa Madero V",
+          "descripcion": "México · Cabernet Sauvignon",
+          "precio": 890,
+          "imagen": "/menu/casa-madero-v.webp",
+          "destacada": false
+        },
+        {
+          "id": "150-1",
+          "nombre": "150+1",
+          "descripcion": "Italia Piemonte · Barbera",
+          "precio": 1010,
+          "imagen": "/menu/150-1.webp",
+          "destacada": false
+        },
+        {
+          "id": "borgo-cipressi-pinot-noir",
+          "nombre": "Borgo Cipressi Pinot Noir",
+          "descripcion": "Italia Veneto · Pinot Noir",
+          "precio": 810,
+          "imagen": "/menu/borgo-cipressi-pinot-noir.webp",
+          "destacada": false
+        },
+        {
+          "id": "gran-passaia",
+          "nombre": "Gran Passaia",
+          "descripcion": "Italia Toscana · San Giovese Merlot",
+          "precio": 1090,
+          "imagen": "/menu/gran-passaia.webp",
+          "destacada": false
+        },
+        {
+          "id": "campo-eliso",
+          "nombre": "Campo Eliso",
+          "descripcion": "Italia Chianti · San Giovese",
+          "precio": 840,
+          "imagen": "/menu/campo-eliso.webp",
+          "destacada": false
+        },
+        {
+          "id": "andiamo",
+          "nombre": "Andiamo",
+          "descripcion": "Italia Emilia · Lambrusco rosso dolce",
+          "precio": 590,
+          "imagen": "/menu/andiamo.webp",
+          "destacada": false
+        },
+        {
+          "id": "pretorio",
+          "nombre": "Pretorio",
+          "descripcion": "Italia Toscana · San Giovese Morellino di Scansano",
+          "precio": 1050,
+          "imagen": "/menu/pretorio.webp",
+          "destacada": false
+        },
+        {
+          "id": "borgo-cipressi-primitivo",
+          "nombre": "Borgo Cipressi Primitivo",
+          "descripcion": "Italia Puglia · Primitivo",
+          "precio": 850,
+          "imagen": "/menu/borgo-cipressi-primitivo.webp",
+          "destacada": false
+        },
+        {
+          "id": "borgo-cipressi-nero-d-avola",
+          "nombre": "Borgo Cipressi Nero D'Avola",
+          "descripcion": "Italia Sicilia · Nero D'Avola",
+          "precio": 790,
+          "imagen": "/menu/borgo-cipressi-nero-d-avola.webp",
+          "destacada": false
+        },
+        {
+          "id": "coppiere",
+          "nombre": "Coppiere",
+          "descripcion": "Italia Abruzzo · Montepulciano",
+          "precio": 650,
+          "imagen": "/menu/coppiere.webp",
+          "destacada": false
+        },
+        {
+          "id": "abadia-de-san-campio",
+          "nombre": "Abadía de San Campio",
+          "descripcion": "España Rías Baixas · Albariño",
+          "precio": 1050,
+          "imagen": "/menu/abadia-de-san-campio.webp",
+          "destacada": false
+        },
+        {
+          "id": "casa-defra",
+          "nombre": "Casa Defrá",
+          "descripcion": "Italia Veneto · Pinot Grigio",
+          "precio": 750,
+          "imagen": "/menu/casa-defra.webp",
+          "destacada": false
+        },
+        {
+          "id": "marques-de-riscal-blanco",
+          "nombre": "Marqués de Riscal Blanco",
+          "descripcion": "España · Verdejo",
+          "precio": 910,
+          "imagen": "/menu/marques-de-riscal-blanco.webp",
+          "destacada": false
+        },
+        {
+          "id": "pugnus",
+          "nombre": "Pugnus",
+          "descripcion": "España · Bobal Reserva",
+          "precio": 890,
+          "imagen": "/menu/pugnus.webp",
+          "destacada": false
+        },
+        {
+          "id": "protos",
+          "nombre": "Protos",
+          "descripcion": "España · Tempranillo",
+          "precio": 980,
+          "imagen": "/menu/protos.webp",
+          "destacada": false
+        },
+        {
+          "id": "casa-madero-3v",
+          "nombre": "Casa Madero 3V",
+          "descripcion": "México · Cabernet Sauvignon Merlot Tempranillo",
+          "precio": 1100,
+          "imagen": "/menu/casa-madero-3v.webp",
+          "destacada": false
+        },
+        {
+          "id": "altos-ibericos",
+          "nombre": "Altos Ibéricos",
+          "descripcion": "España · Tempranillo Rioja Crianza",
+          "precio": 910,
+          "imagen": "/menu/altos-ibericos.webp",
+          "destacada": false
+        },
+        {
+          "id": "celeste",
+          "nombre": "Celeste",
+          "descripcion": "España · Tempranillo Ribera del Duero Crianza",
+          "precio": 1050,
+          "imagen": "/menu/celeste.webp",
+          "destacada": false
+        },
+        {
+          "id": "santo-tomas-barbera",
+          "nombre": "Santo Tomás Barbera",
+          "descripcion": "México · Barbera",
+          "precio": 1050,
+          "imagen": "/menu/santo-tomas-barbera.webp",
+          "destacada": false
+        },
+        {
+          "id": "santo-tomas-cabernet-sauvignon",
+          "nombre": "Santo Tomás Cabernet Sauvignon",
+          "descripcion": "México · Cabernet Sauvignon",
+          "precio": 820,
+          "imagen": "/menu/santo-tomas-cabernet-sauvignon.webp",
+          "destacada": false
+        },
+        {
+          "id": "marques-de-riscal-tinto",
+          "nombre": "Marqués de Riscal Tinto",
+          "descripcion": "España · Tempranillo Rioja Reserva",
+          "precio": 1490,
+          "imagen": "/menu/marques-de-riscal-tinto.webp",
+          "destacada": false
+        },
+        {
+          "id": "monte-toro",
+          "nombre": "Monte Toro",
+          "descripcion": "España · Tinta de Toro",
+          "precio": 950,
+          "imagen": "/menu/monte-toro.webp",
+          "destacada": false
+        }
+      ]
+    },
+    {
+      "id": "mixología",
+      "nombre": "Mixología",
+      "productos": [
+        {
+          "id": "besame-besame-mu-mezcal",
+          "nombre": "Besame, Besame Mu... Mezcal",
+          "descripcion": "",
+          "precio": 245,
+          "imagen": "/menu/besame-besame-mu-mezcal.webp",
+          "destacada": false
+        },
+        {
+          "id": "spritz-frozen",
+          "nombre": "Spritz Frozen",
+          "descripcion": "",
+          "precio": 230,
+          "imagen": "/menu/spritz-frozen.webp",
+          "destacada": false
+        },
+        {
+          "id": "mezcal-tropical",
+          "nombre": "Mezcal Tropical",
+          "descripcion": "",
+          "precio": 230,
+          "imagen": "/menu/mezcal-tropical.webp",
+          "destacada": false
+        },
+        {
+          "id": "coctel-tiramisu",
+          "nombre": "Cóctel Tiramisú",
+          "descripcion": "",
+          "precio": 245,
+          "imagen": "/menu/coctel-tiramisu.webp",
+          "destacada": false
+        },
+        {
+          "id": "spicy-romi",
+          "nombre": "Spicy Romi",
+          "descripcion": "",
+          "precio": 245,
+          "imagen": "/menu/spicy-romi.webp",
+          "destacada": false
+        },
+        {
+          "id": "red-passion",
+          "nombre": "Red Passion",
+          "descripcion": "",
+          "precio": 225,
+          "imagen": "/menu/red-passion.webp",
+          "destacada": false
+        },
+        {
+          "id": "atardecer-en-progreso",
+          "nombre": "Atardecer en Progreso",
+          "descripcion": "",
+          "precio": 240,
+          "imagen": "/menu/atardecer-en-progreso.webp",
+          "destacada": false
+        },
+        {
+          "id": "locura-de-chocolate",
+          "nombre": "Locura de Chocolate",
+          "descripcion": "",
+          "precio": 245,
+          "imagen": "/menu/locura-de-chocolate.webp",
+          "destacada": false
+        },
+        {
+          "id": "espiritu-playero",
+          "nombre": "Espíritu Playero",
+          "descripcion": "",
+          "precio": 235,
+          "imagen": "/menu/espiritu-playero.webp",
+          "destacada": false
+        },
+        {
+          "id": "te-amo",
+          "nombre": "Te Amo",
+          "descripcion": "",
+          "precio": 235,
+          "imagen": "/menu/te-amo.webp",
+          "destacada": false
+        },
+        {
+          "id": "baby-yoda",
+          "nombre": "Baby Yoda",
+          "descripcion": "",
+          "precio": 245,
+          "imagen": "/menu/baby-yoda.webp",
+          "destacada": false
+        },
+        {
+          "id": "aperol-margarita",
+          "nombre": "Aperol Margarita",
+          "descripcion": "",
+          "precio": 240,
+          "imagen": "/menu/aperol-margarita.webp",
+          "destacada": false
+        },
+        {
+          "id": "beso-oaxaqueno",
+          "nombre": "Beso Oaxaqueño",
+          "descripcion": "",
+          "precio": 240,
+          "imagen": "/menu/beso-oaxaqueno.webp",
+          "destacada": false
+        },
+        {
+          "id": "verano-italiano",
+          "nombre": "Verano Italiano",
+          "descripcion": "",
+          "precio": 235,
+          "imagen": "/menu/verano-italiano.webp",
+          "destacada": false
+        }
+      ]
+    },
+    {
+      "id": "pizza-frita",
+      "nombre": "Pizza frita",
+      "productos": [
+        {
+          "id": "pizza-frita-pulcinella",
+          "nombre": "Pizza frita Pulcinella",
+          "descripcion": "Rellena de salsa de tomate, mozzarella fresca, queso provolone y salami italiano",
+          "precio": 365,
+          "imagen": "/menu/pizza-frita-pulcinella.webp",
+          "destacada": true
+        },
+        {
+          "id": "pizza-frita-o-puorco",
+          "nombre": "Pizza frita O'Puorco",
+          "descripcion": "Rellena de salsa de tomate, mozzarella fresca, salami italiano casero, chorizo italiano casero y tocino",
+          "precio": 385,
+          "imagen": "/menu/pizza-frita-o-puorco.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-frita-o-mandolino",
+          "nombre": "Pizza frita O'Mandolino",
+          "descripcion": "Rellena de salsa de tomate, mozzarella rallada, gorgonzola, brie, cheddar y Parmesano (5 quesos)",
+          "precio": 375,
+          "imagen": "/menu/pizza-frita-o-mandolino.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-frita-ue-guaglio",
+          "nombre": "Pizza frita Ue Guagliò",
+          "descripcion": "Rellena de salsa bolognesa, mozzarella rallada y Parmesano",
+          "precio": 355,
+          "imagen": "/menu/pizza-frita-ue-guaglio.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-frita-maradona",
+          "nombre": "Pizza frita Maradona",
+          "descripcion": "Rellena de queso ricotta, mozzarella, pimienta negra y chorizo italiano",
+          "precio": 365,
+          "imagen": "/menu/pizza-frita-maradona.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-frita-o-vesuvio",
+          "nombre": "Pizza frita O'Vesuvio",
+          "descripcion": "Rellena de salsa de tomate, mozzarella rallada y fresca, albahaca, orégano y Parmesano rallado",
+          "precio": 340,
+          "imagen": "/menu/pizza-frita-o-vesuvio.webp",
+          "destacada": false
+        }
+      ]
+    },
+    {
+      "id": "pizza",
+      "nombre": "Pizzas",
+      "productos": [
+        {
+          "id": "pizza-al-tartufo",
+          "nombre": "Pizza al Tartufo",
+          "descripcion": "Pizza blanca con mozzarella, gorgonzola, salsa de trufa negra y hongos portobellos",
+          "precio": 335,
+          "imagen": "/menu/pizza-al-tartufo.webp",
+          "destacada": true
+        },
+        {
+          "id": "pizza-coppa",
+          "nombre": "Pizza Coppa",
+          "descripcion": "Salsa de tomate, mozzarella, jamón Bondiola (Coppa), provolone y aceitunas Kalamatas",
+          "precio": 335,
+          "imagen": "/menu/pizza-coppa.webp",
+          "destacada": true
+        },
+        {
+          "id": "pizza-prosciutto-parmigiano-e-rucola",
+          "nombre": "Pizza Prosciutto Parmigiano e Rucola",
+          "descripcion": "Salsa de tomate, mozzarella, jamón serrano, arúgula orgánica, Parmesano y tomates cherries",
+          "precio": 325,
+          "imagen": "/menu/pizza-prosciutto-parmigiano-e-rucola.webp",
+          "destacada": true
+        },
+        {
+          "id": "doppio-pistacchio",
+          "nombre": "Doppio Pistacchio",
+          "descripcion": "Mozzarella, crema de pistache, mortadella casera y granola de pistache",
+          "precio": 335,
+          "imagen": "/menu/doppio-pistacchio.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-salsicce-e-cipolla",
+          "nombre": "Pizza Salsicce e Cipolla",
+          "descripcion": "Salsa de tomate, mozzarella, chorizo italiano y cebolla morada",
+          "precio": 285,
+          "imagen": "/menu/pizza-salsicce-e-cipolla.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-pet",
+          "nombre": "Pizza Pet",
+          "descripcion": "Pizza para mascotas con vitaminas B, C y V6, omega 3, proteína, biotina, calcio, fósforo y vitamina A",
+          "precio": 145,
+          "imagen": "/menu/pizza-pet.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-prosciutto-e-funghi",
+          "nombre": "Pizza Prosciutto e Funghi",
+          "descripcion": "Salsa de tomate, mozzarella, champiñones y jamón de cerdo",
+          "precio": 275,
+          "imagen": "/menu/pizza-prosciutto-e-funghi.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-carbonara",
+          "nombre": "Pizza Carbonara",
+          "descripcion": "Mozzarella rallada, huevos orgánicos batidos con pimienta negra, tocino italiano y Parmesano",
+          "precio": 275,
+          "imagen": "/menu/pizza-carbonara.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-crudo-e-fichi",
+          "nombre": "Pizza Crudo e Fichi",
+          "descripcion": "Salsa de tomate, mozzarella, jamón serrano, higos frescos y balsámico de Módena",
+          "precio": 335,
+          "imagen": "/menu/pizza-crudo-e-fichi.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-vegetariana",
+          "nombre": "Pizza Vegetariana",
+          "descripcion": "Salsa de tomate, mozzarella, tomates cherries, calabacines, pimientos y cebolla morada",
+          "precio": 270,
+          "imagen": "/menu/pizza-vegetariana.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-spagnola",
+          "nombre": "Pizza Spagnola",
+          "descripcion": "Salsa de tomate, mozzarella, jamón serrano, aceitunas negras y queso de cabra",
+          "precio": 325,
+          "imagen": "/menu/pizza-spagnola.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-diavola",
+          "nombre": "Pizza Diavola",
+          "descripcion": "Salsa de tomate, mozzarella y salami casero italiano picante",
+          "precio": 295,
+          "imagen": "/menu/pizza-diavola.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-salame",
+          "nombre": "Pizza Salame",
+          "descripcion": "Salsa de tomate, mozzarella y salami casero italiano",
+          "precio": 295,
+          "imagen": "/menu/pizza-salame.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-amatriciana",
+          "nombre": "Pizza Amatriciana",
+          "descripcion": "Salsa de tomate con pimienta negra, mozzarella, cebolla morada, tocino italiano y pecorino",
+          "precio": 295,
+          "imagen": "/menu/pizza-amatriciana.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-formaggio-e-pere",
+          "nombre": "Pizza Formaggio e Pere",
+          "descripcion": "Sin salsa de tomate. Mozzarella, gorgonzola, peras y nueces picadas",
+          "precio": 285,
+          "imagen": "/menu/pizza-formaggio-e-pere.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-speck-e-mascarpone",
+          "nombre": "Pizza Speck e Mascarpone",
+          "descripcion": "Sin salsa de tomate. Mozzarella, mascarpone y jamón selva negra",
+          "precio": 305,
+          "imagen": "/menu/pizza-speck-e-mascarpone.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-gamberetti",
+          "nombre": "Pizza Gamberetti",
+          "descripcion": "Salsa de tomate, mozzarella fresca y camarones",
+          "precio": 305,
+          "imagen": "/menu/pizza-gamberetti.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-mari-e-monti",
+          "nombre": "Pizza Mari e Monti",
+          "descripcion": "Salsa de tomate, mozzarella, tocino italiano, champiñones y camarones",
+          "precio": 325,
+          "imagen": "/menu/pizza-mari-e-monti.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-quattro-formaggi",
+          "nombre": "Pizza Quattro Formaggi",
+          "descripcion": "Salsa de tomate, mozzarella, Parmesano, gorgonzola y cheddar",
+          "precio": 295,
+          "imagen": "/menu/pizza-quattro-formaggi.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-burrata-e-pesto",
+          "nombre": "Pizza Burrata e Pesto",
+          "descripcion": "Salsa de tomate, burrata fresca, pesto genovés y Parmesano",
+          "precio": 325,
+          "imagen": "/menu/pizza-burrata-e-pesto.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-quattro-stagioni",
+          "nombre": "Pizza Quattro Stagioni",
+          "descripcion": "Salsa de tomate, mozzarella, alcachofas, aceitunas negras, champiñones y jamón de cerdo",
+          "precio": 285,
+          "imagen": "/menu/pizza-quattro-stagioni.webp",
+          "destacada": false
+        },
+        {
+          "id": "pizza-margherita",
+          "nombre": "Pizza Margherita",
+          "descripcion": "Salsa de tomate, mozzarella fresca y albahaca. La reina de las pizzas",
+          "precio": 255,
+          "imagen": "/menu/pizza-margherita.webp",
+          "destacada": false
+        }
+      ]
+    },
+    {
+      "id": "entradas",
+      "nombre": "Entradas",
+      "productos": [
+        {
+          "id": "mozzarella-e-coppa",
+          "nombre": "Mozzarella e Coppa",
+          "descripcion": "Burrata con jamón Bondiola casero, arúgula orgánica y crema de vinagre balsámico (producto de temporada)",
+          "precio": 299,
+          "imagen": "/menu/mozzarella-e-coppa.webp",
+          "destacada": true
+        },
+        {
+          "id": "bruschetta-ai-funghi",
+          "nombre": "Bruschetta ai Funghi",
+          "descripcion": "Pan tostado casero con champiñones al romero y un toque de trufa",
+          "precio": 189,
+          "imagen": "/menu/bruschetta-ai-funghi.webp",
+          "destacada": true
+        },
+        {
+          "id": "tagliere-di-salumi-e-formaggi-para-2-personas",
+          "nombre": "Tagliere di Salumi e Formaggi",
+          "descripcion": "Tabla de embutidos y quesos italianos para 2 personas",
+          "precio": 590,
+          "imagen": "/menu/tagliere-di-salumi-e-formaggi-para-2-personas.webp",
+          "destacada": true
+        },
+        {
+          "id": "carpaccio-di-pere",
+          "nombre": "Carpaccio di Pere",
+          "descripcion": "Peras, gorgonzola, nueces caramelizadas, arúgula y tomates deshidratados",
+          "precio": 249,
+          "imagen": "/menu/carpaccio-di-pere.webp",
+          "destacada": true
+        },
+        {
+          "id": "provolone",
+          "nombre": "Provolone",
+          "descripcion": "Provolone fundido con orégano y salsa de tomate. Chorizo italiano extra por $49",
+          "precio": 249,
+          "imagen": "/menu/provolone.webp",
+          "destacada": false
+        },
+        {
+          "id": "carpaccio-di-manzo",
+          "nombre": "Carpaccio di Manzo",
+          "descripcion": "Rebanadas de res con aderezo de alcaparras, Parmesano y arúgula orgánica",
+          "precio": 279,
+          "imagen": "/menu/carpaccio-di-manzo.webp",
+          "destacada": false
+        },
+        {
+          "id": "pane-all-aglio",
+          "nombre": "Pane all'Aglio",
+          "descripcion": "Panecillos al ajo con queso fundido y perejil",
+          "precio": 149,
+          "imagen": "/menu/pane-all-aglio.webp",
+          "destacada": false
+        },
+        {
+          "id": "crostini-di-salmone",
+          "nombre": "Crostini di Salmone",
+          "descripcion": "Salmón ahumado y queso Philadelphia",
+          "precio": 279,
+          "imagen": "/menu/crostini-di-salmone.webp",
+          "destacada": false
+        },
+        {
+          "id": "bruschetta-al-pomodoro",
+          "nombre": "Bruschetta al Pomodoro",
+          "descripcion": "Pan tostado con tomate picado, aceite extra virgen de oliva y albahaca fresca",
+          "precio": 189,
+          "imagen": "/menu/bruschetta-al-pomodoro.webp",
+          "destacada": false
+        }
+      ]
+    },
+    {
+      "id": "ensaladas",
+      "nombre": "Ensaladas",
+      "productos": [
+        {
+          "id": "insalata-gallipoli",
+          "nombre": "Insalata Gallipoli",
+          "descripcion": "Lechuga orgánica, arúgula, aceitunas kalamatas, tomates deshidratados, bondiola y burrata",
+          "precio": 299,
+          "imagen": "/menu/insalata-gallipoli.webp",
+          "destacada": true
+        },
+        {
+          "id": "insalata-greca",
+          "nombre": "Insalata Greca",
+          "descripcion": "Lechuga orgánica, feta, aceitunas negras, cebolla morada, tomates cherry y pepino",
+          "precio": 239,
+          "imagen": "/menu/insalata-greca.webp",
+          "destacada": false
+        },
+        {
+          "id": "insalata-formaggio-e-pere",
+          "nombre": "Insalata Formaggio e Pere",
+          "descripcion": "Mix de lechuga orgánica y espinaca baby, peras, Parmesano, nueces y balsámico",
+          "precio": 255,
+          "imagen": "/menu/insalata-formaggio-e-pere.webp",
+          "destacada": false
+        },
+        {
+          "id": "insalata-mari-e-monti",
+          "nombre": "Insalata Mari e Monti",
+          "descripcion": "Lechuga, tocino italiano crujiente, cebolla morada, camarones, champiñones y cacahuates",
+          "precio": 279,
+          "imagen": "/menu/insalata-mari-e-monti.webp",
+          "destacada": false
+        },
+        {
+          "id": "insalata-fragolina",
+          "nombre": "Insalata Fragolina",
+          "descripcion": "Espinaca orgánica baby, fresas, queso de cabra, almendras y aderezo de frambuesa con chipotle",
+          "precio": 255,
+          "imagen": "/menu/insalata-fragolina.webp",
+          "destacada": false
+        },
+        {
+          "id": "insalata-melinda",
+          "nombre": "Insalata Melinda",
+          "descripcion": "Lechuga orgánica, manzanas rojas, feta, arándanos, gorgonzola, nueces de la India y vinagreta de la casa",
+          "precio": 245,
+          "imagen": "/menu/insalata-melinda.webp",
+          "destacada": false
+        },
+        {
+          "id": "insalata-cesar",
+          "nombre": "Insalata Cesar",
+          "descripcion": "Lechuga, tomate, crutones, pollo asado y salsa Cesar",
+          "precio": 249,
+          "imagen": "/menu/insalata-cesar.webp",
+          "destacada": false
+        },
+        {
+          "id": "insalata-caprese",
+          "nombre": "Insalata Caprese",
+          "descripcion": "Tomate bola, mozzarella fresca, albahaca y balsámico de Módena",
+          "precio": 225,
+          "imagen": "/menu/insalata-caprese.webp",
+          "destacada": false
+        }
+      ]
+    },
+    {
+      "id": "del-mar",
+      "nombre": "Del mar",
+      "productos": [
+        {
+          "id": "fettuccine-al-nero-di-seppia",
+          "nombre": "Fettuccine al Nero di Seppia",
+          "descripcion": "Fettuccine de tinta de calamar con camarones, mejillones y cherries al vino blanco",
+          "precio": 345,
+          "imagen": "/menu/fettuccine-al-nero-di-seppia.webp",
+          "destacada": false
+        },
+        {
+          "id": "spaghetti-allo-scoglio",
+          "nombre": "Spaghetti allo Scoglio",
+          "descripcion": "Almejas, mejillones, pulpo, calamares y tomates frescos con toque picante",
+          "precio": 305,
+          "imagen": "/menu/spaghetti-allo-scoglio.webp",
+          "destacada": false
+        },
+        {
+          "id": "fettuccini-mari-e-monti",
+          "nombre": "Fettuccini Mari e Monti",
+          "descripcion": "Camarones, tocino y champiñones en ajo rostizado, aceite de oliva y toque de crema",
+          "precio": 325,
+          "imagen": "/menu/fettuccini-mari-e-monti.webp",
+          "destacada": false
+        },
+        {
+          "id": "penne-al-vodka",
+          "nombre": "Penne al Vodka",
+          "descripcion": "Salmón fresco al vodka Stolichnaya con almendras en salsa rosada",
+          "precio": 325,
+          "imagen": "/menu/penne-al-vodka.webp",
+          "destacada": false
+        },
+        {
+          "id": "linguine-gamberetti-e-limone",
+          "nombre": "Linguine Gamberetti e Limone",
+          "descripcion": "Camarones en salsa de limón y vino blanco con toque picante",
+          "precio": 315,
+          "imagen": "/menu/linguine-gamberetti-e-limone.webp",
+          "destacada": false
+        }
+      ]
+    },
+    {
+      "id": "especialidades",
+      "nombre": "Especialidades",
+      "productos": [
+        {
+          "id": "gnocchi-al-tartufo",
+          "nombre": "Gnocchi al Tartufo",
+          "descripcion": "Gnocchi de papa, arúgula, nueces de castilla y crema de trufa",
+          "precio": 365,
+          "imagen": "/menu/gnocchi-al-tartufo.webp",
+          "destacada": true
+        },
+        {
+          "id": "lasagne",
+          "nombre": "Lasagne",
+          "descripcion": "6 pisos de carne boloñesa, Parmesano, bechamel y mozzarella fresca",
+          "precio": 295,
+          "imagen": "/menu/lasagne.webp",
+          "destacada": true
+        },
+        {
+          "id": "fettuccine-alle-salsicce",
+          "nombre": "Fettuccine alle Salsicce",
+          "descripcion": "Hongos portobellos y chorizo italiano en salsa de tomate",
+          "precio": 305,
+          "imagen": "/menu/fettuccine-alle-salsicce.webp",
+          "destacada": true
+        },
+        {
+          "id": "gnocchi-al-pistacchio",
+          "nombre": "Gnocchi al Pistacchio",
+          "descripcion": "Gnocchi de pistache y burrata",
+          "precio": 335,
+          "imagen": "/menu/gnocchi-al-pistacchio.webp",
+          "destacada": true
+        },
+        {
+          "id": "gnocchi-alla-sorrentina",
+          "nombre": "Gnocchi alla Sorrentina",
+          "descripcion": "El preferido del chef",
+          "precio": 340,
+          "imagen": "/menu/gnocchi-alla-sorrentina.webp",
+          "destacada": false
+        },
+        {
+          "id": "farfalle-al-pesto-genovese",
+          "nombre": "Farfalle al Pesto Genovese",
+          "descripcion": "Pasta mariposa con pesto de albahaca, ajo, nueces y Parmesano",
+          "precio": 285,
+          "imagen": "/menu/farfalle-al-pesto-genovese.webp",
+          "destacada": false
+        },
+        {
+          "id": "linguine-gorgonzola-e-pere",
+          "nombre": "Linguine Gorgonzola e Pere",
+          "descripcion": "Salsa cremosa de gorgonzola, peras a la mantequilla y nueces picadas",
+          "precio": 285,
+          "imagen": "/menu/linguine-gorgonzola-e-pere.webp",
+          "destacada": false
+        },
+        {
+          "id": "fettuccine-salame-e-provola",
+          "nombre": "Fettuccine Salame e Provola",
+          "descripcion": "Salami casero italiano y provolone en salsa de tomate casera",
+          "precio": 295,
+          "imagen": "/menu/fettuccine-salame-e-provola.webp",
+          "destacada": false
+        },
+        {
+          "id": "fettuccine-al-cacao",
+          "nombre": "Fettuccine al Cacao",
+          "descripcion": "Fettuccini de cacao amargo con piñones, tocino italiano, portobellos, arándanos y toque de Torres",
+          "precio": 315,
+          "imagen": "/menu/fettuccine-al-cacao.webp",
+          "destacada": false
+        }
+      ]
+    },
+    {
+      "id": "pasta",
+      "nombre": "Pasta",
+      "productos": [
+        {
+          "id": "spaghetti",
+          "nombre": "Spaghetti",
+          "descripcion": "Elige tu salsa favorita",
+          "precio": 245,
+          "imagen": "/menu/spaghetti.webp",
+          "destacada": false
+        },
+        {
+          "id": "fusilli",
+          "nombre": "Fusilli",
+          "descripcion": "Elige tu salsa favorita",
+          "precio": 245,
+          "imagen": "/menu/fusilli.webp",
+          "destacada": false
+        },
+        {
+          "id": "penne",
+          "nombre": "Penne",
+          "descripcion": "Elige tu salsa favorita",
+          "precio": 245,
+          "imagen": "/menu/penne.webp",
+          "destacada": false
+        },
+        {
+          "id": "rigatoni",
+          "nombre": "Rigatoni",
+          "descripcion": "Elige tu salsa favorita",
+          "precio": 245,
+          "imagen": "/menu/rigatoni.webp",
+          "destacada": false
+        },
+        {
+          "id": "spaghetti-integrali",
+          "nombre": "Spaghetti Integrali",
+          "descripcion": "De harina integral",
+          "precio": 245,
+          "imagen": "/menu/spaghetti-integrali.webp",
+          "destacada": false
+        },
+        {
+          "id": "fettuccine",
+          "nombre": "Fettuccine",
+          "descripcion": "Elige tu salsa favorita",
+          "precio": 259,
+          "imagen": "/menu/fettuccine.webp",
+          "destacada": false
+        },
+        {
+          "id": "fettuccine-verdi",
+          "nombre": "Fettuccine Verdi",
+          "descripcion": "De espinacas",
+          "precio": 259,
+          "imagen": "/menu/fettuccine-verdi.webp",
+          "destacada": false
+        },
+        {
+          "id": "fettuccine-piccanti",
+          "nombre": "Fettuccine Piccanti",
+          "descripcion": "Al chile de árbol",
+          "precio": 259,
+          "imagen": "/menu/fettuccine-piccanti.webp",
+          "destacada": false
+        },
+        {
+          "id": "fettuccine-all-origano",
+          "nombre": "Fettuccine all'Origano",
+          "descripcion": "De orégano",
+          "precio": 259,
+          "imagen": "/menu/fettuccine-all-origano.webp",
+          "destacada": false
+        },
+        {
+          "id": "fettuccine-integrali",
+          "nombre": "Fettuccine Integrali",
+          "descripcion": "De harina integral",
+          "precio": 259,
+          "imagen": "/menu/fettuccine-integrali.webp",
+          "destacada": false
+        },
+        {
+          "id": "gnocchi",
+          "nombre": "Gnocchi",
+          "descripcion": "Elige tu salsa favorita",
+          "precio": 269,
+          "imagen": "/menu/gnocchi.webp",
+          "destacada": false
+        },
+        {
+          "id": "ravioli-di-carne",
+          "nombre": "Ravioli di Carne",
+          "descripcion": "Rellenos de carne",
+          "precio": 269,
+          "imagen": "/menu/ravioli-di-carne.webp",
+          "destacada": false
+        },
+        {
+          "id": "ravioli-ricotta-e-spinaci",
+          "nombre": "Ravioli Ricotta e Spinaci",
+          "descripcion": "Rellenos de ricotta y espinacas",
+          "precio": 269,
+          "imagen": "/menu/ravioli-ricotta-e-spinaci.webp",
+          "destacada": false
+        },
+        {
+          "id": "ravioli-ricotta-e-noci",
+          "nombre": "Ravioli Ricotta e Noci",
+          "descripcion": "Rellenos de ricotta y nueces",
+          "precio": 269,
+          "imagen": "/menu/ravioli-ricotta-e-noci.webp",
+          "destacada": false
+        }
+      ]
+    },
+    {
+      "id": "postres",
+      "nombre": "Postres",
+      "productos": [
+        {
+          "id": "banana-split",
+          "nombre": "Banana Split",
+          "descripcion": "Plátano, helado napolitano, crema batida, Nutella y almendras rebanadas",
+          "precio": 180,
+          "imagen": "/menu/banana-split.webp",
+          "destacada": true
+        },
+        {
+          "id": "la-golosa",
+          "nombre": "La Golosa",
+          "descripcion": "Rellena de Nutella y mascarpone",
+          "precio": 260,
+          "imagen": "/menu/la-golosa.webp",
+          "destacada": false
+        },
+        {
+          "id": "panna-cotta-de-mango",
+          "nombre": "Panna Cotta de Mango",
+          "descripcion": "Panna cotta con salsa de mango y coco rallado tostado",
+          "precio": 150,
+          "imagen": "/menu/panna-cotta-de-mango.webp",
+          "destacada": false
+        },
+        {
+          "id": "tiramisu-de-nutella-y-coco",
+          "nombre": "Tiramisú de Nutella y Coco",
+          "descripcion": "Versión golosa del clásico tiramisú con Nutella y coco",
+          "precio": 170,
+          "imagen": "/menu/tiramisu-de-nutella-y-coco.webp",
+          "destacada": false
+        },
+        {
+          "id": "brownie-al-cioccolato-con-gelato",
+          "nombre": "Brownie al Cioccolato con Gelato",
+          "descripcion": "Brownie de chocolate con bola de helado de vainilla",
+          "precio": 180,
+          "imagen": "/menu/brownie-al-cioccolato-con-gelato.webp",
+          "destacada": false
+        },
+        {
+          "id": "tiramisu",
+          "nombre": "Tiramisú",
+          "descripcion": "La especialidad de la casa",
+          "precio": 160,
+          "imagen": "/menu/tiramisu.webp",
+          "destacada": false
+        },
+        {
+          "id": "creme-brulee",
+          "nombre": "Creme Brulee",
+          "descripcion": "No aplica para domicilio",
+          "precio": 150,
+          "imagen": "/menu/creme-brulee.webp",
+          "destacada": false
+        }
+      ]
+    }
+  ],
+  "pendientes": [
+    "Salsas de pasta: la web dice 'elige tu salsa' pero la lista no está publicada como texto",
+    "Bebidas: publicadas solo como 5 imágenes JPG, sin texto extraíble",
+    "Pizzas milanesas: sección en el índice de navegación sin contenido publicado"
+  ]
+}
