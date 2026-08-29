@@ -36,12 +36,10 @@ const categoryIcons: Record<string, LucideIcon> = {
 };
 
 const priceFormatter = new Intl.NumberFormat("es-MX", {
-  style: "currency",
-  currency: "MXN",
   maximumFractionDigits: 0,
 });
 
-const formatPrice = (price: number) => priceFormatter.format(price);
+const formatPrice = (price: number) => `${priceFormatter.format(price)} MXN`;
 
 const smallImage = (image: string) => image.replace(/\.webp$/i, "-480.webp");
 
@@ -144,6 +142,62 @@ export default function App() {
     },
     [],
   );
+
+  useEffect(() => {
+    if (
+      window.location.hash ||
+      window.scrollY > 8 ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    let animationFrame = 0;
+    let cancelled = false;
+
+    const cancelWelcomeScroll = () => {
+      cancelled = true;
+      window.clearTimeout(startTimer);
+      window.cancelAnimationFrame(animationFrame);
+    };
+
+    const startTimer = window.setTimeout(() => {
+      const heroRule = document.querySelector<HTMLElement>(".hero-rule");
+      if (!heroRule || cancelled) return;
+
+      const startY = window.scrollY;
+      const targetY = Math.min(
+        heroRule.getBoundingClientRect().top + startY,
+        document.documentElement.scrollHeight - window.innerHeight,
+      );
+      const distance = targetY - startY;
+      const duration = 2400;
+      const startTime = performance.now();
+
+      const animateWelcomeScroll = (now: number) => {
+        if (cancelled) return;
+        const progress = Math.min((now - startTime) / duration, 1);
+        const easedProgress = progress * progress * (3 - 2 * progress);
+        window.scrollTo(0, startY + distance * easedProgress);
+
+        if (progress < 1) animationFrame = window.requestAnimationFrame(animateWelcomeScroll);
+      };
+
+      animationFrame = window.requestAnimationFrame(animateWelcomeScroll);
+    }, 1500);
+
+    const interruptionEvents = ["wheel", "touchstart", "pointerdown", "keydown"] as const;
+    interruptionEvents.forEach((eventName) =>
+      window.addEventListener(eventName, cancelWelcomeScroll, { passive: true }),
+    );
+
+    return () => {
+      cancelWelcomeScroll();
+      interruptionEvents.forEach((eventName) =>
+        window.removeEventListener(eventName, cancelWelcomeScroll),
+      );
+    };
+  }, []);
 
   useEffect(() => {
     const sections = document.querySelectorAll<HTMLElement>("[data-menu-section]");
@@ -337,7 +391,7 @@ useEffect(() => {
               fetchPriority="high"
             />
             <div className="brand-copy">
-              <span className="eyebrow">Menú especial</span>
+              <h1>Menú Especial Yucatecos</h1>
               <p>La cocina italiana que ya conoces, preparada para nuestra gente de Yucatán.</p>
             </div>
           </div>
@@ -379,7 +433,14 @@ useEffect(() => {
 
       <div className="menu-shell">
         <div className="menu-intro">
-          <p>Precios expresados en pesos mexicanos</p>
+          <a
+            className="full-menu-link"
+            href="https://trattorialapasta.com/menu/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Menú completo Trattoria La Pasta
+          </a>
         </div>
 
         {groupedMenu.map((section) => {
@@ -418,17 +479,16 @@ useEffect(() => {
                           />
                           {item.featured && (
                             <span className="featured-badge" title="Recomendado de la casa">
-                              <Star aria-hidden="true" size={14} fill="currentColor" />
-                              Favorito
+                              <Star aria-hidden="true" size={34} fill="currentColor" strokeWidth={1.5} />
                             </span>
                           )}
                         </div>
                         <div className="dish-content">
                           <div className="dish-title-row">
                             <h3>{item.name}</h3>
-                            <strong>{formatPrice(price)}</strong>
                           </div>
                           {item.description && <p>{item.description}</p>}
+                          <strong className="dish-price">{formatPrice(price)}</strong>
                           <span className="view-detail">Ver detalle →</span>
                         </div>
                     </button>
