@@ -135,7 +135,7 @@ export default function App() {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const modalBottomRef = useRef<HTMLDivElement>(null);
   const categoryScrollRef = useRef<HTMLDivElement>(null);
-  const autoCategoryIndexRef = useRef(0);
+
   const pauseCategoryUntilRef = useRef(0);
 
   useEffect(
@@ -174,25 +174,67 @@ export default function App() {
   }, [activeCategory]);
 
   // En celular muestra automáticamente que existen más categorías sin bloquear el gesto manual.
-  useEffect(() => {
-    if (!window.matchMedia("(max-width: 760px)").matches) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+// Mueve automáticamente las categorías de un lado al otro.
+useEffect(() => {
+  if (!window.matchMedia("(max-width: 760px)").matches) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const timer = window.setInterval(() => {
-      if (Date.now() < pauseCategoryUntilRef.current) return;
-      const scroller = categoryScrollRef.current;
-      if (!scroller) return;
-      const buttons = Array.from(scroller.querySelectorAll<HTMLElement>("[data-category]"));
-      if (buttons.length < 2) return;
+  const scroller = categoryScrollRef.current;
+  if (!scroller) return;
 
-      autoCategoryIndexRef.current = (autoCategoryIndexRef.current + 1) % buttons.length;
-      const button = buttons[autoCategoryIndexRef.current];
-      const left = button.offsetLeft - (scroller.clientWidth - button.offsetWidth) / 2;
-      scroller.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
-    }, 2800);
+  let animationFrame = 0;
+  let direction = 1;
+  let lastTime = performance.now();
+  let edgePauseUntil = 0;
 
-    return () => window.clearInterval(timer);
-  }, []);
+  // Velocidad del movimiento.
+  const SPEED = 35;
+
+  const animate = (currentTime: number) => {
+    const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+
+    const delta = Math.min(
+      (currentTime - lastTime) / 1000,
+      0.05
+    );
+
+    lastTime = currentTime;
+
+    if (
+      maxScroll > 5 &&
+      Date.now() >= pauseCategoryUntilRef.current &&
+      currentTime >= edgePauseUntil
+    ) {
+      scroller.scrollLeft += direction * SPEED * delta;
+
+      // Llegamos al lado derecho.
+      if (scroller.scrollLeft >= maxScroll - 1) {
+        scroller.scrollLeft = maxScroll;
+        direction = -1;
+
+        // Espera un momento antes de volver.
+        edgePauseUntil = currentTime + 1000;
+      }
+
+      // Llegamos al lado izquierdo.
+      if (scroller.scrollLeft <= 1) {
+        scroller.scrollLeft = 0;
+        direction = 1;
+
+        // Espera un momento antes de avanzar otra vez.
+        edgePauseUntil = currentTime + 1000;
+      }
+    }
+
+    animationFrame = requestAnimationFrame(animate);
+  };
+
+  animationFrame = requestAnimationFrame(animate);
+
+  return () => {
+    cancelAnimationFrame(animationFrame);
+  };
+}, []);
 
   useEffect(() => {
     if (!selectedItem) return;
