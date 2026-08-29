@@ -267,7 +267,7 @@ export default function App() {
               fetchPriority="high"
             />
             <div className="brand-copy">
-              <span className="eyebrow">Edición especial</span>
+              <span className="eyebrow">Menú especial</span>
               <p>La cocina italiana que ya conoces, preparada para nuestra gente de Yucatán.</p>
             </div>
           </div>
