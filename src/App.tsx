@@ -267,8 +267,8 @@ export default function App() {
               fetchPriority="high"
             />
             <div className="brand-copy">
-              <span className="eyebrow">Edición especial</span>
-              <h1>Solo Yucatecos</h1>
+                <span className="eyebrow">Menù</span>
+                <h1>Trattoria La Pasta</h1>
               <p>La cocina italiana que ya conoces, preparada para nuestra gente de Yucatán.</p>
             </div>
           </div>
