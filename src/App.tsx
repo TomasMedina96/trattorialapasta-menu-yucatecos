@@ -171,7 +171,7 @@ export default function App() {
         document.documentElement.scrollHeight - window.innerHeight,
       );
       const distance = targetY - startY;
-      const duration = 1400;
+      const duration = 2400;
       const startTime = performance.now();
 
       const animateWelcomeScroll = (now: number) => {
@@ -184,7 +184,7 @@ export default function App() {
       };
 
       animationFrame = window.requestAnimationFrame(animateWelcomeScroll);
-    }, 500);
+    }, 1000);
 
     const interruptionEvents = ["wheel", "touchstart", "pointerdown", "keydown"] as const;
     interruptionEvents.forEach((eventName) =>
