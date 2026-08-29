@@ -186,7 +186,7 @@ useEffect(() => {
   let isWaitingAtEdge = false;
   let edgeTimer: number | null = null;
 
-  const SPEED = 55;
+  const SPEED = 70;
 
   const reverseDirection = (newDirection: 1 | -1) => {
     isWaitingAtEdge = true;
@@ -284,7 +284,7 @@ useEffect(() => {
   }, [selectedItem]);
 
   const pauseCategoryAutoScroll = () => {
-    pauseCategoryUntilRef.current = Date.now() + 10000;
+    pauseCategoryUntilRef.current = Date.now() + 1000;
   };
 
   const handleCategoryClick = (event: MouseEvent<HTMLAnchorElement>, categoryId: string) => {
@@ -342,6 +342,7 @@ useEffect(() => {
             </div>
           </div>
         </div>
+
         <div className="hero-rule">
           <span className="hero-rule-green">Recetas italianas</span>
           <span className="hero-rule-white">Ingredientes frescos</span>

@@ -60,6 +60,8 @@ img {
     url("/menu-background-clean.webp") center / cover no-repeat;
 }
 
+
+
 .hero::before {
   position: absolute;
   inset: 0;
@@ -328,6 +330,7 @@ p {
   text-decoration: none;
   transition: 180ms ease;
 }
+
 
 .category-link:hover {
   color: white;
