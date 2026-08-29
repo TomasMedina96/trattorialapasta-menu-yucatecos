@@ -184,7 +184,7 @@ export default function App() {
       };
 
       animationFrame = window.requestAnimationFrame(animateWelcomeScroll);
-    }, 1500);
+    }, 1000);
 
     const interruptionEvents = ["wheel", "touchstart", "pointerdown", "keydown"] as const;
     interruptionEvents.forEach((eventName) =>
