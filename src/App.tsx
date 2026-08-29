@@ -180,17 +180,41 @@ useEffect(() => {
   if (!scroller) return;
 
   let animationFrame = 0;
-  let direction = 1;
+  let direction: 1 | -1 = 1;
   let lastTime = performance.now();
-  let pauseUntil = 0;
+
+  let isWaitingAtEdge = false;
+  let edgeTimer: number | null = null;
 
   const SPEED = 55;
 
-  const move = (now: number) => {
+  const reverseDirection = (newDirection: 1 | -1) => {
+    isWaitingAtEdge = true;
+
+    edgeTimer = window.setTimeout(() => {
+      direction = newDirection;
+
+      const maxScroll =
+        scroller.scrollWidth - scroller.clientWidth;
+
+      // Lo sacamos un poquito del extremo
+      // para que no vuelva a detectar inmediatamente el mismo borde.
+      if (direction === -1) {
+        scroller.scrollLeft = Math.max(0, maxScroll - 2);
+      } else {
+        scroller.scrollLeft = 2;
+      }
+
+      lastTime = performance.now();
+      isWaitingAtEdge = false;
+    }, 1000);
+  };
+
+  const animate = (now: number) => {
     const maxScroll =
       scroller.scrollWidth - scroller.clientWidth;
 
-    const elapsed = Math.min(
+    const delta = Math.min(
       (now - lastTime) / 1000,
       0.05
     );
@@ -199,37 +223,44 @@ useEffect(() => {
 
     if (
       maxScroll > 0 &&
-      Date.now() >= pauseCategoryUntilRef.current &&
-      now >= pauseUntil
+      !isWaitingAtEdge &&
+      Date.now() >= pauseCategoryUntilRef.current
     ) {
-      const nextPosition =
-        scroller.scrollLeft +
-        direction * SPEED * elapsed;
+      scroller.scrollLeft +=
+        direction * SPEED * delta;
 
-      scroller.scrollLeft = nextPosition;
-
-      // Llegó a la derecha
-      if (scroller.scrollLeft >= maxScroll - 1) {
+      // EXTREMO DERECHO
+      if (
+        direction === 1 &&
+        scroller.scrollLeft >= maxScroll - 1
+      ) {
         scroller.scrollLeft = maxScroll;
-        direction = -1;
-        pauseUntil = now + 800;
+        reverseDirection(-1);
       }
 
-      // Llegó a la izquierda
-      if (scroller.scrollLeft <= 0) {
+      // EXTREMO IZQUIERDO
+      else if (
+        direction === -1 &&
+        scroller.scrollLeft <= 1
+      ) {
         scroller.scrollLeft = 0;
-        direction = 1;
-        pauseUntil = now + 800;
+        reverseDirection(1);
       }
     }
 
-    animationFrame = requestAnimationFrame(move);
+    animationFrame =
+      requestAnimationFrame(animate);
   };
 
-  animationFrame = requestAnimationFrame(move);
+  animationFrame =
+    requestAnimationFrame(animate);
 
   return () => {
     cancelAnimationFrame(animationFrame);
+
+    if (edgeTimer !== null) {
+      window.clearTimeout(edgeTimer);
+    }
   };
 }, []);
 
