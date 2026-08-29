@@ -44,26 +44,26 @@ const formatPrice = (price: number) => `${priceFormatter.format(price)} MXN`;
 const smallImage = (image: string) => image.replace(/\.webp$/i, "-480.webp");
 
 const pastaSauces = [
-  ["Bolognesa", "La más famosa y reconfortante."],
+  ["Bolognesa", "La más famosa, reconfortante."],
   [
-    "Alle Verdure",
-    "Calabaza italiana, cebolla morada, pimientos, tomates cherries, aceitunas negras y queso feta, salteados en aceite extra virgen de oliva.",
+    "Alle verdure",
+    "Para los vegetarianos. Calabaza italiana, cebolla morada, pimientos, tomates cherries, aceitunas negras y queso feta. Todo salteado en aceite extra virgen de oliva.",
   ],
   [
-    "Amatriciana",
-    "Tocino italiano, cebolla morada, salsa de tomate y pimienta negra recién molida.",
+    "amatriciana",
+    "El plato típico de Roma. Tocino italiano, cebolla morada, salsa de tomate y un buen toque de pimienta negra recién molida. La tradición en tu boca.",
   ],
   [
-    "Arrabbiata",
-    "Ajo rostizado, aceitunas verdes, salsa de tomate casera y chile peperoncino.",
+    "arrabbiada",
+    'Si te gusta el picante... Ajo rostizado, aceitunas verdes, salsa de tomate casera y chile "peperoncino".',
   ],
   [
-    "Carbonara",
-    "Tocino italiano, huevo, Parmesano Reggiano y pimienta negra recién molida.",
+    "pomodoro y basílico",
+    "Sencilla y deliciosa. Salsa de tomate, ajo rostizado y albahaca. ¡Mediterránea!",
   ],
   [
-    "Boscaiola",
-    "Hongos portobello, tocino italiano y carne molida de sirloin.",
+    "aglio y olio y peperoncino",
+    "El clásico plato italiano de la medianoche. Ajo rostizado, aceite extra virgen de oliva y peperoncino.",
   ],
 ];
 
