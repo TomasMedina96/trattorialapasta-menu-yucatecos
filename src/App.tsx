@@ -171,7 +171,7 @@ export default function App() {
         document.documentElement.scrollHeight - window.innerHeight,
       );
       const distance = targetY - startY;
-      const duration = 2400;
+      const duration = 1400;
       const startTime = performance.now();
 
       const animateWelcomeScroll = (now: number) => {
