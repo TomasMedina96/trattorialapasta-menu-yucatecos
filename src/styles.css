@@ -344,6 +344,39 @@ p {
   text-transform: uppercase;
 }
 
+.menu-intro-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(48px, 8vw, 120px);
+  width: min(920px, 100%);
+}
+
+.promotion-terms {
+  color: #c7c7bf;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.65;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: none;
+}
+
+.promotion-terms strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #fff8e8;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.promotion-terms ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
 .full-menu-link {
   display: inline-flex;
   align-items: center;
@@ -1093,6 +1126,16 @@ footer p {
     margin-bottom: 24px;
     padding-bottom: 22px;
     font-size: 9px;
+  }
+
+  .menu-intro-content {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    width: 100%;
+  }
+
+  .promotion-terms {
+    font-size: 10px;
   }
 
   .full-menu-link {

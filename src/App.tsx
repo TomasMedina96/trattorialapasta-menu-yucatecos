@@ -433,14 +433,23 @@ useEffect(() => {
 
       <div className="menu-shell">
         <div className="menu-intro">
-          <a
-            className="full-menu-link"
-            href="https://trattorialapasta.com/menu/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Menú completo Trattoria La Pasta
-          </a>
+          <div className="menu-intro-content">
+            <div className="promotion-terms">
+              <strong>Restricciones del menú Solo Yucatecos</strong>
+              <ul>
+                <li>No aplica con otras promociones.</li>
+                <li>No aplica para llevar.</li>
+              </ul>
+            </div>
+            <a
+              className="full-menu-link"
+              href="https://trattorialapasta.com/menu/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Menú completo Trattoria La Pasta
+            </a>
+          </div>
         </div>
 
         {groupedMenu.map((section) => {
