@@ -72,11 +72,9 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
         ))}
         {!items.length && <p>No hay platillos en esta categoría.</p>}
       </div>
-      <div className="discover-controls">
-        <button type="button" aria-label="Platillo anterior" disabled={activeIndex === 0} onClick={() => navigate(activeIndex - 1)}>↑</button>
-        <span role="status" aria-live="polite">{items.length ? activeIndex + 1 : 0} / {items.length} · Desliza para explorar</span>
-        <button type="button" aria-label="Platillo siguiente" disabled={activeIndex >= items.length - 1} onClick={() => navigate(activeIndex + 1)}>↓</button>
-      </div>
+      <span className="discover-status" role="status" aria-live="polite">
+        {items.length ? activeIndex + 1 : 0} de {items.length}
+      </span>
     </section>
   );
 }
