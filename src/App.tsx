@@ -15,6 +15,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { type MouseEvent, useEffect, useRef, useState } from "react";
+import { DiscoverMenu } from "./DiscoverMenu";
+import { formatPrice, smallImage } from "./menuPresentation";
 import {
   categories,
   groupedMenu,
@@ -34,14 +36,6 @@ const categoryIcons: Record<string, LucideIcon> = {
   pasta: Wheat,
   postres: CakeSlice,
 };
-
-const priceFormatter = new Intl.NumberFormat("es-MX", {
-  maximumFractionDigits: 0,
-});
-
-const formatPrice = (price: number) => `${priceFormatter.format(price)} MXN`;
-
-const smallImage = (image: string) => image.replace(/\.webp$/i, "-480.webp");
 
 const pastaSauces = [
   ["Bolognesa", "La más famosa, reconfortante."],
@@ -125,6 +119,8 @@ function ProductModalExtras({ category }: { category: string }) {
 }
 
 export default function App() {
+  const [discoverOpen, setDiscoverOpen] = useState(false);
+  const discoverButtonRef = useRef<HTMLButtonElement>(null);
   const [activeCategory, setActiveCategory] = useState(categories[0]?.id ?? "");
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [spinningItemId, setSpinningItemId] = useState<string | null>(null);
@@ -230,6 +226,7 @@ export default function App() {
   // En celular muestra automáticamente que existen más categorías sin bloquear el gesto manual.
 // Mueve automáticamente las categorías de un lado al otro.
 useEffect(() => {
+  if (discoverOpen) return;
   const scroller = categoryScrollRef.current;
   if (!scroller) return;
 
@@ -316,26 +313,43 @@ useEffect(() => {
       window.clearTimeout(edgeTimer);
     }
   };
-}, []);
+}, [discoverOpen]);
 
   useEffect(() => {
     if (!selectedItem) return;
-    const previousOverflow = document.body.style.overflow;
     const previousActive = document.activeElement as HTMLElement | null;
-    document.body.style.overflow = "hidden";
     closeButtonRef.current?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setSelectedItem(null);
+      if (event.key === "Tab") {
+        const buttons = dialogRef.current?.querySelectorAll<HTMLButtonElement>("button:not(:disabled)");
+        const first = buttons?.[0];
+        const last = buttons?.[buttons.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
       previousActive?.focus?.();
     };
   }, [selectedItem]);
+
+  const backgroundLocked = discoverOpen || !!selectedItem;
+  useEffect(() => {
+    if (!backgroundLocked) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [backgroundLocked]);
+
+  const closeDiscover = () => {
+    setDiscoverOpen(false);
+    requestAnimationFrame(() => discoverButtonRef.current?.focus({ preventScroll: true }));
+  };
 
   const pauseCategoryAutoScroll = () => {
     pauseCategoryUntilRef.current = Date.now() + 1000;
@@ -376,6 +390,7 @@ useEffect(() => {
 
   return (
     <main className="site-main">
+      <div inert={backgroundLocked} aria-hidden={backgroundLocked || undefined}>
       <header className="hero">
         <div className="hero-glow hero-glow-left" />
         <div className="hero-glow hero-glow-right" />
@@ -452,6 +467,12 @@ useEffect(() => {
           </div>
         </div>
 
+        <div className="discover-entry">
+          <button className="discover-launch" type="button" ref={discoverButtonRef}
+            onClick={() => setDiscoverOpen(true)}>Descubrir platillos</button>
+          <p>Explora nuestra cocina, un platillo a la vez.</p>
+        </div>
+
         {groupedMenu.map((section) => {
           const SectionIcon = categoryIcons[section.id] ?? UtensilsCrossed;
           return (
@@ -517,6 +538,9 @@ useEffect(() => {
         </div>
       </footer>
 
+      </div>
+      {discoverOpen && <DiscoverMenu onClose={closeDiscover} onDetails={setSelectedItem} modalOpen={!!selectedItem} />}
+
       {selectedItem && (
         <div
           className="dialog-overlay"
@@ -578,7 +602,7 @@ useEffect(() => {
 
               <div ref={modalBottomRef} className="product-dialog-bottom">
                 <button className="product-dialog-done" type="button" onClick={() => setSelectedItem(null)}>
-                  Cerrar y volver al menú
+                  {discoverOpen ? "Cerrar y seguir descubriendo" : "Cerrar y volver al menú"}
                 </button>
                 <p className="product-dialog-hint">También puedes tocar fuera de esta ventana.</p>
               </div>
