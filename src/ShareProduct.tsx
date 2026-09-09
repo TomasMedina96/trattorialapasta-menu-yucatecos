@@ -30,7 +30,8 @@ export function ShareProduct({ name, path, active = true }: { name: string; path
   const facebookUrl = new URL(url);
   if (/\.mp4$/i.test(facebookUrl.pathname)) {
     facebookUrl.pathname = window.location.pathname;
-    facebookUrl.hash = "novedades";
+    facebookUrl.search = "?novedades=1";
+    facebookUrl.hash = "";
   }
   const facebookShareUrl = "https://www.facebook.com/sharer/sharer.php?" +
     new URLSearchParams({ u: facebookUrl.href, display: "popup" }).toString();
@@ -52,11 +53,12 @@ export function ShareProduct({ name, path, active = true }: { name: string; path
           <a href={`https://wa.me/?text=${encodeURIComponent(`${text} ${url}`)}`} target="_blank" rel="noreferrer"><span className="social-icon social-whatsapp"><WhatsAppIcon /></span>WhatsApp</a>
           <a href={facebookShareUrl} target="_blank" rel="noreferrer"
             onClick={event => {
-              const popup = window.open("", "_blank", "popup,width=640,height=620");
+              // Open the final share URL directly during the click, without
+              // redirecting an intermediate blank window on mobile Safari.
+              const popup = window.open(facebookShareUrl, "_blank", "popup,width=640,height=620");
               if (popup) {
                 event.preventDefault();
                 popup.opener = null;
-                popup.location.replace(facebookShareUrl);
               }
             }}><span className="social-icon social-facebook"><svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 21v-8h3l.5-4H14V7c0-1.2.3-2 2-2h2V1.4A25 25 0 0 0 15 1c-3 0-5 1.8-5 5v3H7v4h3v8Z" /></svg></span>Facebook</a>
 
