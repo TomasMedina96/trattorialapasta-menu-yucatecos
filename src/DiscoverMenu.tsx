@@ -84,7 +84,6 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
       }}>
       <header className="discover-header">
         <button className="discover-back" type="button" ref={backRef} onClick={onClose}>← Volver al menú</button>
-        <span>Descubrir platillos</span>
       </header>
       <div className="discover-feed" ref={feedRef} tabIndex={0} aria-label="Platillos; usa las flechas arriba y abajo">
         {items.map((item, index) => (

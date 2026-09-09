@@ -11,10 +11,10 @@ import {
   Wheat,
   Wine,
   X,
-  ChevronDown,
   type LucideIcon,
 } from "lucide-react";
 import { type MouseEvent, useEffect, useRef, useState } from "react";
+import { ProductDialogMore } from "./ProductDialogMore";
 import { DiscoverMenu } from "./DiscoverMenu";
 import { formatPrice, smallImage } from "./menuPresentation";
 import {
@@ -127,7 +127,7 @@ export default function App() {
   const openTimerRef = useRef<number | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const modalBottomRef = useRef<HTMLDivElement>(null);
+  const modalScrollRef = useRef<HTMLDivElement>(null);
   const categoryScrollRef = useRef<HTMLDivElement>(null);
 
   const pauseCategoryUntilRef = useRef(0);
@@ -566,6 +566,8 @@ useEffect(() => {
               <X aria-hidden="true" size={22} />
             </button>
 
+            <div className="product-dialog-scroll" ref={modalScrollRef}>
+            <div className="product-dialog-layout">
             <div className="product-dialog-image">
               <img
                 src={selectedItem.image}
@@ -590,23 +592,18 @@ useEffect(() => {
                 {selectedItem.description || "Detalle del producto seleccionado."}
               </p>
 
-              <button
-                className="product-dialog-more"
-                type="button"
-                onClick={() => modalBottomRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
-              >
-                Ver más <ChevronDown aria-hidden="true" size={17} />
-              </button>
-
               <ProductModalExtras category={selectedItem.category} />
 
-              <div ref={modalBottomRef} className="product-dialog-bottom">
+              <div className="product-dialog-bottom">
                 <button className="product-dialog-done" type="button" onClick={() => setSelectedItem(null)}>
                   {discoverOpen ? "Cerrar y seguir descubriendo" : "Cerrar y volver al menú"}
                 </button>
                 <p className="product-dialog-hint">También puedes tocar fuera de esta ventana.</p>
               </div>
             </div>
+            </div>
+            </div>
+            <ProductDialogMore scrollRef={modalScrollRef} />
           </div>
         </div>
       )}
