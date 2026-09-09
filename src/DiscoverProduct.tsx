@@ -1,6 +1,5 @@
 import { memo, useState } from "react";
 import { useTemporaryZoom } from "./useTemporaryZoom";
-import { Expand } from "lucide-react";
 import { priceOverrides, type MenuItem } from "./data/menu";
 import { formatPrice, smallImage } from "./menuPresentation";
 
@@ -27,7 +26,6 @@ export const DiscoverProduct = memo(function DiscoverProduct({ item, prepared, a
             // prepare those two neighbors without fetching the rest of the feed.
             loading="eager" onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
         ) : failed ? <span>Imagen no disponible</span> : null}
-        <span className="discover-image-hint" aria-hidden="true"><Expand size={24} strokeWidth={1.6} /></span>
       </button>
       <div className="discover-copy">
         {item.featured && <span className="discover-featured">Recomendado de la casa</span>}

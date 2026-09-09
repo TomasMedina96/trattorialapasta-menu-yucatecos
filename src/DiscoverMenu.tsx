@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { type MenuItem } from "./data/menu";
 import { discoverItems } from "./discoverOrder";
-import { Hand, ArrowUp } from "lucide-react";
+import { Hand, ArrowUp, Expand } from "lucide-react";
 import { DiscoverProduct } from "./DiscoverProduct";
 import { DiscoverVideo } from "./DiscoverVideo";
 import "./discover.css";
@@ -115,6 +115,13 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
             }}><ArrowUp aria-hidden="true" size={24} /></button>
         )}
       </header>
+      {activeIndex > 0 && items[activeIndex - 1] && (
+        <button className="discover-detail-fixed" type="button" aria-haspopup="dialog"
+          aria-label={`Ver detalles de ${items[activeIndex - 1].name}`}
+          onClick={() => { cancelIntro(); onDetails(items[activeIndex - 1]); }}>
+          <Expand aria-hidden="true" size={24} strokeWidth={1.6} />
+        </button>
+      )}
       <div className="discover-feed" ref={feedRef} tabIndex={0} aria-label="Platillos; usa las flechas arriba y abajo">
         <div className="discover-slide" data-index={0}>
           <DiscoverVideo src="/videos/trattoria-intro.mp4" active={activeIndex === 0 && !modalOpen}
