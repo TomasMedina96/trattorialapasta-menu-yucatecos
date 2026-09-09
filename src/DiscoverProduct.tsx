@@ -1,4 +1,5 @@
 import { memo, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { ShareProduct } from "./ShareProduct";
 import { useTemporaryZoom } from "./useTemporaryZoom";
 import { priceOverrides, type MenuItem } from "./data/menu";
@@ -32,8 +33,12 @@ export const DiscoverProduct = memo(function DiscoverProduct({ item, prepared, a
         {item.featured && <span className="discover-featured">Recomendado de la casa</span>}
         <div className="discover-title-line"><h2>{item.name}</h2>
           <ShareProduct active={active} name={item.name} path={`#producto-${item.id}`} /></div>
-        <strong className="discover-price">{formatPrice(priceOverrides[item.id] ?? item.basePrice)}</strong>
-        {item.description && <p>{item.description}</p>}
+        <div className="discover-price-line">
+          <strong className="discover-price">{formatPrice(priceOverrides[item.id] ?? item.basePrice)}</strong>
+          <button type="button" className="discover-description-link" aria-haspopup="dialog" onClick={() => onDetails(item)}>
+            <span aria-hidden="true">—</span> Ver más <ChevronDown size={16} aria-hidden="true" />
+          </button>
+        </div>
       </div>
     </article>
   );

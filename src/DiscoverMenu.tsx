@@ -121,7 +121,7 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
       )}
       <div className="discover-feed" ref={feedRef} tabIndex={0} aria-label="Platillos; usa las flechas arriba y abajo">
         <div className="discover-slide" data-index={0}>
-          <DiscoverVideo src="/videos/trattoria-intro.mp4" active={activeIndex === 0 && !modalOpen} />
+          <DiscoverVideo src="/videos/trattoria-intro.mp4" active={activeIndex === 0 && !modalOpen} onDetails={onDetails} />
         </div>
         {items.map((item, index) => (
           <div className="discover-slide" key={item.id} data-index={index + 1}>

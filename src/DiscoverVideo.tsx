@@ -3,12 +3,22 @@
 import { useTemporaryZoom } from "./useTemporaryZoom";
 import { ShareProduct } from "./ShareProduct";
 import { formatPrice } from "./menuPresentation";
-import { Volume2, VolumeX } from "lucide-react";
+import { ChevronDown, Volume2, VolumeX } from "lucide-react";
+import type { MenuItem } from "./data/menu";
+import menu from "./data/menu.json";
 
-export function DiscoverVideo({ active, src, onComplete }: {
+const product = menu.categorias.flatMap(category => category.productos).find(item => item.id === "pizza-frita-pulcinella")!;
+const videoItem: MenuItem = {
+  id: product.id, category: "pizza-frita", name: product.nombre,
+  description: product.descripcion, basePrice: product.precio,
+  image: product.imagen, featured: product.destacada,
+};
+
+export function DiscoverVideo({ active, src, onComplete, onDetails }: {
   active: boolean;
   src: string;
   onComplete?: () => void;
+  onDetails: (item: MenuItem) => void;
 }) {
   const zoom = useTemporaryZoom<HTMLVideoElement>(active);
   const videoRef = zoom.imageRef;
@@ -96,8 +106,12 @@ export function DiscoverVideo({ active, src, onComplete }: {
       <div className="discover-copy">
         <div className="discover-title-line"><h2>Pizza Frita Pulcinella</h2>
           <ShareProduct active={active} name="Pizza Frita Pulcinella" path={src} /></div>
-        <strong className="discover-price">{formatPrice(365)}</strong>
-        <p>Rellena de salsa de tomate, mozzarella fresca, queso provolone, salami italiano</p>
+        <div className="discover-price-line">
+          <strong className="discover-price">{formatPrice(videoItem.basePrice)}</strong>
+          <button type="button" className="discover-description-link" aria-haspopup="dialog" onClick={() => onDetails(videoItem)}>
+            <span aria-hidden="true">—</span> Ver más <ChevronDown size={16} aria-hidden="true" />
+          </button>
+        </div>
       </div>
     </article>
   );
