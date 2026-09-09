@@ -120,7 +120,9 @@ function ProductModalExtras({ category }: { category: string }) {
 }
 
 export default function App() {
-  const [discoverOpen, setDiscoverOpen] = useState(false);
+  const [discoverOpen, setDiscoverOpen] = useState(() =>
+    new URLSearchParams(window.location.search).get("novedades") === "1",
+  );
   const discoverButtonRef = useRef<HTMLButtonElement>(null);
   const [activeCategory, setActiveCategory] = useState(categories[0]?.id ?? "");
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
