@@ -5,6 +5,7 @@ import { Hand, ArrowUp } from "lucide-react";
 import { DiscoverProduct } from "./DiscoverProduct";
 import { DiscoverVideo } from "./DiscoverVideo";
 import "./discover.css";
+import { useReturnToStart } from "./useReturnToStart";
 
 export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
   onClose: () => void;
@@ -12,13 +13,20 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
   modalOpen: boolean;
 }) {
   const [showGuide, setShowGuide] = useState(false);
+  const [showVideoGuide, setShowVideoGuide] = useState(true);
   const introCancelledRef = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const feedRef = useRef<HTMLDivElement>(null);
+  const returnToStart = useReturnToStart(feedRef);
   const backRef = useRef<HTMLButtonElement>(null);
   const items = discoverItems;
 
   useEffect(() => { backRef.current?.focus({ preventScroll: true }); }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowVideoGuide(false), 4200);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const feed = feedRef.current;
@@ -36,6 +44,8 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
   }, [items]);
 
   const cancelIntro = () => {
+    returnToStart.cancel();
+    setShowVideoGuide(false);
     if (activeIndex === 0) return;
     introCancelledRef.current = true;
     setShowGuide(false);
@@ -86,11 +96,21 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
         }
       }}>
       <header className="discover-header">
-        <button className="discover-back" type="button" ref={backRef} onClick={onClose}>← Volver al menú</button>
+        <button className="discover-back" type="button" ref={backRef} onClick={onClose}>Menú</button>
+        {activeIndex > 0 && (
+          <button className="discover-back discover-home" type="button"
+            aria-label="Volver al inicio, al video de Pizza Frita Pulcinella"
+            onClick={() => {
+              cancelIntro();
+              returnToStart.start();
+              backRef.current?.focus({ preventScroll: true });
+            }}><ArrowUp aria-hidden="true" size={24} /></button>
+        )}
       </header>
       <div className="discover-feed" ref={feedRef} tabIndex={0} aria-label="Platillos; usa las flechas arriba y abajo">
         <div className="discover-slide" data-index={0}>
-          <DiscoverVideo active={activeIndex === 0 && !modalOpen} onNext={() => navigate(1)} />
+          <DiscoverVideo src="/videos/trattoria-intro.mp4" active={activeIndex === 0 && !modalOpen}
+            onComplete={items.length ? () => navigate(1) : undefined} />
         </div>
         {items.map((item, index) => (
           <div className="discover-slide" key={item.id} data-index={index + 1}>
@@ -100,7 +120,7 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
         ))}
         {!items.length && <p>No hay platillos en esta categoría.</p>}
       </div>
-      {showGuide && activeIndex === 2 && !modalOpen && (
+      {((showVideoGuide && activeIndex === 0) || (showGuide && activeIndex === 2)) && !modalOpen && (
         <div className="discover-swipe-guide" aria-hidden="true">
           <ArrowUp className="discover-swipe-arrow" size={30} strokeWidth={2} />
           <Hand className="discover-swipe-hand" size={58} strokeWidth={1.6} />

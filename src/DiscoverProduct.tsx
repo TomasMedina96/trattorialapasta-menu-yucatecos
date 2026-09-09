@@ -1,4 +1,5 @@
 import { memo, useState } from "react";
+import { useTemporaryZoom } from "./useTemporaryZoom";
 import { Expand } from "lucide-react";
 import { priceOverrides, type MenuItem } from "./data/menu";
 import { formatPrice, smallImage } from "./menuPresentation";
@@ -9,15 +10,16 @@ export const DiscoverProduct = memo(function DiscoverProduct({ item, prepared, a
   active: boolean;
   onDetails: (item: MenuItem) => void;
 }) {
+  const zoom = useTemporaryZoom(active);
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
   return (
     <article className="discover-product" aria-label={item.name} aria-hidden={!active} inert={!active}>
-      <button type="button" className="discover-image" aria-haspopup="dialog"
-        aria-label={`Abrir ${item.name}`} onClick={() => onDetails(item)}>
+      <button type="button" className="discover-image" ref={zoom.surfaceRef} aria-haspopup="dialog"
+        aria-label={`Abrir ${item.name}`} onClick={event => { if (event.detail === 0 || !zoom.suppressClick.current) onDetails(item); }}>
         {prepared && !loaded && !failed && <span className="discover-placeholder" aria-hidden="true" />}
         {prepared && !failed ? (
-          <img src={smallImage(item.image)}
+          <img ref={zoom.imageRef} draggable={false} src={smallImage(item.image)}
             srcSet={`${smallImage(item.image)} 480w, ${item.image} 1000w`}
             sizes="(max-width: 760px) 100vw, 700px"
             alt={item.name} width="1000" height="1000" decoding="async"

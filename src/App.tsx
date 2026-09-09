@@ -14,6 +14,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { type MouseEvent, useEffect, useRef, useState } from "react";
+import { RestaurantVisit } from "./RestaurantVisit";
 import { ProductDialogMore } from "./ProductDialogMore";
 import { DiscoverMenu } from "./DiscoverMenu";
 import { formatPrice, smallImage } from "./menuPresentation";
@@ -449,6 +450,15 @@ useEffect(() => {
       <div className="menu-shell">
         <div className="menu-intro">
           <div className="menu-intro-content">
+            <a
+              className="full-menu-link"
+              href="https://trattorialapasta.com/menu/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>Menú completo Trattoria La Pasta</span>
+              <small>(precios no yucatecos)</small>
+            </a>
             <div className="promotion-terms">
               <strong>Restricciones del menú Solo Yucatecos</strong>
               <ul>
@@ -456,21 +466,13 @@ useEffect(() => {
                 <li>No aplica para llevar.</li>
               </ul>
             </div>
-            <a
-              className="full-menu-link"
-              href="https://trattorialapasta.com/menu/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Menú completo Trattoria La Pasta
-            </a>
+            <RestaurantVisit />
           </div>
         </div>
 
         <div className="discover-entry">
           <button className="discover-launch" type="button" ref={discoverButtonRef}
-            onClick={() => setDiscoverOpen(true)}>Descubrir platillos</button>
-          <p>Explora nuestra cocina, un platillo a la vez.</p>
+            onClick={() => setDiscoverOpen(true)}><span aria-hidden="true">🔥</span> Últimas novedades</button>
         </div>
 
         {groupedMenu.map((section) => {

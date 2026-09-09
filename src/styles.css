@@ -1420,3 +1420,36 @@ button.dish-card-link {
 @media (max-width: 760px) {
   .product-dialog-layout { display: block; }
 }
+
+/* Intro: full menu, promotion terms, then practical visiting information. */
+.menu-intro-content { grid-template-columns: minmax(0, 1fr); gap: 24px; width: min(760px, 100%); }
+.menu-intro-content .full-menu-link { flex-direction: column; gap: 6px; padding: 18px 20px; text-align: center; border-radius: 18px; }
+.full-menu-link small { font-size: 12px; font-weight: 500; letter-spacing: 0.02em; text-transform: none; }
+.menu-intro-content .promotion-terms { padding: 0 8px; }
+.restaurant-visit {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: 14px 24px;
+  padding: 14px 0; border-top: 1px solid #ffffff16; border-bottom: 1px solid #ffffff16;
+  text-transform: none; letter-spacing: normal;
+}
+.visit-hours { display: flex; align-items: center; gap: 10px; min-height: 48px; }
+.visit-location { min-width: 0; }
+.visit-location-heading { display: flex; align-items: center; gap: 8px; }
+.visit-location-heading img { flex-shrink: 0; object-fit: contain; }
+.restaurant-visit > .visit-directions { grid-column: 1 / -1; }
+.visit-hours > svg { flex-shrink: 0; color: var(--gold); }
+.visit-hours span, .visit-location span { display: block; color: #c7c7bf; font-size: 11px; font-weight: 400; line-height: 1.5; }
+.visit-hours strong { display: block; color: var(--cream); font-size: 13px; font-weight: 650; line-height: 1.6; font-variant-numeric: tabular-nums; }
+.visit-directions { display: flex; width: 100%; justify-content: center; align-items: center; gap: 8px; min-height: 44px; margin-top: 0; padding: 8px 12px; color: white; font-size: 13px; font-weight: 650; border: 1px solid #ffffff30; border-radius: 8px; background: #ffffff08; text-decoration: none; transition: background-color 160ms ease, border-color 160ms ease; }
+.visit-directions > svg:last-child { color: white; flex-shrink: 0; }
+.visit-directions:hover { background: #ffffff14; border-color: #ffffff60; }
+.visit-directions:focus-visible { outline: 2px solid var(--gold); outline-offset: 5px; border-radius: 4px; }
+@media (max-width: 420px) {
+  .restaurant-visit { gap: 12px; }
+  .visit-directions { padding: 9px 10px; }
+  .visit-hours, .visit-location { gap: 7px; }
+}
+@media (max-width: 340px) {
+  .restaurant-visit { column-gap: 8px; }
+  .visit-location-heading { gap: 4px; }
+  .visit-location-heading img { width: 32px; height: 32px; }
+}
