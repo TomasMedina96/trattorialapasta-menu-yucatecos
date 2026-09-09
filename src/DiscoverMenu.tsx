@@ -1,5 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { categories, menuItems, type MenuItem } from "./data/menu";
+import { useEffect, useRef, useState } from "react";
+import { type MenuItem } from "./data/menu";
+import { discoverItems } from "./discoverOrder";
+import { Hand, ArrowUp } from "lucide-react";
 import { DiscoverProduct } from "./DiscoverProduct";
 import "./discover.css";
 
@@ -8,11 +10,12 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
   onDetails: (item: MenuItem) => void;
   modalOpen: boolean;
 }) {
-  const [category, setCategory] = useState("");
+  const [showGuide, setShowGuide] = useState(false);
+  const introCancelledRef = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const feedRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLButtonElement>(null);
-  const items = useMemo(() => menuItems.filter(item => !category || item.category === category), [category]);
+  const items = discoverItems;
 
   useEffect(() => { backRef.current?.focus({ preventScroll: true }); }, []);
 
@@ -31,6 +34,35 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
     return () => observer.disconnect();
   }, [items]);
 
+  const cancelIntro = () => {
+    introCancelledRef.current = true;
+    setShowGuide(false);
+  };
+
+  useEffect(() => {
+    if (modalOpen) {
+      introCancelledRef.current = true;
+      setShowGuide(false);
+      return;
+    }
+    if (introCancelledRef.current || items.length < 2 ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setTimeout(() => {
+      const feed = feedRef.current;
+      if (introCancelledRef.current || document.hidden || !feed || feed.scrollTop > 8) return;
+      introCancelledRef.current = true;
+      setShowGuide(true);
+      feed.scrollTo({ top: feed.clientHeight, behavior: "smooth" });
+    }, 3000);
+    return () => window.clearTimeout(timer);
+  }, [modalOpen, items.length]);
+
+  useEffect(() => {
+    if (!showGuide || activeIndex !== 1) return;
+    const timer = window.setTimeout(() => setShowGuide(false), 4200);
+    return () => window.clearTimeout(timer);
+  }, [showGuide, activeIndex]);
+
   const navigate = (index: number) => {
     const feed = feedRef.current;
     if (!feed) return;
@@ -40,7 +72,9 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
 
   return (
     <section className="discover" aria-label="Descubrir platillos" inert={modalOpen}
+      onPointerDownCapture={cancelIntro} onTouchStartCapture={cancelIntro} onWheelCapture={cancelIntro}
       onKeyDown={event => {
+        cancelIntro();
         if (modalOpen || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
         if ((event.target as HTMLElement).closest('input, textarea, select, [contenteditable="true"]')) return;
         if (event.key === "Escape") { event.preventDefault(); onClose(); }
@@ -52,18 +86,7 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
         <button className="discover-back" type="button" ref={backRef} onClick={onClose}>← Volver al menú</button>
         <span>Descubrir platillos</span>
       </header>
-      <nav className="discover-categories" aria-label="Filtrar platillos por categoría">
-        {[{ id: "", label: "Todos" }, ...categories].map(option => (
-          <button type="button" key={option.id} className={`category-link${category === option.id ? " is-active" : ""}`}
-            aria-pressed={category === option.id} onClick={event => {
-              setCategory(option.id);
-              setActiveIndex(0);
-              feedRef.current?.scrollTo({ top: 0, behavior: "instant" });
-              event.currentTarget.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "instant" });
-            }}>{option.label}</button>
-        ))}
-      </nav>
-      <div className="discover-feed" ref={feedRef} key={category} tabIndex={0} aria-label="Platillos; usa las flechas arriba y abajo">
+      <div className="discover-feed" ref={feedRef} tabIndex={0} aria-label="Platillos; usa las flechas arriba y abajo">
         {items.map((item, index) => (
           <div className="discover-slide" key={item.id} data-index={index}>
             <DiscoverProduct item={item} prepared={Math.abs(index - activeIndex) <= 1}
@@ -72,6 +95,12 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
         ))}
         {!items.length && <p>No hay platillos en esta categoría.</p>}
       </div>
+      {showGuide && activeIndex === 1 && !modalOpen && (
+        <div className="discover-swipe-guide" aria-hidden="true">
+          <ArrowUp className="discover-swipe-arrow" size={30} strokeWidth={2} />
+          <Hand className="discover-swipe-hand" size={58} strokeWidth={1.6} />
+        </div>
+      )}
       <span className="discover-status" role="status" aria-live="polite">
         {items.length ? activeIndex + 1 : 0} de {items.length}
       </span>

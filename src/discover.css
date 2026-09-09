@@ -9,21 +9,9 @@
   background: linear-gradient(#000b, transparent);
 }
 .discover-header > span { font-size: 16px; font-weight: 750; text-shadow: 0 1px 5px #000; }
-.discover-back { min-height: 44px; padding: 8px 12px; border: 0; border-radius: 999px; background: #0007; color: white; font: inherit; cursor: pointer; }
-.discover-categories {
-  position: absolute; z-index: 2; top: calc(env(safe-area-inset-top) + 60px);
-  left: env(safe-area-inset-left); right: env(safe-area-inset-right);
-  display: flex; gap: 4px; overflow-x: auto; padding: 4px 12px;
-  overscroll-behavior-x: contain; scrollbar-width: none;
-}
-.discover-categories button.category-link {
-  min-height: 44px; border: 0; border-bottom: 3px solid transparent; border-radius: 0;
-  background: #0006; color: white; font-family: inherit; cursor: pointer;
-  text-shadow: 0 1px 4px #000; box-shadow: none;
-}
-.discover-categories button.is-active { border-bottom-color: white; background: #0009; }
+.discover-back { min-height: 44px; padding: 8px 12px; border: 0; border-radius: 0; background: transparent; text-shadow: 0 1px 5px #000; color: white; font: inherit; cursor: pointer; }
 .discover-feed { height: 100%; overflow-y: auto; overflow-x: hidden; scroll-snap-type: y mandatory; overscroll-behavior-y: contain; scrollbar-width: none; }
-.discover-feed::-webkit-scrollbar, .discover-categories::-webkit-scrollbar { display: none; }
+.discover-feed::-webkit-scrollbar { display: none; }
 .discover-slide { height: 100%; scroll-snap-align: start; scroll-snap-stop: always; }
 .discover-product { position: relative; height: 100%; width: min(100%, 700px); margin: auto; isolation: isolate; }
 .discover-image {
@@ -43,8 +31,8 @@
   background: linear-gradient(transparent, #000b 48%, #000d);
   pointer-events: none; text-shadow: 0 1px 3px #000;
 }
-.discover-copy h2 { margin: 5px 0 8px; font-size: clamp(24px, 5vw, 34px); line-height: 1.1; overflow-wrap: anywhere; }
-.discover-price { color: var(--gold); font-size: 20px; }
+.discover-copy h2 { margin: 5px 0 8px; font-size: clamp(22px, 4.5vw, 30px); line-height: 1.1; overflow-wrap: anywhere; }
+.discover-price { color: white; font-size: 20px; }
 .discover-featured { font-size: 12px; font-weight: 700; color: var(--gold); }
 .discover-copy p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; margin: 8px 0 0; color: white; line-height: 1.4; font-size: 14px; }
 .discover-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -55,3 +43,35 @@
   .discover-copy p { -webkit-line-clamp: 1; }
   .discover-copy { padding-top: 40px; padding-bottom: max(12px, env(safe-area-inset-bottom)); }
 }
+
+/* A brief, non-interactive swipe demonstration on the second dish. */
+.discover-swipe-guide {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 48%;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  color: white;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 2px 6px #000b);
+}
+.discover-swipe-hand {
+  fill: #fff;
+  stroke: #333;
+  animation: discover-swipe-up 1.4s ease-in-out 3 both;
+}
+.discover-swipe-arrow { animation: discover-swipe-trail 1.4s ease-in-out 3 both; }
+@keyframes discover-swipe-up {
+  0% { transform: translateY(44px) rotate(-12deg); opacity: 0; }
+  20% { transform: translateY(36px) rotate(-12deg); opacity: 1; }
+  75% { transform: translateY(-44px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-52px); opacity: 0; }
+}
+@keyframes discover-swipe-trail {
+  0%, 15%, 100% { opacity: 0; }
+  45%, 75% { opacity: 0.9; }
+}
+@media (prefers-reduced-motion: reduce) { .discover-swipe-guide { display: none; } }

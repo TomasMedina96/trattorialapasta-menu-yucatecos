@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/discovermenu.tsx","./src/discoverproduct.tsx","./src/main.tsx","./src/menupresentation.ts","./src/data/menu.ts"],"version":"5.8.3"}
+{"root":["./src/app.tsx","./src/discovermenu.tsx","./src/discoverproduct.tsx","./src/discoverorder.ts","./src/main.tsx","./src/menupresentation.ts","./src/data/menu.ts"],"version":"5.8.3"}
