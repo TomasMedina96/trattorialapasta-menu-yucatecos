@@ -1,5 +1,7 @@
 ﻿import { useEffect, useRef, useState } from "react";
 
+import { useTemporaryZoom } from "./useTemporaryZoom";
+import { ShareProduct } from "./ShareProduct";
 import { formatPrice } from "./menuPresentation";
 import { Volume2, VolumeX } from "lucide-react";
 
@@ -8,7 +10,8 @@ export function DiscoverVideo({ active, src, onComplete }: {
   src: string;
   onComplete?: () => void;
 }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const zoom = useTemporaryZoom<HTMLVideoElement>(active);
+  const videoRef = zoom.imageRef;
   const heldRef = useRef(false);
   const [blocked, setBlocked] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -55,7 +58,7 @@ export function DiscoverVideo({ active, src, onComplete }: {
 
   return (
     <article className="discover-video" aria-label="Video de Trattoria La Pasta" aria-hidden={!active} inert={!active}>
-      <button type="button" className="discover-video-surface"
+      <button type="button" className="discover-video-surface" ref={zoom.surfaceRef}
         aria-label="Video de Trattoria La Pasta. Mantén pulsado para pausar; suelta para continuar."
         onPointerDown={event => {
           if (!event.isPrimary || event.button !== 0) return;
@@ -91,7 +94,8 @@ export function DiscoverVideo({ active, src, onComplete }: {
         {muted ? <VolumeX aria-hidden="true" size={23} /> : <Volume2 aria-hidden="true" size={23} />}
       </button>
       <div className="discover-copy">
-        <h2>Pizza Frita Pulcinella</h2>
+        <div className="discover-title-line"><h2>Pizza Frita Pulcinella</h2>
+          <ShareProduct active={active} name="Pizza Frita Pulcinella" path={src} /></div>
         <strong className="discover-price">{formatPrice(365)}</strong>
         <p>Rellena de salsa de tomate, mozzarella fresca, queso provolone, salami italiano</p>
       </div>

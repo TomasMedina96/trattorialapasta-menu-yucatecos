@@ -1,4 +1,5 @@
 import { memo, useState } from "react";
+import { ShareProduct } from "./ShareProduct";
 import { useTemporaryZoom } from "./useTemporaryZoom";
 import { priceOverrides, type MenuItem } from "./data/menu";
 import { formatPrice, smallImage } from "./menuPresentation";
@@ -29,7 +30,8 @@ export const DiscoverProduct = memo(function DiscoverProduct({ item, prepared, a
       </button>
       <div className="discover-copy">
         {item.featured && <span className="discover-featured">Recomendado de la casa</span>}
-        <h2>{item.name}</h2>
+        <div className="discover-title-line"><h2>{item.name}</h2>
+          <ShareProduct active={active} name={item.name} path={`#producto-${item.id}`} /></div>
         <strong className="discover-price">{formatPrice(priceOverrides[item.id] ?? item.basePrice)}</strong>
         {item.description && <p>{item.description}</p>}
       </div>

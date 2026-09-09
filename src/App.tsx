@@ -472,7 +472,7 @@ useEffect(() => {
           </div>
         </div>
 
-        <div className="discover-entry">
+        <div className="discover-entry" id="novedades">
           <button className="discover-launch" type="button" ref={discoverButtonRef}
             onClick={() => setDiscoverOpen(true)}><span aria-hidden="true">🔥</span> Últimas novedades</button>
         </div>

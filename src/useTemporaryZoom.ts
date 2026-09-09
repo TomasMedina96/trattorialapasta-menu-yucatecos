@@ -1,8 +1,8 @@
 ﻿import { useEffect, useRef } from "react";
 
-export function useTemporaryZoom(active: boolean) {
+export function useTemporaryZoom<T extends HTMLImageElement | HTMLVideoElement = HTMLImageElement>(active: boolean) {
   const surfaceRef = useRef<HTMLButtonElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
+  const imageRef = useRef<T>(null);
   const suppressClick = useRef(false);
 
   useEffect(() => {
