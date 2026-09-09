@@ -1,6 +1,7 @@
 ﻿import { useEffect, useRef, useState } from "react";
 
 import { formatPrice } from "./menuPresentation";
+import { Volume2, VolumeX } from "lucide-react";
 
 export function DiscoverVideo({ active, src, onComplete }: {
   active: boolean;
@@ -86,7 +87,9 @@ export function DiscoverVideo({ active, src, onComplete }: {
           video.muted = !video.muted;
           setMuted(video.muted);
           play();
-        }}>{muted ? "Activar sonido" : "Silenciar"}</button>
+        }}>
+        {muted ? <VolumeX aria-hidden="true" size={23} /> : <Volume2 aria-hidden="true" size={23} />}
+      </button>
       <div className="discover-copy">
         <h2>Pizza Frita Pulcinella</h2>
         <strong className="discover-price">{formatPrice(365)}</strong>

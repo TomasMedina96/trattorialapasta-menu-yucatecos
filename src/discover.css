@@ -97,3 +97,39 @@
 .discover-video-message { bottom: auto; top: 45%; }
 .discover-image { touch-action: pan-y; }
 .discover-image img { -webkit-user-select: none; user-select: none; }
+.discover-header-actions { display: flex; align-items: center; gap: 8px; }
+.discover-header-actions .discover-back,
+.discover-reserve {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  min-height: 44px; padding: 10px 14px; border: 1px solid #ffffff25; border-radius: 999px;
+  font: inherit; font-size: 13px; font-weight: 700; text-shadow: none;
+}
+.discover-header-actions .discover-back { background: var(--cream); color: var(--ink); }
+.discover-reserve { background: #087b4b; color: white; }
+.discover-reserve svg { flex-shrink: 0; }
+.discover-reserve:disabled { cursor: not-allowed; opacity: 0.8; }
+.discover-header-actions .discover-back:hover { background: var(--paper-deep); }
+@media (max-width: 380px) {
+  .discover-header-actions { gap: 6px; }
+  .discover-header-actions .discover-back, .discover-reserve { padding: 9px 10px; font-size: 12px; gap: 5px; }
+  .discover-home { width: 40px; flex-shrink: 0; }
+}
+.discover-video-sound { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border-radius: 50%; }
+.discover-header-actions { width: 100%; justify-content: space-between; gap: 20px; }
+.discover-reserve { text-decoration: none; }
+.discover-reserve:hover { background: #09663f; }
+.discover-header > .discover-home { position: absolute; top: calc(env(safe-area-inset-top) + 76px); right: max(16px, env(safe-area-inset-right)); }
+@media (max-width: 380px) { .discover-header-actions { gap: 16px; } }
+.discover-header-actions { gap: 8px; }
+.discover-header-actions > .discover-reserve,
+.discover-header-actions > .discover-back { flex: 1 1 0; min-width: 0; }
+/* Align the photo detail icon directly beneath the return-to-start arrow. */
+.discover-image-hint {
+  top: calc(env(safe-area-inset-top) + 128px);
+  right: calc(max(16px, env(safe-area-inset-right)) - max(0px, (100vw - 700px) / 2));
+  transform: none;
+}
+@media (min-width: 701px) {
+  .discover-image-hint { right: 16px; }
+  .discover-header > .discover-home { right: calc((100vw - 700px) / 2 + 16px); }
+}
