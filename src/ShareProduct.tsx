@@ -4,6 +4,7 @@ import { WhatsAppIcon } from "./WhatsAppIcon";
 
 export function ShareProduct({ name, path, active = true }: { name: string; path: string; active?: boolean }) {
   const [open, setOpen] = useState(false);
+  const [shareError, setShareError] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (!active) setOpen(false);
@@ -39,7 +40,7 @@ export function ShareProduct({ name, path, active = true }: { name: string; path
   return (
     <div className="discover-share">
       <button ref={triggerRef} className={`discover-share-button${active ? " is-share-active" : ""}`} type="button"
-        aria-label={`Compartir ${name}`} aria-expanded={open} onClick={() => { setOpen(!open); }}>
+        aria-label={`Compartir ${name}`} aria-expanded={open} onClick={() => { setShareError(false); setOpen(!open); }}>
         <span className="share-symbols" aria-hidden="true">
           <span className="share-blue"><Link size={25} strokeWidth={2.5} /></span>
           <span className="share-white"><Forward size={28} strokeWidth={2} /></span>
@@ -53,6 +54,20 @@ export function ShareProduct({ name, path, active = true }: { name: string; path
           <a href={`https://wa.me/?text=${encodeURIComponent(`${text} ${url}`)}`} target="_blank" rel="noreferrer"><span className="social-icon social-whatsapp"><WhatsAppIcon /></span>WhatsApp</a>
           <a href={facebookShareUrl} target="_blank" rel="noreferrer"
             onClick={event => {
+              if (typeof navigator.share === "function") {
+                event.preventDefault();
+                setShareError(false);
+                // Invoke synchronously within the tap so Safari retains user activation.
+                // iOS supplies the targets; the website cannot preselect Facebook.
+                void navigator.share({ title: text, url: facebookUrl.href }).then(() => {
+                  setOpen(false);
+                }).catch((error: unknown) => {
+                  if (!(error instanceof Error && error.name === "AbortError")) {
+                    setShareError(true);
+                  }
+                });
+                return;
+              }
               // Open the final share URL directly during the click, without
               // redirecting an intermediate blank window on mobile Safari.
               const popup = window.open(facebookShareUrl, "_blank", "popup,width=640,height=620");
@@ -63,6 +78,8 @@ export function ShareProduct({ name, path, active = true }: { name: string; path
             }}><span className="social-icon social-facebook"><svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 21v-8h3l.5-4H14V7c0-1.2.3-2 2-2h2V1.4A25 25 0 0 0 15 1c-3 0-5 1.8-5 5v3H7v4h3v8Z" /></svg></span>Facebook</a>
 
         </div>
+        {typeof navigator.share === "function" && <p>Para Facebook, selecciónalo en las opciones de tu teléfono.</p>}
+        {shareError && <p role="alert">No se pudo abrir el panel. <a href={facebookShareUrl} target="_blank" rel="noreferrer">Compartir en Facebook desde la web</a></p>}
       </div>}
     </div>
   );

@@ -169,6 +169,8 @@
 .share-panel-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 .share-panel-heading button { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: transparent; color: white; cursor: pointer; }
 .share-networks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 8px; }
+.discover-share-options > p { margin: 12px 0 0; color: #d0d3d8; font: 400 12px/1.4 Arial, sans-serif; }
+.discover-share-options > p a { color: #8fc4ff; text-decoration: underline; }
 .share-networks a, .share-networks button { display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 0; border: 0; background: transparent; color: white; font: 500 11px/1.4 Arial, sans-serif; text-decoration: none; cursor: pointer; }
 .social-icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; color: white; }
 .social-whatsapp { background: #168f4b; }
