@@ -1,14 +1,19 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { type MenuItem } from "./data/menu";
-import { discoverItems } from "./discoverOrder";
+import { buildDiscoverSlides } from "./discoverOrder";
+import type { NewsEntry } from './catalog';
 import { Hand, ArrowUp, Expand } from "lucide-react";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { DiscoverProduct } from "./DiscoverProduct";
 import { DiscoverVideo } from "./DiscoverVideo";
+import { DiscoverImage } from './DiscoverImage';
 import "./discover.css";
 import { useReturnToStart } from "./useReturnToStart";
 
-export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
+export function DiscoverMenu({ onClose, onDetails, modalOpen, products, available, entries }: {
+  products: MenuItem[];
+  available: MenuItem[];
+  entries: NewsEntry[];
   onClose: () => void;
   onDetails: (item: MenuItem) => void;
   modalOpen: boolean;
@@ -18,7 +23,9 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
   const feedRef = useRef<HTMLDivElement>(null);
   const returnToStart = useReturnToStart(feedRef);
   const backRef = useRef<HTMLButtonElement>(null);
-  const items = discoverItems;
+  const slides = useMemo(() => buildDiscoverSlides(available, products, entries), [available, products, entries]);
+  const currentItem = slides[activeIndex]?.item;
+  const startsWithVideo = slides[0]?.type === 'video';
 
   useEffect(() => { backRef.current?.focus({ preventScroll: true }); }, []);
 
@@ -36,7 +43,7 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
     }, { root: feed, threshold: [0.6] });
     Array.from(feed.children).forEach(child => observer.observe(child));
     return () => observer.disconnect();
-  }, [items]);
+  }, [slides]);
 
   const cancelIntro = () => {
     returnToStart.cancel();
@@ -48,7 +55,7 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
       setShowGuide(false);
       return;
     }
-    if (activeIndex !== 0 || items.length < 1) return;
+    if (!startsWithVideo || activeIndex !== 0 || slides.length < 2) return;
     let timer: number | undefined;
     const scheduleAdvance = () => {
       window.clearTimeout(timer);
@@ -66,7 +73,7 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
       window.clearTimeout(timer);
       document.removeEventListener("visibilitychange", scheduleAdvance);
     };
-  }, [modalOpen, items.length, activeIndex]);
+  }, [modalOpen, slides.length, activeIndex, startsWithVideo]);
 
   useEffect(() => {
     if (modalOpen || activeIndex !== 1) return;
@@ -78,7 +85,7 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
   const navigate = (index: number) => {
     const feed = feedRef.current;
     if (!feed) return;
-    feed.scrollTo({ top: Math.max(0, Math.min(items.length, index)) * feed.clientHeight,
+    feed.scrollTo({ top: Math.max(0, Math.min(slides.length - 1, index)) * feed.clientHeight,
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   };
 
@@ -104,7 +111,7 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
         </div>
         {activeIndex > 0 && (
           <button className="discover-back discover-home" type="button"
-            aria-label="Volver al inicio, al video de Pizza Frita Pulcinella"
+            aria-label="Volver al inicio de novedades"
             onClick={() => {
               cancelIntro();
               returnToStart.start();
@@ -112,33 +119,32 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen }: {
             }}><ArrowUp aria-hidden="true" size={24} /></button>
         )}
       </header>
-      {activeIndex > 0 && items[activeIndex - 1] && (
+      {currentItem && (
         <button className="discover-detail-fixed" type="button" aria-haspopup="dialog"
-          aria-label={`Ver detalles de ${items[activeIndex - 1].name}`}
-          onClick={() => { cancelIntro(); onDetails(items[activeIndex - 1]); }}>
+          aria-label={`Ver detalles de ${currentItem.name}`}
+          onClick={() => { cancelIntro(); onDetails(currentItem); }}>
           <Expand aria-hidden="true" size={24} strokeWidth={1.6} />
         </button>
       )}
       <div className="discover-feed" ref={feedRef} tabIndex={0} aria-label="Platillos; usa las flechas arriba y abajo">
-        <div className="discover-slide" data-index={0}>
-          <DiscoverVideo src="/videos/trattoria-intro.mp4" active={activeIndex === 0 && !modalOpen} onDetails={onDetails} />
-        </div>
-        {items.map((item, index) => (
-          <div className="discover-slide" key={item.id} data-index={index + 1}>
-            <DiscoverProduct item={item} prepared={Math.abs(index + 1 - activeIndex) <= 1}
-              active={index + 1 === activeIndex} onDetails={onDetails} />
+        {!slides.length && <div className="discover-slide" data-index={0}><p>No hay novedades por ahora. Vuelve pronto.</p></div>}
+        {slides.map((slide, index) => (
+          <div className="discover-slide" key={slide.id} data-index={index}>
+            {slide.type === 'video' ? <DiscoverVideo src={slide.src} title={slide.title} videoItem={slide.item} active={index === activeIndex && !modalOpen} onDetails={onDetails} />
+              : slide.item ? <DiscoverProduct item={slide.item} image={slide.custom ? slide.src : undefined} title={slide.custom ? slide.title : undefined} prepared={Math.abs(index - activeIndex) <= 1}
+                active={index === activeIndex && !modalOpen} onDetails={onDetails} />
+              : <DiscoverImage src={slide.src} title={slide.title} prepared={Math.abs(index - activeIndex) <= 1} active={index === activeIndex && !modalOpen} />}
           </div>
         ))}
-        {!items.length && <p>No hay platillos en esta categoría.</p>}
       </div>
-      {(activeIndex === 0 || (showGuide && activeIndex === 1)) && !modalOpen && (
+      {slides.length > 1 && (activeIndex === 0 || (showGuide && activeIndex === 1)) && !modalOpen && (
         <div className={`discover-swipe-guide${activeIndex === 0 ? " discover-swipe-repeat" : ""}`} key={activeIndex} aria-hidden="true">
           <ArrowUp className="discover-swipe-arrow" size={30} strokeWidth={2} />
           <Hand className="discover-swipe-hand" size={58} strokeWidth={1.6} />
         </div>
       )}
       <span className="discover-status" role="status" aria-live="polite">
-        {activeIndex === 0 ? "Video de Trattoria La Pasta" : `Platillo ${activeIndex} de ${items.length}`}
+        {slides.length ? `Novedad ${activeIndex + 1} de ${slides.length}` : 'Sin novedades'}
       </span>
     </section>
   );

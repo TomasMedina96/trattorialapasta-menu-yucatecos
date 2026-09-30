@@ -18,12 +18,8 @@ import { RestaurantVisit } from "./RestaurantVisit";
 import { ProductDialogMore } from "./ProductDialogMore";
 import { DiscoverMenu } from "./DiscoverMenu";
 import { formatPrice, smallImage } from "./menuPresentation";
-import {
-  categories,
-  groupedMenu,
-  priceOverrides,
-  type MenuItem,
-} from "./data/menu";
+import { type MenuItem } from './data/menu';
+import { itemsFor, type Catalog, type MenuKind } from './catalog';
 
 const categoryIcons: Record<string, LucideIcon> = {
   vinos: Wine,
@@ -119,7 +115,11 @@ function ProductModalExtras({ category }: { category: string }) {
   return null;
 }
 
-export default function App() {
+export default function App({ catalog, kind }: { catalog: Catalog; kind: MenuKind }) {
+  const menuItems = itemsFor(catalog, kind);
+  const categories = catalog.categories.filter(c => menuItems.some(p => p.category === c.id));
+  const groupedMenu = categories.map(c => ({ ...c, items: menuItems.filter(p => p.category === c.id) }));
+  const feedItems = menuItems.filter(p => catalog.products.find(product => product.id === p.id)?.news[kind]);
   const [discoverOpen, setDiscoverOpen] = useState(() =>
     new URLSearchParams(window.location.search).get("novedades") === "1",
   );
@@ -409,8 +409,8 @@ useEffect(() => {
               fetchPriority="high"
             />
             <div className="brand-copy">
-              <h1>Menú Especial Yucatecos</h1>
-              <p>La cocina italiana que ya conoces, preparada para nuestra gente de Yucatán.</p>
+              <h1>{kind === 'yucatecos' ? 'Menú Especial Yucatecos' : 'Menú Trattoria La Pasta'}</h1>
+              <p>{kind === 'yucatecos' ? 'La cocina italiana que ya conoces, preparada para nuestra gente de Yucatán.' : 'Recetas italianas, pasta artesanal y momentos para compartir.'}</p>
             </div>
           </div>
         </div>
@@ -454,20 +454,18 @@ useEffect(() => {
           <div className="menu-intro-content">
             <a
               className="full-menu-link"
-              href="https://trattorialapasta.com/menu/"
-              target="_blank"
-              rel="noreferrer"
+              href={kind === 'yucatecos' ? '/' : '/yucatecos'}
+              hidden={kind === 'normal' && !catalog.settings.yucatecosEnabled}
             >
-              <span>Menú completo Trattoria La Pasta</span>
-              <small>(precios no yucatecos)</small>
+              <span>{kind === 'yucatecos' ? 'Menú completo Trattoria La Pasta' : 'Conoce el menú especial Yucatecos'}</span>
             </a>
-            <div className="promotion-terms">
+            {kind === 'yucatecos' && <div className="promotion-terms">
               <strong>Restricciones del menú Solo Yucatecos</strong>
               <ul>
                 <li>No aplica con otras promociones.</li>
                 <li>No aplica para llevar.</li>
               </ul>
-            </div>
+            </div>}
             <RestaurantVisit />
           </div>
         </div>
@@ -488,7 +486,7 @@ useEffect(() => {
 
               <div className="dish-grid">
                 {section.items.map((item) => {
-                  const price = priceOverrides[item.id] ?? item.basePrice;
+                  const price = item.basePrice;
                   return (
                     <button
                       className={`dish-card-link dish-card${spinningItemId === item.id ? " is-spinning" : ""}`}
@@ -538,12 +536,12 @@ useEffect(() => {
         <img src="/trattoria-logo.webp" alt="" width="500" height="500" loading="lazy" decoding="async" />
         <div>
           <strong>Trattoria La Pasta</strong>
-          <p>Mérida, Yucatán · Menú especial</p>
+          <p>Mérida, Yucatán · {kind === 'yucatecos' ? 'Menú especial Yucatecos' : 'Menú italiano'}</p><a className="admin-entry" href="/admin">Administración</a>
         </div>
       </footer>
 
       </div>
-      {discoverOpen && <DiscoverMenu onClose={closeDiscover} onDetails={setSelectedItem} modalOpen={!!selectedItem} />}
+      {discoverOpen && <DiscoverMenu products={feedItems} available={menuItems} entries={catalog.settings.feeds[kind]} onClose={closeDiscover} onDetails={setSelectedItem} modalOpen={!!selectedItem} />}
 
       {selectedItem && (
         <div
@@ -590,7 +588,7 @@ useEffect(() => {
                 {selectedItem.name}
               </h2>
               <p className="product-dialog-price">
-                {formatPrice(priceOverrides[selectedItem.id] ?? selectedItem.basePrice)}
+                {formatPrice(selectedItem.basePrice)}
               </p>
               <p className="product-dialog-description" id="product-dialog-description">
                 {selectedItem.description || "Detalle del producto seleccionado."}

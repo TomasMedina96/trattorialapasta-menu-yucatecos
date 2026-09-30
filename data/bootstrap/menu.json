@@ -1,0 +1,3379 @@
+{
+  "revision": 57,
+  "categories": [
+    {
+      "id": "vinos",
+      "label": "Vinos"
+    },
+    {
+      "id": "mixología",
+      "label": "Mixología"
+    },
+    {
+      "id": "pizza-frita",
+      "label": "Pizza frita"
+    },
+    {
+      "id": "pizza",
+      "label": "Pizzas"
+    },
+    {
+      "id": "entradas",
+      "label": "Entradas"
+    },
+    {
+      "id": "ensaladas",
+      "label": "Ensaladas"
+    },
+    {
+      "id": "del-mar",
+      "label": "Del mar"
+    },
+    {
+      "id": "especialidades",
+      "label": "Especialidades"
+    },
+    {
+      "id": "pasta",
+      "label": "Pasta"
+    },
+    {
+      "id": "postres",
+      "label": "Postres"
+    }
+  ],
+  "products": [
+    {
+      "id": "chateau-du-soleil",
+      "category": "vinos",
+      "name": "Chateau du Soleil",
+      "description": "Francia · Merlot",
+      "image": "/menu/chateau-du-soleil.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 750,
+        "yucatecos": 200
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "bella-storia",
+      "category": "vinos",
+      "name": "Bella Storia",
+      "description": "Italia Veneto · Chardonnay",
+      "image": "/menu/bella-storia.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 790,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "tortel",
+      "category": "vinos",
+      "name": "Tortel",
+      "description": "Chile · Carmenere",
+      "image": "/menu/tortel.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 720,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "andiamo-rosato",
+      "category": "vinos",
+      "name": "Andiamo Rosato",
+      "description": "Italia Emilia · Lambrusco",
+      "image": "/menu/andiamo-rosato.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 590,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "tua-rosa",
+      "category": "vinos",
+      "name": "Tua Rosa",
+      "description": "Italia Toscana · San Giovese",
+      "image": "/menu/tua-rosa.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 890,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "casa-madero-v",
+      "category": "vinos",
+      "name": "Casa Madero V",
+      "description": "México · Cabernet Sauvignon",
+      "image": "/menu/casa-madero-v.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 890,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "150-1",
+      "category": "vinos",
+      "name": "150+1",
+      "description": "Italia Piemonte · Barbera",
+      "image": "/menu/150-1.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 1010,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "borgo-cipressi-pinot-noir",
+      "category": "vinos",
+      "name": "Borgo Cipressi Pinot Noir",
+      "description": "Italia Veneto · Pinot Noir",
+      "image": "/menu/borgo-cipressi-pinot-noir.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 810,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "gran-passaia",
+      "category": "vinos",
+      "name": "Gran Passaia",
+      "description": "Italia Toscana · San Giovese Merlot",
+      "image": "/menu/gran-passaia.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 1090,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "campo-eliso",
+      "category": "vinos",
+      "name": "Campo Eliso",
+      "description": "Italia Chianti · San Giovese",
+      "image": "/menu/campo-eliso.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 840,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "andiamo",
+      "category": "vinos",
+      "name": "Andiamo",
+      "description": "Italia Emilia · Lambrusco rosso dolce",
+      "image": "/menu/andiamo.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 590,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pretorio",
+      "category": "vinos",
+      "name": "Pretorio",
+      "description": "Italia Toscana · San Giovese Morellino di Scansano",
+      "image": "/menu/pretorio.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 1050,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "borgo-cipressi-primitivo",
+      "category": "vinos",
+      "name": "Borgo Cipressi Primitivo",
+      "description": "Italia Puglia · Primitivo",
+      "image": "/menu/borgo-cipressi-primitivo.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 850,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "borgo-cipressi-nero-d-avola",
+      "category": "vinos",
+      "name": "Borgo Cipressi Nero D'Avola",
+      "description": "Italia Sicilia · Nero D'Avola",
+      "image": "/menu/borgo-cipressi-nero-d-avola.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 790,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "coppiere",
+      "category": "vinos",
+      "name": "Coppiere",
+      "description": "Italia Abruzzo · Montepulciano",
+      "image": "/menu/coppiere.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 650,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "abadia-de-san-campio",
+      "category": "vinos",
+      "name": "Abadía de San Campio",
+      "description": "España Rías Baixas · Albariño",
+      "image": "/menu/abadia-de-san-campio.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 1050,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "casa-defra",
+      "category": "vinos",
+      "name": "Casa Defrá",
+      "description": "Italia Veneto · Pinot Grigio",
+      "image": "/menu/casa-defra.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 750,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "marques-de-riscal-blanco",
+      "category": "vinos",
+      "name": "Marqués de Riscal Blanco",
+      "description": "España · Verdejo",
+      "image": "/menu/marques-de-riscal-blanco.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 910,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pugnus",
+      "category": "vinos",
+      "name": "Pugnus",
+      "description": "España · Bobal Reserva",
+      "image": "/menu/pugnus.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 890,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "protos",
+      "category": "vinos",
+      "name": "Protos",
+      "description": "España · Tempranillo",
+      "image": "/menu/protos.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 980,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "casa-madero-3v",
+      "category": "vinos",
+      "name": "Casa Madero 3V",
+      "description": "México · Cabernet Sauvignon Merlot Tempranillo",
+      "image": "/menu/casa-madero-3v.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 1100,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "altos-ibericos",
+      "category": "vinos",
+      "name": "Altos Ibéricos",
+      "description": "España · Tempranillo Rioja Crianza",
+      "image": "/menu/altos-ibericos.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 910,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "celeste",
+      "category": "vinos",
+      "name": "Celeste",
+      "description": "España · Tempranillo Ribera del Duero Crianza",
+      "image": "/menu/celeste.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 1050,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "santo-tomas-barbera",
+      "category": "vinos",
+      "name": "Santo Tomás Barbera",
+      "description": "México · Barbera",
+      "image": "/menu/santo-tomas-barbera.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 1050,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "santo-tomas-cabernet-sauvignon",
+      "category": "vinos",
+      "name": "Santo Tomás Cabernet Sauvignon",
+      "description": "México · Cabernet Sauvignon",
+      "image": "/menu/santo-tomas-cabernet-sauvignon.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 820,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "marques-de-riscal-tinto",
+      "category": "vinos",
+      "name": "Marqués de Riscal Tinto",
+      "description": "España · Tempranillo Rioja Reserva",
+      "image": "/menu/marques-de-riscal-tinto.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 1490,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "monte-toro",
+      "category": "vinos",
+      "name": "Monte Toro",
+      "description": "España · Tinta de Toro",
+      "image": "/menu/monte-toro.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 950,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "besame-besame-mu-mezcal",
+      "category": "mixología",
+      "name": "Besame, Besame Mu... Mezcal",
+      "description": "",
+      "image": "/menu/besame-besame-mu-mezcal.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 245,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "spritz-frozen",
+      "category": "mixología",
+      "name": "Spritz Frozen",
+      "description": "",
+      "image": "/menu/spritz-frozen.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 230,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "mezcal-tropical",
+      "category": "mixología",
+      "name": "Mezcal Tropical",
+      "description": "",
+      "image": "/menu/mezcal-tropical.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 230,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "coctel-tiramisu",
+      "category": "mixología",
+      "name": "Cóctel Tiramisú",
+      "description": "",
+      "image": "/menu/coctel-tiramisu.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 245,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "spicy-romi",
+      "category": "mixología",
+      "name": "Spicy Romi",
+      "description": "",
+      "image": "/menu/spicy-romi.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 245,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "red-passion",
+      "category": "mixología",
+      "name": "Red Passion",
+      "description": "",
+      "image": "/menu/red-passion.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 225,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "atardecer-en-progreso",
+      "category": "mixología",
+      "name": "Atardecer en Progreso",
+      "description": "",
+      "image": "/menu/atardecer-en-progreso.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 240,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "locura-de-chocolate",
+      "category": "mixología",
+      "name": "Locura de Chocolate",
+      "description": "",
+      "image": "/menu/locura-de-chocolate.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 245,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "espiritu-playero",
+      "category": "mixología",
+      "name": "Espíritu Playero",
+      "description": "",
+      "image": "/menu/espiritu-playero.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 235,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "te-amo",
+      "category": "mixología",
+      "name": "Te Amo",
+      "description": "",
+      "image": "/menu/te-amo.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 235,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "baby-yoda",
+      "category": "mixología",
+      "name": "Baby Yoda",
+      "description": "",
+      "image": "/menu/baby-yoda.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 245,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "aperol-margarita",
+      "category": "mixología",
+      "name": "Aperol Margarita",
+      "description": "",
+      "image": "/menu/aperol-margarita.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 240,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "beso-oaxaqueno",
+      "category": "mixología",
+      "name": "Beso Oaxaqueño",
+      "description": "",
+      "image": "/menu/beso-oaxaqueno.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 240,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "verano-italiano",
+      "category": "mixología",
+      "name": "Verano Italiano",
+      "description": "",
+      "image": "/menu/verano-italiano.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 235,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-frita-pulcinella",
+      "category": "pizza-frita",
+      "name": "Pizza frita Pulcinella",
+      "description": "Rellena de salsa de tomate, mozzarella fresca, queso provolone y salami italiano",
+      "image": "/menu/pizza-frita-pulcinella.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 365,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-frita-o-puorco",
+      "category": "pizza-frita",
+      "name": "Pizza frita O'Puorco",
+      "description": "Rellena de salsa de tomate, mozzarella fresca, salami italiano casero, chorizo italiano casero y tocino",
+      "image": "/menu/pizza-frita-o-puorco.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 385,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-frita-o-mandolino",
+      "category": "pizza-frita",
+      "name": "Pizza frita O'Mandolino",
+      "description": "Rellena de salsa de tomate, mozzarella rallada, gorgonzola, brie, cheddar y Parmesano (5 quesos)",
+      "image": "/menu/pizza-frita-o-mandolino.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 375,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-frita-ue-guaglio",
+      "category": "pizza-frita",
+      "name": "Pizza frita Ue Guagliò",
+      "description": "Rellena de salsa bolognesa, mozzarella rallada y Parmesano",
+      "image": "/menu/pizza-frita-ue-guaglio.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 355,
+        "yucatecos": 248
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-frita-maradona",
+      "category": "pizza-frita",
+      "name": "Pizza frita Maradona",
+      "description": "Rellena de queso ricotta, mozzarella, pimienta negra y chorizo italiano",
+      "image": "/menu/pizza-frita-maradona.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 365,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-frita-o-vesuvio",
+      "category": "pizza-frita",
+      "name": "Pizza frita O'Vesuvio",
+      "description": "Rellena de salsa de tomate, mozzarella rallada y fresca, albahaca, orégano y Parmesano rallado",
+      "image": "/menu/pizza-frita-o-vesuvio.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 340,
+        "yucatecos": 237
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-al-tartufo",
+      "category": "pizza",
+      "name": "Pizza al Tartufo",
+      "description": "Pizza blanca con mozzarella, gorgonzola, salsa de trufa negra y hongos portobellos",
+      "image": "/menu/pizza-al-tartufo.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 335,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-coppa",
+      "category": "pizza",
+      "name": "Pizza Coppa",
+      "description": "Salsa de tomate, mozzarella, jamón Bondiola (Coppa), provolone y aceitunas Kalamatas",
+      "image": "/menu/pizza-coppa.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 335,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-prosciutto-parmigiano-e-rucola",
+      "category": "pizza",
+      "name": "Pizza Prosciutto Parmigiano e Rucola",
+      "description": "Salsa de tomate, mozzarella, jamón serrano, arúgula orgánica, Parmesano y tomates cherries",
+      "image": "/menu/pizza-prosciutto-parmigiano-e-rucola.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 325,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "doppio-pistacchio",
+      "category": "pizza",
+      "name": "Doppio Pistacchio",
+      "description": "Mozzarella, crema de pistache, mortadella casera y granola de pistache",
+      "image": "/menu/doppio-pistacchio.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 335,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-salsicce-e-cipolla",
+      "category": "pizza",
+      "name": "Pizza Salsicce e Cipolla",
+      "description": "Salsa de tomate, mozzarella, chorizo italiano y cebolla morada",
+      "image": "/menu/pizza-salsicce-e-cipolla.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 285,
+        "yucatecos": 199
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-pet",
+      "category": "pizza",
+      "name": "Pizza Pet",
+      "description": "Pizza para mascotas con vitaminas B, C y V6, omega 3, proteína, biotina, calcio, fósforo y vitamina A",
+      "image": "/menu/pizza-pet.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 145,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-prosciutto-e-funghi",
+      "category": "pizza",
+      "name": "Pizza Prosciutto e Funghi",
+      "description": "Salsa de tomate, mozzarella, champiñones y jamón de cerdo",
+      "image": "/menu/pizza-prosciutto-e-funghi.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 275,
+        "yucatecos": 192
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-carbonara",
+      "category": "pizza",
+      "name": "Pizza Carbonara",
+      "description": "Mozzarella rallada, huevos orgánicos batidos con pimienta negra, tocino italiano y Parmesano",
+      "image": "/menu/pizza-carbonara.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 275,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-crudo-e-fichi",
+      "category": "pizza",
+      "name": "Pizza Crudo e Fichi",
+      "description": "Salsa de tomate, mozzarella, jamón serrano, higos frescos y balsámico de Módena",
+      "image": "/menu/pizza-crudo-e-fichi.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 335,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-vegetariana",
+      "category": "pizza",
+      "name": "Pizza Vegetariana",
+      "description": "Salsa de tomate, mozzarella, tomates cherries, calabacines, pimientos y cebolla morada",
+      "image": "/menu/pizza-vegetariana.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 270,
+        "yucatecos": 189
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-spagnola",
+      "category": "pizza",
+      "name": "Pizza Spagnola",
+      "description": "Salsa de tomate, mozzarella, jamón serrano, aceitunas negras y queso de cabra",
+      "image": "/menu/pizza-spagnola.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 325,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-diavola",
+      "category": "pizza",
+      "name": "Pizza Diavola",
+      "description": "Salsa de tomate, mozzarella y salami casero italiano picante",
+      "image": "/menu/pizza-diavola.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 295,
+        "yucatecos": 206
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-salame",
+      "category": "pizza",
+      "name": "Pizza Salame",
+      "description": "Salsa de tomate, mozzarella y salami casero italiano",
+      "image": "/menu/pizza-salame.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 295,
+        "yucatecos": 206
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-amatriciana",
+      "category": "pizza",
+      "name": "Pizza Amatriciana",
+      "description": "Salsa de tomate con pimienta negra, mozzarella, cebolla morada, tocino italiano y pecorino",
+      "image": "/menu/pizza-amatriciana.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 295,
+        "yucatecos": 206
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-formaggio-e-pere",
+      "category": "pizza",
+      "name": "Pizza Formaggio e Pere",
+      "description": "Sin salsa de tomate. Mozzarella, gorgonzola, peras y nueces picadas",
+      "image": "/menu/pizza-formaggio-e-pere.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 285,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-speck-e-mascarpone",
+      "category": "pizza",
+      "name": "Pizza Speck e Mascarpone",
+      "description": "Sin salsa de tomate. Mozzarella, mascarpone y jamón selva negra",
+      "image": "/menu/pizza-speck-e-mascarpone.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 305,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-gamberetti",
+      "category": "pizza",
+      "name": "Pizza Gamberetti",
+      "description": "Salsa de tomate, mozzarella fresca y camarones",
+      "image": "/menu/pizza-gamberetti.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 305,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-mari-e-monti",
+      "category": "pizza",
+      "name": "Pizza Mari e Monti",
+      "description": "Salsa de tomate, mozzarella, tocino italiano, champiñones y camarones",
+      "image": "/menu/pizza-mari-e-monti.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 325,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-quattro-formaggi",
+      "category": "pizza",
+      "name": "Pizza Quattro Formaggi",
+      "description": "Salsa de tomate, mozzarella, Parmesano, gorgonzola y cheddar",
+      "image": "/menu/pizza-quattro-formaggi.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 295,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-burrata-e-pesto",
+      "category": "pizza",
+      "name": "Pizza Burrata e Pesto",
+      "description": "Salsa de tomate, burrata fresca, pesto genovés y Parmesano",
+      "image": "/menu/pizza-burrata-e-pesto.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 325,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-quattro-stagioni",
+      "category": "pizza",
+      "name": "Pizza Quattro Stagioni",
+      "description": "Salsa de tomate, mozzarella, alcachofas, aceitunas negras, champiñones y jamón de cerdo",
+      "image": "/menu/pizza-quattro-stagioni.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 285,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pizza-margherita",
+      "category": "pizza",
+      "name": "Pizza Margherita",
+      "description": "Salsa de tomate, mozzarella fresca y albahaca. La reina de las pizzas",
+      "image": "/menu/pizza-margherita.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 255,
+        "yucatecos": 178
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "mozzarella-e-coppa",
+      "category": "entradas",
+      "name": "Mozzarella e Coppa",
+      "description": "Burrata con jamón Bondiola casero, arúgula orgánica y crema de vinagre balsámico (producto de temporada)",
+      "image": "/menu/mozzarella-e-coppa.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 299,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "bruschetta-ai-funghi",
+      "category": "entradas",
+      "name": "Bruschetta ai Funghi",
+      "description": "Pan tostado casero con champiñones al romero y un toque de trufa",
+      "image": "/menu/bruschetta-ai-funghi.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 189,
+        "yucatecos": 132
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "tagliere-di-salumi-e-formaggi-para-2-personas",
+      "category": "entradas",
+      "name": "Tagliere di Salumi e Formaggi",
+      "description": "Tabla de embutidos y quesos italianos para 2 personas",
+      "image": "/menu/tagliere-di-salumi-e-formaggi-para-2-personas.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 590,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "carpaccio-di-pere",
+      "category": "entradas",
+      "name": "Carpaccio di Pere",
+      "description": "Peras, gorgonzola, nueces caramelizadas, arúgula y tomates deshidratados",
+      "image": "/menu/carpaccio-di-pere.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 249,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "provolone",
+      "category": "entradas",
+      "name": "Provolone",
+      "description": "Provolone fundido con orégano y salsa de tomate. Chorizo italiano extra por $49",
+      "image": "/menu/provolone.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 249,
+        "yucatecos": 174
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "carpaccio-di-manzo",
+      "category": "entradas",
+      "name": "Carpaccio di Manzo",
+      "description": "Rebanadas de res con aderezo de alcaparras, Parmesano y arúgula orgánica",
+      "image": "/menu/carpaccio-di-manzo.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 279,
+        "yucatecos": 195
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "pane-all-aglio",
+      "category": "entradas",
+      "name": "Pane all'Aglio",
+      "description": "Panecillos al ajo con queso fundido y perejil",
+      "image": "/menu/pane-all-aglio.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 149,
+        "yucatecos": 104
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "crostini-di-salmone",
+      "category": "entradas",
+      "name": "Crostini di Salmone",
+      "description": "Salmón ahumado y queso Philadelphia",
+      "image": "/menu/crostini-di-salmone.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 279,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "bruschetta-al-pomodoro",
+      "category": "entradas",
+      "name": "Bruschetta al Pomodoro",
+      "description": "Pan tostado con tomate picado, aceite extra virgen de oliva y albahaca fresca",
+      "image": "/menu/bruschetta-al-pomodoro.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 189,
+        "yucatecos": 132
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "insalata-gallipoli",
+      "category": "ensaladas",
+      "name": "Insalata Gallipoli",
+      "description": "Lechuga orgánica, arúgula, aceitunas kalamatas, tomates deshidratados, bondiola y burrata",
+      "image": "/menu/insalata-gallipoli.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 299,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "insalata-greca",
+      "category": "ensaladas",
+      "name": "Insalata Greca",
+      "description": "Lechuga orgánica, feta, aceitunas negras, cebolla morada, tomates cherry y pepino",
+      "image": "/menu/insalata-greca.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 239,
+        "yucatecos": 167
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "insalata-formaggio-e-pere",
+      "category": "ensaladas",
+      "name": "Insalata Formaggio e Pere",
+      "description": "Mix de lechuga orgánica y espinaca baby, peras, Parmesano, nueces y balsámico",
+      "image": "/menu/insalata-formaggio-e-pere.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 255,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "insalata-mari-e-monti",
+      "category": "ensaladas",
+      "name": "Insalata Mari e Monti",
+      "description": "Lechuga, tocino italiano crujiente, cebolla morada, camarones, champiñones y cacahuates",
+      "image": "/menu/insalata-mari-e-monti.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 279,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "insalata-fragolina",
+      "category": "ensaladas",
+      "name": "Insalata Fragolina",
+      "description": "Espinaca orgánica baby, fresas, queso de cabra, almendras y aderezo de frambuesa con chipotle",
+      "image": "/menu/insalata-fragolina.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 255,
+        "yucatecos": 178
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "insalata-melinda",
+      "category": "ensaladas",
+      "name": "Insalata Melinda",
+      "description": "Lechuga orgánica, manzanas rojas, feta, arándanos, gorgonzola, nueces de la India y vinagreta de la casa",
+      "image": "/menu/insalata-melinda.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 245,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "insalata-cesar",
+      "category": "ensaladas",
+      "name": "Insalata Cesar",
+      "description": "Lechuga, tomate, crutones, pollo asado y salsa Cesar",
+      "image": "/menu/insalata-cesar.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 249,
+        "yucatecos": 174
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "insalata-caprese",
+      "category": "ensaladas",
+      "name": "Insalata Caprese",
+      "description": "Tomate bola, mozzarella fresca, albahaca y balsámico de Módena",
+      "image": "/menu/insalata-caprese.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 225,
+        "yucatecos": 157
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "fettuccine-al-nero-di-seppia",
+      "category": "del-mar",
+      "name": "Fettuccine al Nero di Seppia",
+      "description": "Fettuccine de tinta de calamar con camarones, mejillones y cherries al vino blanco",
+      "image": "/menu/fettuccine-al-nero-di-seppia.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 345,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "spaghetti-allo-scoglio",
+      "category": "del-mar",
+      "name": "Spaghetti allo Scoglio",
+      "description": "Almejas, mejillones, pulpo, calamares y tomates frescos con toque picante",
+      "image": "/menu/spaghetti-allo-scoglio.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 305,
+        "yucatecos": 213
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "fettuccini-mari-e-monti",
+      "category": "del-mar",
+      "name": "Fettuccini Mari e Monti",
+      "description": "Camarones, tocino y champiñones en ajo rostizado, aceite de oliva y toque de crema",
+      "image": "/menu/fettuccini-mari-e-monti.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 325,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "penne-al-vodka",
+      "category": "del-mar",
+      "name": "Penne al Vodka",
+      "description": "Salmón fresco al vodka Stolichnaya con almendras en salsa rosada",
+      "image": "/menu/penne-al-vodka.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 325,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "linguine-gamberetti-e-limone",
+      "category": "del-mar",
+      "name": "Linguine Gamberetti e Limone",
+      "description": "Camarones en salsa de limón y vino blanco con toque picante",
+      "image": "/menu/linguine-gamberetti-e-limone.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 315,
+        "yucatecos": 220
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "gnocchi-al-tartufo",
+      "category": "especialidades",
+      "name": "Gnocchi al Tartufo",
+      "description": "Gnocchi de papa, arúgula, nueces de castilla y crema de trufa",
+      "image": "/menu/gnocchi-al-tartufo.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 365,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "lasagne",
+      "category": "especialidades",
+      "name": "Lasagne",
+      "description": "6 pisos de carne boloñesa, Parmesano, bechamel y mozzarella fresca",
+      "image": "/menu/lasagne.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 295,
+        "yucatecos": 206
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "fettuccine-alle-salsicce",
+      "category": "especialidades",
+      "name": "Fettuccine alle Salsicce",
+      "description": "Hongos portobellos y chorizo italiano en salsa de tomate",
+      "image": "/menu/fettuccine-alle-salsicce.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 305,
+        "yucatecos": 213
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "gnocchi-al-pistacchio",
+      "category": "especialidades",
+      "name": "Gnocchi al Pistacchio",
+      "description": "Gnocchi de pistache y burrata",
+      "image": "/menu/gnocchi-al-pistacchio.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 335,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "gnocchi-alla-sorrentina",
+      "category": "especialidades",
+      "name": "Gnocchi alla Sorrentina",
+      "description": "El preferido del chef",
+      "image": "/menu/gnocchi-alla-sorrentina.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 340,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "farfalle-al-pesto-genovese",
+      "category": "especialidades",
+      "name": "Farfalle al Pesto Genovese",
+      "description": "Pasta mariposa con pesto de albahaca, ajo, nueces y Parmesano",
+      "image": "/menu/farfalle-al-pesto-genovese.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 285,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "linguine-gorgonzola-e-pere",
+      "category": "especialidades",
+      "name": "Linguine Gorgonzola e Pere",
+      "description": "Salsa cremosa de gorgonzola, peras a la mantequilla y nueces picadas",
+      "image": "/menu/linguine-gorgonzola-e-pere.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 285,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "fettuccine-salame-e-provola",
+      "category": "especialidades",
+      "name": "Fettuccine Salame e Provola",
+      "description": "Salami casero italiano y provolone en salsa de tomate casera",
+      "image": "/menu/fettuccine-salame-e-provola.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 295,
+        "yucatecos": 206
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "fettuccine-al-cacao",
+      "category": "especialidades",
+      "name": "Fettuccine al Cacao",
+      "description": "Fettuccini de cacao amargo con piñones, tocino italiano, portobellos, arándanos y toque de Torres",
+      "image": "/menu/fettuccine-al-cacao.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 315,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "spaghetti",
+      "category": "pasta",
+      "name": "Spaghetti",
+      "description": "Elige tu salsa favorita",
+      "image": "/menu/spaghetti.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 245,
+        "yucatecos": 171
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "fusilli",
+      "category": "pasta",
+      "name": "Fusilli",
+      "description": "Elige tu salsa favorita",
+      "image": "/menu/fusilli.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 245,
+        "yucatecos": 171
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "penne",
+      "category": "pasta",
+      "name": "Penne",
+      "description": "Elige tu salsa favorita",
+      "image": "/menu/penne.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 245,
+        "yucatecos": 171
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "rigatoni",
+      "category": "pasta",
+      "name": "Rigatoni",
+      "description": "Elige tu salsa favorita",
+      "image": "/menu/rigatoni.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 245,
+        "yucatecos": 171
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "spaghetti-integrali",
+      "category": "pasta",
+      "name": "Spaghetti Integrali",
+      "description": "De harina integral",
+      "image": "/menu/spaghetti-integrali.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 245,
+        "yucatecos": 171
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "fettuccine",
+      "category": "pasta",
+      "name": "Fettuccine",
+      "description": "Elige tu salsa favorita",
+      "image": "/menu/fettuccine.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 259,
+        "yucatecos": 181
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "fettuccine-verdi",
+      "category": "pasta",
+      "name": "Fettuccine Verdi",
+      "description": "De espinacas",
+      "image": "/menu/fettuccine-verdi.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 259,
+        "yucatecos": 181
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "fettuccine-piccanti",
+      "category": "pasta",
+      "name": "Fettuccine Piccanti",
+      "description": "Al chile de árbol",
+      "image": "/menu/fettuccine-piccanti.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 259,
+        "yucatecos": 181
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "fettuccine-all-origano",
+      "category": "pasta",
+      "name": "Fettuccine all'Origano",
+      "description": "De orégano",
+      "image": "/menu/fettuccine-all-origano.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 259,
+        "yucatecos": 181
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "fettuccine-integrali",
+      "category": "pasta",
+      "name": "Fettuccine Integrali",
+      "description": "De harina integral",
+      "image": "/menu/fettuccine-integrali.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 259,
+        "yucatecos": 181
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "gnocchi",
+      "category": "pasta",
+      "name": "Gnocchi",
+      "description": "Elige tu salsa favorita",
+      "image": "/menu/gnocchi.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 269,
+        "yucatecos": 188
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "ravioli-di-carne",
+      "category": "pasta",
+      "name": "Ravioli di Carne",
+      "description": "Rellenos de carne",
+      "image": "/menu/ravioli-di-carne.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 269,
+        "yucatecos": 188
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "ravioli-ricotta-e-spinaci",
+      "category": "pasta",
+      "name": "Ravioli Ricotta e Spinaci",
+      "description": "Rellenos de ricotta y espinacas",
+      "image": "/menu/ravioli-ricotta-e-spinaci.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 269,
+        "yucatecos": 188
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "ravioli-ricotta-e-noci",
+      "category": "pasta",
+      "name": "Ravioli Ricotta e Noci",
+      "description": "Rellenos de ricotta y nueces",
+      "image": "/menu/ravioli-ricotta-e-noci.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 269,
+        "yucatecos": 188
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "banana-split",
+      "category": "postres",
+      "name": "Banana Split",
+      "description": "Plátano, helado napolitano, crema batida, Nutella y almendras rebanadas",
+      "image": "/menu/banana-split.webp",
+      "featured": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "prices": {
+        "normal": 180,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "la-golosa",
+      "category": "postres",
+      "name": "La Golosa",
+      "description": "Rellena de Nutella y mascarpone",
+      "image": "/menu/la-golosa.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 260,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "panna-cotta-de-mango",
+      "category": "postres",
+      "name": "Panna Cotta de Mango",
+      "description": "Panna cotta con salsa de mango y coco rallado tostado",
+      "image": "/menu/panna-cotta-de-mango.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 150,
+        "yucatecos": 105
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "tiramisu-de-nutella-y-coco",
+      "category": "postres",
+      "name": "Tiramisú de Nutella y Coco",
+      "description": "Versión golosa del clásico tiramisú con Nutella y coco",
+      "image": "/menu/tiramisu-de-nutella-y-coco.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 170,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "brownie-al-cioccolato-con-gelato",
+      "category": "postres",
+      "name": "Brownie al Cioccolato con Gelato",
+      "description": "Brownie de chocolate con bola de helado de vainilla",
+      "image": "/menu/brownie-al-cioccolato-con-gelato.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 180,
+        "yucatecos": null
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": false
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "tiramisu",
+      "category": "postres",
+      "name": "Tiramisú",
+      "description": "La especialidad de la casa",
+      "image": "/menu/tiramisu.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 160,
+        "yucatecos": 112
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    },
+    {
+      "id": "creme-brulee",
+      "category": "postres",
+      "name": "Creme Brulee",
+      "description": "No aplica para domicilio",
+      "image": "/menu/creme-brulee.webp",
+      "featured": {
+        "normal": false,
+        "yucatecos": false
+      },
+      "prices": {
+        "normal": 150,
+        "yucatecos": 105
+      },
+      "enabled": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "news": {
+        "normal": true,
+        "yucatecos": true
+      },
+      "deleted": {
+        "normal": false,
+        "yucatecos": false
+      }
+    }
+  ],
+  "settings": {
+    "yucatecosEnabled": true,
+    "feeds": {
+      "normal": [
+        {
+          "id": "novedad-original-normal",
+          "title": "Nuestra Pizza Frita Pulcinella",
+          "enabled": true,
+          "type": "video",
+          "src": "/videos/trattoria-intro.mp4",
+          "productId": "pizza-frita-pulcinella",
+          "deleted": false
+        }
+      ],
+      "yucatecos": [
+        {
+          "id": "novedad-original-yucatecos",
+          "title": "Nuestra Frita Pulcinella",
+          "enabled": true,
+          "type": "video",
+          "src": "/videos/trattoria-intro.mp4",
+          "productId": "bruschetta-ai-funghi",
+          "deleted": true
+        },
+        {
+          "id": "novedad-4b3fb028-bcac-43f5-bc3c-a9bd4d0f31e5",
+          "title": "Frita Pulcinella",
+          "type": "video",
+          "src": "/videos/trattoria-intro.mp4",
+          "productId": "lasagne",
+          "enabled": true,
+          "deleted": true
+        },
+        {
+          "id": "novedad-236e9c7e-18d3-41c2-907a-9f772791441d",
+          "title": "Chef",
+          "type": "image",
+          "src": "/uploads/40c12431492d8f0fd56ca8114b836071.png",
+          "productId": "",
+          "enabled": true,
+          "deleted": true
+        }
+      ]
+    },
+    "popups": [
+      {
+        "enabled": false,
+        "title": "VINOS ITALIANOS 50 % OFERTA",
+        "message": "Si viste bien!! Todos los vinos italianos en oferta",
+        "image": "/uploads/92cb63ac3cf08c505235e3666396d5f4.png",
+        "id": "aviso-original",
+        "target": "both",
+        "deleted": false
+      },
+      {
+        "id": "aviso-e7703726-56e6-4544-9944-e5e1209b7d94",
+        "title": "PASTA AL 50 % OFERTA",
+        "message": "Si viste bien!! Todos las pastas de oferta",
+        "image": "/uploads/1ec4cda1abaf7644f195a8dc75bab464.png",
+        "target": "both",
+        "enabled": false,
+        "deleted": false
+      }
+    ]
+  }
+}

@@ -1,4 +1,24 @@
-import { menuItems, type MenuItem } from "./data/menu";
+import { type MenuItem } from "./data/menu";
+import type { NewsEntry } from './catalog';
+
+export type DiscoverSlide = {
+  id: string;
+  type: 'image' | 'video';
+  src: string;
+  title: string;
+  item?: MenuItem;
+  custom: boolean;
+};
+
+export function buildDiscoverSlides(available: MenuItem[], automatic: MenuItem[], entries: NewsEntry[]): DiscoverSlide[] {
+  const items = new Map(available.map(item => [item.id, item]));
+  const custom: DiscoverSlide[] = entries.filter(entry => !entry.deleted && entry.enabled && entry.src && (!entry.productId || items.has(entry.productId)))
+    .map(entry => ({ id: entry.id, type: entry.type, src: entry.src, title: entry.title, item: items.get(entry.productId), custom: true }));
+  const represented = new Set(custom.flatMap(slide => slide.item ? [slide.item.id] : []));
+  return [...custom, ...interleaveCategories(automatic.filter(item => !represented.has(item.id))).map(item => ({
+    id: 'product-' + item.id, type: 'image' as const, src: item.image, title: item.name, item, custom: false,
+  }))];
+}
 
 // Use the largest remaining category first so smaller categories can separate
 // its dishes throughout the feed, instead of running out near the beginning.
@@ -23,6 +43,3 @@ export function interleaveCategories(items: readonly MenuItem[]): MenuItem[] {
   }
   return ordered;
 }
-
-// A stable order shared across renders; the traditional menu is untouched.
-export const discoverItems = interleaveCategories(menuItems);

@@ -5,16 +5,9 @@ import { ShareProduct } from "./ShareProduct";
 import { formatPrice } from "./menuPresentation";
 import { ChevronDown, Volume2, VolumeX } from "lucide-react";
 import type { MenuItem } from "./data/menu";
-import menu from "./data/menu.json";
-
-const product = menu.categorias.flatMap(category => category.productos).find(item => item.id === "pizza-frita-pulcinella")!;
-const videoItem: MenuItem = {
-  id: product.id, category: "pizza-frita", name: product.nombre,
-  description: product.descripcion, basePrice: product.precio,
-  image: product.imagen, featured: product.destacada,
-};
-
-export function DiscoverVideo({ active, src, onComplete, onDetails }: {
+export function DiscoverVideo({ active, src, onComplete, onDetails, videoItem, title }: {
+  title?: string;
+  videoItem?: MenuItem;
   active: boolean;
   src: string;
   onComplete?: () => void;
@@ -104,14 +97,14 @@ export function DiscoverVideo({ active, src, onComplete, onDetails }: {
         {muted ? <VolumeX aria-hidden="true" size={23} /> : <Volume2 aria-hidden="true" size={23} />}
       </button>
       <div className="discover-copy">
-        <div className="discover-title-line"><h2>Pizza Frita Pulcinella</h2>
-          <ShareProduct active={active} name="Pizza Frita Pulcinella" path={src} /></div>
-        <div className="discover-price-line">
+        <div className="discover-title-line"><h2>{title || videoItem?.name || 'Novedades Trattoria La Pasta'}</h2>
+          <ShareProduct active={active} name={videoItem?.name || 'Novedades Trattoria La Pasta'} path="?novedades=1" /></div>
+        {videoItem && <div className="discover-price-line">
           <strong className="discover-price">{formatPrice(videoItem.basePrice)}</strong>
           <button type="button" className="discover-description-link" aria-haspopup="dialog" onClick={() => onDetails(videoItem)}>
             <span aria-hidden="true">—</span> Ver más <ChevronDown size={16} aria-hidden="true" />
           </button>
-        </div>
+        </div>}
       </div>
     </article>
   );
