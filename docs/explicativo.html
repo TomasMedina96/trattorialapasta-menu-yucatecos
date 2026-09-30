@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trattoria La Pasta · Funciones del sistema</title>
+<style>
+:root{
+  --ink:#243d33;
+  --cream:#faf6ed;
+  --gold:#b38544;
+  --muted:#62665f;
+  --line:#ded9cd;
+  --bg:#e8e7e1;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Arial,sans-serif;
+  font-size:15px;
+  line-height:1.5;
+}
+.toolbar{
+  max-width:1000px;
+  margin:20px auto;
+  padding:0 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  color:var(--muted);
+  font-size:13px;
+}
+button{
+  border:0;
+  border-radius:999px;
+  padding:11px 18px;
+  background:var(--ink);
+  color:white;
+  cursor:pointer;
+}
+.page{
+  max-width:1000px;
+  margin:22px auto;
+  padding:48px 58px;
+  background:var(--cream);
+  border-top:5px solid var(--ink);
+}
+.eyebrow{
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:11px;
+  font-weight:bold;
+  color:var(--gold);
+}
+h1,h2,h3,p{margin-top:0}
+h1,h2{
+  font-family:Georgia,serif;
+  font-weight:normal;
+  line-height:1.12;
+}
+h1{font-size:46px;margin:20px 0 12px}
+h2{font-size:30px;margin:14px 0 18px}
+.lead{font-size:17px;color:var(--muted);max-width:780px}
+.section-tag{
+  display:inline-block;
+  margin:10px 0 16px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:#efe7d8;
+  color:var(--ink);
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin:22px 0;
+}
+.card{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:20px;
+  break-inside:avoid;
+}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p,.card li{color:var(--muted)}
+.card ul{margin:8px 0 0;padding-left:20px}
+.card li{margin-bottom:6px}
+.table{
+  width:100%;
+  border-collapse:collapse;
+  margin:22px 0;
+  font-size:14px;
+}
+.table th,.table td{
+  text-align:left;
+  padding:11px 12px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+.table th{background:#ede9df}
+.table td:first-child{font-weight:bold;width:34%}
+.footer{
+  border-top:1px solid var(--line);
+  padding-top:16px;
+  margin-top:28px;
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  font-size:11px;
+  letter-spacing:1px;
+  color:var(--muted);
+}
+@media(max-width:680px){
+  .page{margin:12px;padding:28px 22px}
+  h1{font-size:36px}
+  h2{font-size:28px}
+  .grid{grid-template-columns:1fr}
+  .toolbar{align-items:flex-start}
+}
+@page{size:A4;margin:12mm}
+@media print{
+  body{background:white;font-size:10pt}
+  .toolbar{display:none}
+  .page{
+    margin:0;
+    padding:8mm 6mm;
+    max-width:none;
+    break-after:page;
+    border-top-width:3px;
+  }
+  .page:last-child{break-after:auto}
+  h1{font-size:33pt}
+  h2{font-size:23pt}
+  .grid{gap:12px}
+  .card{padding:14px}
+  *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span>Trattoria La Pasta · Funciones del sistema</span>
+  <button onclick="window.print()">Imprimir / Guardar como PDF</button>
+</div>
+
+<main>
+
+<section class="page">
+  <div class="eyebrow">Resumen de funciones</div>
+  <h1>Funciones para el cliente y funciones para el administrador</h1>
+  <p class="lead">
+    El sistema se divide en dos partes: lo que puede hacer el cliente que entra a ver el menú y lo que puede hacer el administrador desde el panel.
+  </p>
+
+  <span class="section-tag">Cliente que entra a ver el menú</span>
+
+  <div class="grid">
+    <article class="card">
+      <h3>Navegación por categorías</h3>
+      <p>El cliente puede recorrer el menú por categorías desde la barra de navegación.</p>
+    </article>
+
+    <article class="card">
+      <h3>Visualización de productos</h3>
+      <p>Puede ver fotografía, nombre, descripción, precio y productos marcados como recomendados (estrella al lado del plato).</p>
+    </article>
+
+    <article class="card">
+      <h3>Detalle de producto</h3>
+      <p>Al tocar un producto se abre una vista ampliada con su información. Algunas categorías muestran información adicional, como extras, salsas o detalles del platillo.</p>
+    </article>
+
+    <article class="card">
+      <h3>Menú principal y menú Yucatecos</h3>
+      <p>Puede consultar el menú principal o el menú especial Yucatecos, según la página en la que se encuentre.</p>
+    </article>
+
+    <article class="card">
+      <h3>Novedades (TikTok)</h3>
+      <p>Puede ver imágenes o videos en formato vertical y abrir el detalle del producto relacionado.</p>
+    </article>
+
+    <article class="card">
+      <h3>Avisos emergentes (pop up)</h3>
+      <p>Puede ver un aviso al entrar al sitio, con título, mensaje e imagen.</p>
+    </article>
+
+    <article class="card">
+      <h3>Compartir contenido</h3>
+      <p>Puede compartir las novedades (TikTok) usando las opciones del dispositivo y accesos a redes o mensajería.</p>
+    </article>
+
+    <article class="card">
+      <h3>Información del restaurante</h3>
+      <p>Puede consultar horario, dirección, ubicación en Google Maps y acceso a WhatsApp para contacto o reservas.</p>
+    </article>
+  </div>
+
+  <h2>Qué ve el cliente en cada menú</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Elemento</th>
+        <th>Cómo se presenta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Nombre, descripción, categoría y foto</td>
+        <td>Se muestran igual en ambos menús.</td>
+      </tr>
+      <tr>
+        <td>Precio</td>
+        <td>Puede variar entre el menú principal y el menú Yucatecos.</td>
+      </tr>
+      <tr>
+        <td>Disponibilidad</td>
+        <td>Un producto puede aparecer en un menú y no en el otro.</td>
+      </tr>
+      <tr>
+        <td>Recomendados (estrella al lado del plato)</td>
+        <td>Pueden ser distintos en cada menú.</td>
+      </tr>
+      <tr>
+        <td>Novedades (TikTok)</td>
+        <td>Pueden ser distintas en cada menú.</td>
+      </tr>
+      <tr>
+        <td>Avisos emergentes (pop up)</td>
+        <td>Pueden mostrarse en un menú o en ambos, según la configuración.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span>FUNCIONES DEL CLIENTE</span>
+    <span>01 / 02</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">Panel de administración</div>
+  <h2>Funciones del administrador</h2>
+  <p class="lead">
+    Desde el panel de administración se puede actualizar el contenido de ambos menús y publicar los cambios.
+  </p>
+
+  <span class="section-tag">Administrador del sistema</span>
+
+  <div class="grid">
+    <article class="card">
+      <h3>Gestión de productos</h3>
+      <ul>
+        <li>Agregar nuevos productos.</li>
+        <li>Editar nombre, descripción y categoría.</li>
+        <li>Asignar o modificar el precio de cada menú.</li>
+        <li>Activar o desactivar productos por menú.</li>
+        <li>Marcar productos como recomendados (estrella al lado del plato).</li>
+        <li>Indicar si un producto aparece en novedades (TikTok).</li>
+        <li>Eliminar un producto solo del menú seleccionado.</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Gestión de imágenes de productos</h3>
+      <ul>
+        <li>Subir imágenes JPG, PNG o WebP.</li>
+        <li>Usar una ruta interna o un enlace HTTPS.</li>
+        <li>La fotografía del producto se comparte entre ambos menús.</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Gestión de novedades (TikTok)</h3>
+      <ul>
+        <li>Crear publicaciones con imagen o video MP4.</li>
+        <li>Asignar un título.</li>
+        <li>Vincular la publicación a un producto.</li>
+        <li>Activar, desactivar o eliminar publicaciones.</li>
+        <li>Administrarlas por separado para cada menú.</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Gestión de avisos emergentes (pop up)</h3>
+      <ul>
+        <li>Crear avisos con título, mensaje e imagen opcional.</li>
+        <li>Elegir si aparecen en el menú principal, Yucatecos o ambos.</li>
+        <li>Activarlos o desactivarlos.</li>
+        <li>Eliminar avisos.</li>
+        <li>Solo un aviso emergente (pop up) puede quedar activo a la vez.</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Gestión de la página Yucatecos</h3>
+      <ul>
+        <li>Activar o desactivar toda la página Yucatecos.</li>
+        <li>Conservar sus productos y configuraciones aunque la página esté desactivada.</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Publicación de cambios</h3>
+      <ul>
+        <li>Ver si existen cambios pendientes.</li>
+        <li>Publicar los cambios cuando estén listos.</li>
+        <li>Actualizar el contenido visible del sitio desde el panel.</li>
+      </ul>
+    </article>
+  </div>
+
+  <h2>Resumen de administración</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Área</th>
+        <th>Acciones disponibles para el administrador</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Productos</td>
+        <td>Agregar, editar, activar, desactivar, marcar como recomendado (estrella al lado del plato) y eliminar por menú.</td>
+      </tr>
+      <tr>
+        <td>Precios</td>
+        <td>Definir precios distintos para el menú principal y el menú Yucatecos.</td>
+      </tr>
+      <tr>
+        <td>Novedades (TikTok)</td>
+        <td>Crear, editar, activar, desactivar y eliminar publicaciones de imagen o video.</td>
+      </tr>
+      <tr>
+        <td>Avisos emergentes (pop up)</td>
+        <td>Crear, editar, activar, desactivar y definir en qué menú se muestran.</td>
+      </tr>
+      <tr>
+        <td>Página Yucatecos</td>
+        <td>Activar o desactivar su visibilidad general.</td>
+      </tr>
+      <tr>
+        <td>Contenido general</td>
+        <td>Publicar los cambios realizados desde el panel.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span>FUNCIONES DEL ADMINISTRADOR</span>
+    <span>02 / 02</span>
+  </div>
+</section>
+
+</main>
+</body>
+</html>
