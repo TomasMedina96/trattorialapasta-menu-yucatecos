@@ -14,9 +14,8 @@ export default function Site() {
     let disposed = false;
     const refresh = () => api<Catalog>('catalog').then(value => { if (!disposed) { setCatalog(value); setError(''); } }).catch(() => { if (!disposed) setError('No se pudo cargar el menú. Intenta de nuevo.'); });
     void refresh();
-    const timer = admin ? undefined : window.setInterval(refresh, 30000);
-    return () => { disposed = true; window.clearInterval(timer); };
-  }, [admin]);
+    return () => { disposed = true; };
+  }, []);
   useEffect(() => { document.title = `Trattoria La Pasta · ${admin ? 'Administración' : kind === 'normal' ? 'Menú' : 'Menú Yucatecos'}`; }, [kind, admin]);
   if (!['/', '/menu', '/yucatecos', '/admin'].includes(path)) return <main className="site-status"><h1>Página no encontrada</h1><a href="/">Ir al menú</a></main>;
   if (!catalog) return <main className="site-status" aria-live="polite"><h1>Trattoria La Pasta</h1><p>{error || 'Preparando el menú…'}</p>{error && <button onClick={() => window.location.reload()}>Reintentar</button>}</main>;
