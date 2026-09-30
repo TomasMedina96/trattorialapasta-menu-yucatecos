@@ -59,6 +59,7 @@ export function Admin({ initial }: { initial: Catalog }) {
       if (dirty && !window.confirm('Hay cambios sin publicar. ¿Salir y descartarlos?')) return;
       try { await api('logout', { method: 'POST' }); window.location.reload(); } catch (e) { setError((e as Error).message); }
     }}>Cerrar sesión</button></header>
+    <a className="admin-guide" href="/docs/explicativo.html" target="_blank" rel="noopener noreferrer">Ver guía de funcionalidades ↗</a>
     <div className="admin-save"><span>{dirty ? 'Cambios pendientes de publicar' : 'Catálogo actualizado'}</span><button disabled={busy || !dirty} onClick={() => void save()}>{busy ? 'Guardando…' : 'Publicar cambios'}</button></div>
     {message && <p className="admin-success" role="status">{message}</p>}{error && <p className="admin-error" role="alert">{error}</p>}
     <fieldset disabled={busy} className="admin-fieldset">
