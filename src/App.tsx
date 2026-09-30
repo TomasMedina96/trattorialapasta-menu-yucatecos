@@ -452,13 +452,17 @@ useEffect(() => {
       <div className="menu-shell">
         <div className="menu-intro">
           <div className="menu-intro-content">
-            <a
-              className="full-menu-link"
-              href={kind === 'yucatecos' ? '/' : '/yucatecos'}
-              hidden={kind === 'normal' && !catalog.settings.yucatecosEnabled}
-            >
-              <span>{kind === 'yucatecos' ? 'Menú completo Trattoria La Pasta' : 'Conoce el menú especial Yucatecos'}</span>
-            </a>
+                <a
+                  className="full-menu-link"
+                  href={kind === 'yucatecos' ? 'https://trattorialapasta.com' : '/yucatecos'}
+                  hidden={kind === 'normal' && !catalog.settings.yucatecosEnabled}
+                >
+                  <span>
+                    {kind === 'yucatecos'
+                      ? 'Menú completo Trattoria La Pasta'
+                      : 'Conoce el menú especial Yucatecos'}
+                  </span>
+                </a>
             {kind === 'yucatecos' && <div className="promotion-terms">
               <strong>Restricciones del menú Solo Yucatecos</strong>
               <ul>

@@ -14,3 +14,4 @@ pnpm-debug.log*
 data/runtime/
 .tmp/
 *.tsbuildinfo
+.docs

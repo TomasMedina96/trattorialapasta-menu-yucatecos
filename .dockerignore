@@ -9,3 +9,4 @@ dist
 data/runtime
 *.tsbuildinfo
 *.log
+.docs
