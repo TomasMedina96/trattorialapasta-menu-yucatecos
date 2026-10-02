@@ -243,6 +243,18 @@ test('Legacy announcements and cover videos migrate without losing saved content
   );
 });
 
+test('An active image announcement can be published without a title', () => {
+  const catalog = structuredClone(seed);
+  catalog.settings.popups = [{
+    id: 'sin-titulo', title: '', message: 'Detalles debajo de la imagen',
+    image: '/aviso.webp', target: 'both', enabled: true, deleted: false,
+  }];
+  assert.equal(validateCatalog(catalog), true);
+  assert.equal(validateCatalog(migrateCatalog(catalog)), true);
+  catalog.settings.popups[0].title = 'a'.repeat(201);
+  assert.equal(validateCatalog(catalog), false);
+});
+
 test('Only one popup may be active across menus; media references and targets are validated', () => {
   const catalog = structuredClone(seed);
 

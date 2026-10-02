@@ -26,7 +26,7 @@ export function PopupManager({ popups, onChange, onSave, upload }: {
       {!visiblePopups.length && <p>No hay avisos guardados. Agrega el primero.</p>}
     </div>
     {popup && <div className="admin-record-editor" key={popup.id}>
-      <label>Título del aviso<input value={popup.title} maxLength={200} onChange={e => patch({ title: e.target.value })} /></label>
+      <label>Título del aviso (opcional)<input value={popup.title} maxLength={200} onChange={e => patch({ title: e.target.value })} /></label>
       <label>Mensaje del aviso<textarea rows={3} value={popup.message} maxLength={5000} onChange={e => patch({ message: e.target.value })} /></label>
       <label>Mostrar aviso en<select value={popup.target} onChange={e => patch({ target: e.target.value as Popup['target'] })}>
         <option value="normal">Menú normal</option><option value="yucatecos">Menú Yucatecos</option><option value="both">Ambos menús</option>

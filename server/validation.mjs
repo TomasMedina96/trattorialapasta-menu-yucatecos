@@ -14,7 +14,7 @@ export function validateCatalog(data) {
   const s = data.settings;
   const list = (value, check) => Array.isArray(value) && value.length <= 500 && value.every(entry => entry && id(entry.id) && check(entry)) && new Set(value.map(entry => entry.id)).size === value.length;
   return !!s && flag(s.yucatecosEnabled)
-    && list(s.popups, p => flag(p.deleted) && flag(p.enabled) && ['normal', 'yucatecos', 'both'].includes(p.target) && str(p.title, 200) && (!!p.title.trim() || p.deleted) && str(p.message) && safeMedia(p.image))
+    && list(s.popups, p => flag(p.deleted) && flag(p.enabled) && ['normal', 'yucatecos', 'both'].includes(p.target) && str(p.title, 200) && str(p.message) && safeMedia(p.image))
     && s.popups.filter(p => !p.deleted && p.enabled).length <= 1
     && ['normal', 'yucatecos'].every(k => list(s.feeds?.[k], entry =>
       flag(entry.deleted) && flag(entry.enabled) && ['video', 'image'].includes(entry.type) && str(entry.title, 200) && (!!entry.title.trim() || entry.deleted)
