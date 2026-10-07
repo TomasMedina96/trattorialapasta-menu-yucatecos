@@ -6,6 +6,7 @@ COPY tsconfig.json tsconfig.app.json tsconfig.node.json vite.config.ts index.htm
 COPY src ./src
 COPY public ./public
 COPY server ./server
+COPY integrations ./integrations
 COPY data/menu.seed.json ./data/menu.seed.json
 COPY data/reservations-plan.json ./data/reservations-plan.json
 RUN npm test && npm run build
