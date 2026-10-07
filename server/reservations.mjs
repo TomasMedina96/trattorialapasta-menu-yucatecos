@@ -2,6 +2,8 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { randomUUID, createHash } from 'node:crypto';
 import nodemailer from 'nodemailer';
+import { createMailRelay } from './mail-relay.mjs';
+import { createGmailApiMailer } from './gmail-api.mjs';
 
 export const plan = JSON.parse(await fs.readFile(new URL('../data/reservations-plan.json', import.meta.url), 'utf8'));
 export const rules = { daysAhead: 60, sameDayMargin: 60, timezone: 'America/Merida' };
@@ -49,12 +51,14 @@ export function conflicts(request, list) {
   return list.filter(r => r.id !== request.id && r.fecha === request.fecha && r.mesa === request.mesa && r.estado !== 'rechazada' && Math.abs(minutes(r) - minutes(request)) < 120);
 }
 export function createMailer(env = process.env) {
+  if (env.GOOGLE_CLIENT_ID || env.GOOGLE_CLIENT_SECRET || env.GMAIL_REFRESH_TOKEN || env.GMAIL_USER) return createGmailApiMailer(env);
+  if (env.MAIL_RELAY_URL || env.MAIL_RELAY_TOKEN) return createMailRelay(env);
   if (!env.SMTP_USER || !env.SMTP_PASSWORD) return null;
   const transport = nodemailer.createTransport({ host: 'smtp.gmail.com', port: 465, secure: true,
     auth: { user: env.SMTP_USER, pass: env.SMTP_PASSWORD.replace(/\s/g, '') },
     connectionTimeout: 15000, greetingTimeout: 15000, socketTimeout: 20000,
     disableFileAccess: true, disableUrlAccess: true });
-  return { send: message => transport.sendMail({ ...message, from: { name: 'Trattoria La Pasta · Reservas', address: env.SMTP_USER }, to: 'trattorialapasta@gmail.com' }), verify: () => transport.verify() };
+  return { mode: 'smtp', send: message => transport.sendMail({ ...message, from: { name: 'Trattoria La Pasta · Reservas', address: env.SMTP_USER }, to: 'trattorialapasta@gmail.com' }), verify: () => transport.verify() };
 }
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export function notification(record, list, siteUrl) {
@@ -72,7 +76,7 @@ export function notification(record, list, siteUrl) {
     const mail = `mailto:${encodeURIComponent(record.email)}?subject=${encodeURIComponent(accept ? 'Reserva confirmada · Trattoria La Pasta' : 'Sobre tu solicitud de reserva')}&body=${encodeURIComponent(message)}`;
     return `<p><a href="${esc(wa)}">${label} por WhatsApp</a> · <a href="${esc(mail)}">${label} por correo</a></p>`;
   }).join('');
-  return { subject: `Reserva ${record.fecha} ${record.hora} · ${record.pax}p · Mesa ${record.mesa} · ${record.id}`, replyTo: record.email,
+  return { id: record.id, subject: `Reserva ${record.fecha} ${record.hora} · ${record.pax}p · Mesa ${record.mesa} · ${record.id}`, replyTo: record.email,
     text: lines.join('\n') + `\n\nGestionar solicitudes: ${manager || '/admin?reservas=1'}`,
     html: `<div style="font-family:Arial,sans-serif;max-width:620px;color:#172128"><h2>Nueva solicitud de reserva</h2>${lines.filter(Boolean).map(line => `<p>${esc(line)}</p>`).join('')}${image ? `<img src="${esc(image)}" alt="Plano de mesa ${esc(record.mesa)}" width="580" style="width:100%;max-width:580px">` : ''}${buttons}${manager ? `<p><a href="${esc(manager)}">Gestionar solicitudes y marcar el estado</a></p>` : ''}<p>Enviar el mensaje no cambia el estado. Márcalo en el administrador después de responder.</p></div>` };
 }
@@ -96,7 +100,7 @@ export async function createReservations({ dataDir, mailer = createMailer(), now
   if (!await fs.stat(file).catch(() => null)) await transaction(() => {});
   const rates = new Map();
   const publicConfig = () => ({ ok: true, config: structuredClone(state.config), rules, plan });
-  const snapshot = () => ({ solicitudes: structuredClone(state.solicitudes).reverse().map(({ key, fingerprint, ...r }) => ({ ...r, conflictos: conflicts(r, state.solicitudes).map(c => ({ id: c.id, hora: c.hora, estado: c.estado })) })), config: structuredClone(state.config), correoConfigurado: !!mailer });
+  const snapshot = () => ({ solicitudes: structuredClone(state.solicitudes).reverse().map(({ key, fingerprint, ...r }) => ({ ...r, conflictos: conflicts(r, state.solicitudes).map(c => ({ id: c.id, hora: c.hora, estado: c.estado })) })), config: structuredClone(state.config), correoConfigurado: !!mailer, correoModo: mailer?.mode || null });
   let delivering = false;
   async function flush() {
     if (!mailer || delivering) return;
@@ -140,7 +144,7 @@ export async function createReservations({ dataDir, mailer = createMailer(), now
       if (payload.action === 'verificar-correo') {
         if (!mailer?.verify) fail('El correo no está configurado', 503);
         try { await mailer.verify(); return { ok: true }; }
-        catch { fail('No se pudo conectar o autenticar con Gmail. Revisa las variables SMTP y que Railway permita conexiones SMTP.', 503); }
+        catch (error) { fail(['https', 'gmail-api'].includes(mailer.mode) ? error.message : 'No se pudo conectar o autenticar con Gmail. Revisa las variables SMTP y que Railway permita conexiones SMTP.', 503); }
       }
       const result = await transaction(d => {
         if (payload.action === 'estado') {

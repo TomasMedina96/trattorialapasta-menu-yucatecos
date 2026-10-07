@@ -17,30 +17,42 @@ La liberación física de la mesa por retraso la gestiona el encargado; el siste
 
 ## Correo y Railway
 
+La opción recomendada es **Gmail API con OAuth por HTTPS**, igual que el otro proyecto Railway del restaurante. No necesita Apps Script, Google Sheets, un cambio de plan ni contraseña de aplicación. Se renueva el token de acceso usando el refresh token y se llama a `users.messages.send`.
+
 Variables privadas del servicio:
 
 ```dotenv
-SMTP_USER=trattorialapasta@gmail.com
-SMTP_PASSWORD=contraseña_de_aplicación
+GOOGLE_CLIENT_ID=el_mismo_cliente_del_proyecto_que_ya_envia
+GOOGLE_CLIENT_SECRET=el_secreto_de_ese_cliente
+GMAIL_REFRESH_TOKEN=el_refresh_token_asociado_a_ese_cliente_y_cuenta
+GMAIL_USER=trattorialapasta@gmail.com
 ```
 
-El código usa Gmail SMTP mediante TLS en el puerto 465. Los avisos se envían al mismo correo y `Reply-To` apunta al correo del cliente. Cada aviso contiene datos, plano, advertencias de conflicto, mensajes preparados de aceptar/rechazar y acceso al administrador.
+Copiar los valores de forma privada entre los servicios de Railway, sin pegarlos en el chat ni en Git. El token debe estar autorizado para enviar con la cuenta del restaurante y corresponder al mismo cliente OAuth. El proyecto de Google debe tener Gmail API habilitada, como en el proyecto que ya funciona. No hace falta regenerar un token válido únicamente por utilizarlo también en este servicio.
+
+Los avisos se envían al mismo correo y `Reply-To` apunta al correo del cliente. Cada aviso contiene datos, plano, advertencias de conflicto, mensajes preparados de aceptar/rechazar y acceso al administrador. El texto y asunto se generan como MIME con codificación UTF-8 y se envían en base64url.
+
+Después de desplegar debe aparecer **Envío de avisos: Gmail API por HTTPS**. Pulsar **Comprobar conexión con Gmail** para verificar OAuth; no envía mensajes. Luego verificar la llegada efectiva mediante una solicitud controlada. Si hay avisos pendientes, **Reintentar aviso** adelanta su próximo intento.
+
+Orden de prioridad: Gmail API (las cuatro variables anteriores), Apps Script (`MAIL_RELAY_URL` + `MAIL_RELAY_TOKEN`), SMTP (`SMTP_USER` + `SMTP_PASSWORD`). Si se configura parcialmente un método de mayor prioridad, se considera incompleto; no vuelve a otro método silenciosamente.
+
+Apps Script queda como alternativa opcional: [guía de Gmail por HTTPS mediante un script](integrations/google-mail/README.md). SMTP usa TLS en el puerto 465. Ninguna de estas alternativas es necesaria al configurar Gmail API.
 
 `PUBLIC_SITE_URL` es opcional y define el origen HTTPS para los enlaces e imágenes de los avisos. Si no está, se usa `RAILWAY_PUBLIC_DOMAIN`; en su ausencia se usa `https://trattorialapasta.com`. Debe coincidir con el dominio que sirve esta versión del proyecto, sin barra final.
 
 **SMTP requiere Railway Pro o superior.** Railway bloquea SMTP en Free, Trial y Hobby. Tener las credenciales configuradas no elimina ese bloqueo. En esos planes es necesario autorizar Gmail mediante una API HTTPS o usar otro proveedor compatible antes de poder enviar avisos. Fuente: https://docs.railway.com/networking/outbound-networking
 
-El botón **Comprobar conexión con Gmail** en el administrador verifica conexión y autenticación desde el servidor sin enviar mensajes. La llegada efectiva de correo debe verificarse después del despliegue con una solicitud controlada.
+El botón **Comprobar conexión con Gmail** en el administrador comprueba la autorización desde el servidor sin enviar mensajes. En modo Gmail API renueva el acceso OAuth y comprueba el permiso de envío cuando Google devuelve los scopes; no demuestra por sí solo la entrega ni sustituye la prueba real.
 
 Los avisos pendientes se intentan cada 30 segundos, hasta diez por ciclo. Si falla el envío, se reintenta con espera creciente hasta una hora. La solicitud queda guardada y el cliente recibe su número; un fallo SMTP no le invita a volver a registrar la solicitud. Si falta configuración, las solicitudes y los avisos pendientes se conservan para cuando se configure.
 
-El registro es independiente del correo. SMTP no garantiza exactamente un envío ante una interrupción del proceso justo después de entregarlo y antes de guardar el estado; un aviso podría reenviarse con el mismo identificador. Esto no duplica la solicitud.
+El registro es independiente del correo. Ante una interrupción del proceso justo después de entregar el correo y antes de guardar el estado, un aviso podría reenviarse con el mismo identificador. Esto no duplica la solicitud.
 
 ## Almacenamiento y despliegue
 
 Se usa `DATA_DIR/reservations.json` en el mismo volumen persistente del menú. Escrituras serializadas y sustitución atómica; mantener **una sola instancia**, igual que el almacenamiento actual del catálogo. Respaldar todo `DATA_DIR`, incluyendo `menu.json`, `reservations.json` y `uploads/`.
 
-El primer arranque crea el archivo de reservas sin modificar el catálogo. No se requiere Google Sheets, Apps Script ni un sitio externo en Netlify. El Dockerfile instala las dependencias de ejecución y copia el plano al servidor.
+El primer arranque crea el archivo de reservas sin modificar el catálogo. No se requiere Google Sheets ni un sitio externo en Netlify. Apps Script se utiliza únicamente si se elige esa alternativa; Gmail API no lo necesita. El Dockerfile instala las dependencias de ejecución y copia el plano al servidor.
 
 Fuente de mesas: `data/reservations-plan.json` (29 mesas). Renderizador: `public/reservas/plano-config.js`. Imágenes por mesa: `public/reservas/mapa/`. Si se modifica el plano posteriormente, actualizar también las imágenes de correo.
 

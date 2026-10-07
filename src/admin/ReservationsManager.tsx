@@ -9,7 +9,7 @@ type Reservation = {
   aviso: { estado: 'pendiente' | 'enviado'; intentos: number };
   conflictos: { id: string; hora: string; estado: Status }[];
 };
-type Snapshot = { solicitudes: Reservation[]; correoConfigurado: boolean; config: { pausado: boolean; mensaje: string; bloqueos: { fecha: string; motivo: string }[] } };
+type Snapshot = { solicitudes: Reservation[]; correoConfigurado: boolean; correoModo: 'smtp' | 'https' | 'gmail-api' | null; config: { pausado: boolean; mensaje: string; bloqueos: { fecha: string; motivo: string }[] } };
 const prettyDate = (value: string) => new Date(value + 'T12:00:00Z').toLocaleDateString('es-MX', { timeZone: 'America/Merida', weekday: 'long', day: 'numeric', month: 'long' });
 function responseText(r: Reservation, accept: boolean) {
   const name = r.nombre.split(' ')[0];
@@ -53,7 +53,7 @@ export function ReservationsManager() {
     {message && <p className="admin-success" role="status">{message}</p>}
     {!data ? <p>Cargando solicitudes…</p> : <>
       {!data.correoConfigurado && <p className="admin-error">El envío de avisos todavía no está configurado en el servidor. Las solicitudes se guardan y sus avisos quedan pendientes.</p>}
-      {data.correoConfigurado && <p><button disabled={busy} onClick={() => void action({ action: 'verificar-correo' }, 'Conexión y autenticación con Gmail verificadas. Esta comprobación no envía correos.')}>Comprobar conexión con Gmail</button></p>}
+      {data.correoConfigurado && <p>Envío de avisos: {data.correoModo === 'gmail-api' ? 'Gmail API por HTTPS' : data.correoModo === 'https' ? 'Gmail por HTTPS' : 'Gmail por SMTP'}. <button disabled={busy} onClick={() => void action({ action: 'verificar-correo' }, 'Conexión y autorización de correo verificadas. Esta comprobación no envía correos.')}>Comprobar conexión con Gmail</button></p>}
       <div className="reservation-toolbar">
         <label>Mostrar solicitudes<select value={filter} onChange={e => setFilter(e.target.value)}>
           <option value="pendiente">Pendientes ({data.solicitudes.filter(r => r.estado === 'pendiente').length})</option>
