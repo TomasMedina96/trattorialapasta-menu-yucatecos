@@ -17,6 +17,7 @@ import { type MouseEvent, useEffect, useRef, useState } from "react";
 import { RestaurantVisit } from "./RestaurantVisit";
 import { ProductDialogMore } from "./ProductDialogMore";
 import { DiscoverMenu } from "./DiscoverMenu";
+import { Navbar } from "./Navbar";
 import { formatPrice, smallImage } from "./menuPresentation";
 import { type MenuItem } from './data/menu';
 import { itemsFor, type Catalog, type MenuKind } from './catalog';
@@ -126,6 +127,7 @@ export default function App({ catalog, kind }: { catalog: Catalog; kind: MenuKin
   const discoverButtonRef = useRef<HTMLButtonElement>(null);
   const [activeCategory, setActiveCategory] = useState(categories[0]?.id ?? "");
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const [moreOpen, setMoreOpen] = useState(false);
   const [spinningItemId, setSpinningItemId] = useState<string | null>(null);
   const openTimerRef = useRef<number | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -165,8 +167,10 @@ export default function App({ catalog, kind }: { catalog: Catalog; kind: MenuKin
       if (!heroRule || cancelled) return;
 
       const startY = window.scrollY;
+      const navigation = document.querySelector<HTMLElement>('.category-nav');
+      const navigationTop = navigation ? parseFloat(getComputedStyle(navigation).top) || 0 : 0;
       const targetY = Math.min(
-        heroRule.getBoundingClientRect().top + startY,
+        heroRule.getBoundingClientRect().top + startY - navigationTop,
         document.documentElement.scrollHeight - window.innerHeight,
       );
       const distance = targetY - startY;
@@ -341,7 +345,7 @@ useEffect(() => {
     };
   }, [selectedItem]);
 
-  const backgroundLocked = discoverOpen || !!selectedItem;
+  const backgroundLocked = discoverOpen || !!selectedItem || moreOpen;
   useEffect(() => {
     if (!backgroundLocked) return;
     const previousOverflow = document.body.style.overflow;
@@ -366,12 +370,13 @@ useEffect(() => {
 
     const navigation = document.querySelector<HTMLElement>(".category-nav");
     const navigationHeight = navigation?.getBoundingClientRect().height ?? 68;
+    const navigationTop = navigation ? parseFloat(getComputedStyle(navigation).top) || 0 : 0;
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
 
     setActiveCategory(categoryId);
     window.history.replaceState(null, "", `#${categoryId}`);
     window.scrollTo({
-      top: Math.max(0, sectionTop - navigationHeight - 16),
+      top: Math.max(0, sectionTop - navigationHeight - navigationTop - 16),
       behavior: "smooth",
     });
   };
@@ -393,6 +398,17 @@ useEffect(() => {
 
   return (
     <main className="site-main">
+      <div inert={discoverOpen || !!selectedItem} aria-hidden={discoverOpen || !!selectedItem || undefined}>
+        <Navbar moreOpen={moreOpen} onMoreChange={setMoreOpen} onMenuClick={() => {
+          requestAnimationFrame(() => {
+            const menu = document.getElementById('menu');
+            const navigation = document.querySelector<HTMLElement>('.category-nav');
+            if (!menu) return;
+            const offset = navigation ? (parseFloat(getComputedStyle(navigation).top) || 0) + navigation.offsetHeight : 0;
+            window.scrollTo({ top: Math.max(0, menu.getBoundingClientRect().top + window.scrollY - offset - 16), behavior: 'smooth' });
+          });
+        }} />
+      </div>
       <div inert={backgroundLocked} aria-hidden={backgroundLocked || undefined}>
       <header className="hero">
         <div className="hero-glow hero-glow-left" />
@@ -449,7 +465,7 @@ useEffect(() => {
         </div>
       </nav>
 
-      <div className="menu-shell">
+      <div className="menu-shell" id="menu">
         <div className="menu-intro">
           <div className="menu-intro-content">
                 <a

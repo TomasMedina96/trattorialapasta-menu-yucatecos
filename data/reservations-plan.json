@@ -1,0 +1,360 @@
+{
+  "W": 600,
+  "H": 1060,
+  "zonas": [
+    {
+      "id": "terraza",
+      "nombre": "Terraza",
+      "desc": "Al frente, sobre Paseo de Montejo",
+      "x": 20,
+      "y": 70,
+      "w": 560,
+      "h": 378,
+      "color": "#eef4ea",
+      "extras": [
+        {
+          "t": "arbol",
+          "x": 148,
+          "y": 198,
+          "r": 15
+        },
+        {
+          "t": "label",
+          "x": 241,
+          "y": 86,
+          "txt": "▲ entrada desde el Paseo"
+        }
+      ]
+    },
+    {
+      "id": "salon1",
+      "nombre": "Salón Uno",
+      "desc": "Interior con clima, ventanas al Paseo",
+      "x": 20,
+      "y": 473,
+      "w": 560,
+      "h": 295,
+      "color": "#ffffff",
+      "extras": [
+        {
+          "t": "label",
+          "x": 244,
+          "y": 488,
+          "txt": "▲ entrada"
+        }
+      ]
+    },
+    {
+      "id": "salon2",
+      "nombre": "Salón Dos",
+      "desc": "Al fondo, junto a la barra",
+      "x": 20,
+      "y": 793,
+      "w": 560,
+      "h": 250,
+      "color": "#fbf6ec",
+      "extras": [
+        {
+          "t": "barra",
+          "x": 36,
+          "y": 998,
+          "w": 330,
+          "h": 30
+        }
+      ]
+    }
+  ],
+  "mesas": [
+    {
+      "id": "12",
+      "zona": "terraza",
+      "cap": 6,
+      "vista": true,
+      "x": 81,
+      "y": 178,
+      "forma": "rect",
+      "w": 50,
+      "h": 88
+    },
+    {
+      "id": "8",
+      "zona": "terraza",
+      "cap": 2,
+      "x": 52,
+      "y": 258,
+      "forma": "rect",
+      "w": 46,
+      "h": 40
+    },
+    {
+      "id": "13",
+      "zona": "terraza",
+      "cap": 2,
+      "x": 140,
+      "y": 256,
+      "forma": "rect",
+      "w": 50,
+      "h": 40
+    },
+    {
+      "id": "14",
+      "zona": "terraza",
+      "cap": 3,
+      "vista": true,
+      "x": 206,
+      "y": 206,
+      "forma": "rect",
+      "w": 60,
+      "h": 44
+    },
+    {
+      "id": "15",
+      "zona": "terraza",
+      "cap": 3,
+      "vista": true,
+      "x": 353,
+      "y": 176,
+      "forma": "rect",
+      "w": 60,
+      "h": 44
+    },
+    {
+      "id": "10A",
+      "zona": "terraza",
+      "cap": 4,
+      "x": 350,
+      "y": 250,
+      "forma": "diamond",
+      "r": 30
+    },
+    {
+      "id": "9A",
+      "zona": "terraza",
+      "cap": 4,
+      "x": 262,
+      "y": 300,
+      "forma": "diamond",
+      "r": 30
+    },
+    {
+      "id": "7",
+      "zona": "terraza",
+      "cap": 5,
+      "x": 142,
+      "y": 346,
+      "forma": "rect",
+      "w": 50,
+      "h": 88
+    },
+    {
+      "id": "9",
+      "zona": "terraza",
+      "cap": 2,
+      "x": 262,
+      "y": 378,
+      "forma": "rect",
+      "w": 50,
+      "h": 40
+    },
+    {
+      "id": "10",
+      "zona": "terraza",
+      "cap": 2,
+      "x": 352,
+      "y": 378,
+      "forma": "rect",
+      "w": 50,
+      "h": 40
+    },
+    {
+      "id": "16",
+      "zona": "terraza",
+      "cap": 3,
+      "vista": true,
+      "x": 484,
+      "y": 176,
+      "forma": "rect",
+      "w": 60,
+      "h": 44
+    },
+    {
+      "id": "17",
+      "zona": "terraza",
+      "cap": 2,
+      "x": 462,
+      "y": 256,
+      "forma": "rect",
+      "w": 50,
+      "h": 40
+    },
+    {
+      "id": "18",
+      "zona": "terraza",
+      "cap": 2,
+      "x": 528,
+      "y": 300,
+      "forma": "rect",
+      "w": 50,
+      "h": 40
+    },
+    {
+      "id": "19",
+      "zona": "terraza",
+      "cap": 4,
+      "x": 452,
+      "y": 352,
+      "forma": "diamond",
+      "r": 30
+    },
+    {
+      "id": "20",
+      "zona": "terraza",
+      "cap": 2,
+      "x": 528,
+      "y": 404,
+      "forma": "rect",
+      "w": 50,
+      "h": 40
+    },
+    {
+      "id": "6",
+      "zona": "salon1",
+      "cap": 2,
+      "vista": true,
+      "x": 534,
+      "y": 568,
+      "forma": "rect",
+      "w": 50,
+      "h": 40
+    },
+    {
+      "id": "5",
+      "zona": "salon1",
+      "cap": 2,
+      "vista": true,
+      "x": 450,
+      "y": 568,
+      "forma": "rect",
+      "w": 50,
+      "h": 40
+    },
+    {
+      "id": "2",
+      "zona": "salon1",
+      "cap": 6,
+      "x": 140,
+      "y": 573,
+      "forma": "rect",
+      "w": 150,
+      "h": 56
+    },
+    {
+      "id": "V7",
+      "zona": "salon1",
+      "cap": 4,
+      "x": 534,
+      "y": 642,
+      "forma": "diamond",
+      "r": 29
+    },
+    {
+      "id": "5A",
+      "zona": "salon1",
+      "cap": 3,
+      "x": 442,
+      "y": 636,
+      "forma": "rect",
+      "w": 60,
+      "h": 44
+    },
+    {
+      "id": "1",
+      "zona": "salon1",
+      "cap": 5,
+      "x": 120,
+      "y": 680,
+      "forma": "rect",
+      "w": 120,
+      "h": 52
+    },
+    {
+      "id": "V6",
+      "zona": "salon1",
+      "cap": 3,
+      "x": 534,
+      "y": 720,
+      "forma": "rect",
+      "w": 60,
+      "h": 44
+    },
+    {
+      "id": "V6A",
+      "zona": "salon1",
+      "cap": 3,
+      "x": 442,
+      "y": 712,
+      "forma": "rect",
+      "w": 60,
+      "h": 44
+    },
+    {
+      "id": "3",
+      "zona": "salon1",
+      "cap": 2,
+      "x": 308,
+      "y": 728,
+      "forma": "rect",
+      "w": 50,
+      "h": 40
+    },
+    {
+      "id": "4",
+      "zona": "salon1",
+      "cap": 3,
+      "x": 308,
+      "y": 650,
+      "forma": "rect",
+      "w": 60,
+      "h": 44
+    },
+    {
+      "id": "V4",
+      "zona": "salon2",
+      "cap": 3,
+      "x": 106,
+      "y": 882,
+      "forma": "rect",
+      "w": 60,
+      "h": 44
+    },
+    {
+      "id": "V5",
+      "zona": "salon2",
+      "cap": 5,
+      "x": 330,
+      "y": 900,
+      "forma": "rect",
+      "w": 50,
+      "h": 70
+    },
+    {
+      "id": "V3",
+      "zona": "salon2",
+      "cap": 4,
+      "x": 106,
+      "y": 956,
+      "forma": "diamond",
+      "r": 28
+    },
+    {
+      "id": "V2",
+      "zona": "salon2",
+      "cap": 2,
+      "x": 250,
+      "y": 958,
+      "forma": "rect",
+      "w": 50,
+      "h": 40
+    }
+  ]
+}

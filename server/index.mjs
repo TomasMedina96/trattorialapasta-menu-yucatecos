@@ -5,12 +5,14 @@ import { fileURLToPath } from 'node:url';
 import { randomBytes, timingSafeEqual } from 'node:crypto';
 import { validateCatalog } from './validation.mjs';
 import { initializeCatalog, resolveDataDir } from './storage.mjs';
+import { createReservations } from './reservations.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = resolveDataDir(root);
 const db = path.join(dataDir, 'menu.json');
 const initialized = await initializeCatalog({ root, dataDir, bootstrapDir: process.env.BOOTSTRAP_DIR });
 let catalog = initialized.catalog;
+const reservations = await createReservations({ dataDir, siteUrl: (process.env.PUBLIC_SITE_URL || (process.env.RAILWAY_PUBLIC_DOMAIN ? 'https://' + process.env.RAILWAY_PUBLIC_DOMAIN : 'https://trattorialapasta.com')).replace(/\/$/, '') });
 // Credenciales fijas solicitadas; nunca se incluyen en el bundle del navegador.
 const ADMIN_USER = process.env.ADMIN_USER;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
@@ -47,6 +49,12 @@ const server = http.createServer(async (req, res) => {
         if (req.headers.origin && new URL(req.headers.origin).host !== req.headers.host) return json(res, 403, { error: 'Origen no permitido' });
       }
       if (route === '/api/catalog' && req.method === 'GET') return json(res, 200, catalog);
+      if (route === '/api/reservations' && req.method === 'GET') return json(res, 200, reservations.publicConfig());
+      if (route === '/api/reservations' && req.method === 'POST') {
+        const payload = JSON.parse((await body(req, 8192)).toString());
+        const ip = process.env.RAILWAY_ENVIRONMENT_ID ? String(req.headers['x-forwarded-for'] || req.socket.remoteAddress).split(',').at(-1).trim() : req.socket.remoteAddress;
+        return json(res, 201, await reservations.submit(payload, ip));
+      }
       if (route === '/api/session' && req.method === 'GET') return json(res, 200, { authenticated: authenticated(req) });
       if (route === '/api/login' && req.method === 'POST') {
         const ip = req.socket.remoteAddress;
@@ -61,6 +69,8 @@ const server = http.createServer(async (req, res) => {
         return json(res, 200, { ok: true });
       }
       if (!authenticated(req)) return json(res, 401, { error: 'Inicia sesión para continuar' });
+      if (route === '/api/reservations/manage' && req.method === 'GET') return json(res, 200, reservations.snapshot());
+      if (route === '/api/reservations/manage' && req.method === 'POST') return json(res, 200, await reservations.manage(JSON.parse((await body(req, 4096)).toString())));
       if (route === '/api/logout' && req.method === 'POST') { sessions.delete(token(req)); res.setHeader('Set-Cookie', 'session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0'); return json(res, 200, { ok: true }); }
       if (route === '/api/catalog' && req.method === 'PUT') {
         const next = JSON.parse((await body(req)).toString());
@@ -89,7 +99,7 @@ const server = http.createServer(async (req, res) => {
     const relative = decodeURIComponent(route.startsWith('/uploads/') ? route.slice(9) : route.slice(1));
     let file = path.resolve(base, relative || 'index.html');
     if (!file.startsWith(base + path.sep)) return json(res, 403, { error: 'Ruta no permitida' });
-    if (['/', '/yucatecos', '/yucatecos/', '/admin', '/admin/', '/menu', '/menu/'].includes(route)) file = path.join(root, 'dist/index.html');
+    if (['/', '/yucatecos', '/yucatecos/', '/admin', '/admin/', '/menu', '/menu/', '/reservas', '/reservas/'].includes(route)) file = path.join(root, 'dist/index.html');
     let stats;
     try { stats = await fs.stat(file); if (!stats.isFile()) return json(res, 404, { error: 'No encontrado' }); } catch { return json(res, 404, { error: 'No encontrado' }); }
     const headers = { 'Content-Type': mime[path.extname(file)] || 'application/octet-stream', 'Cache-Control': path.extname(file) === '.html' ? 'no-cache' : 'public, max-age=3600', 'Accept-Ranges': 'bytes' };
@@ -115,6 +125,7 @@ server.listen(Number(process.env.PORT || 3001), '0.0.0.0', () => {
   console.log(`Catálogo cargado: ${initialized.source}, revisión ${catalog.revision}.`);
 });
 for (const signal of ['SIGTERM', 'SIGINT']) process.on(signal, () => {
+  reservations.close();
   server.close(() => process.exit(0));
   setTimeout(() => process.exit(1), 10000).unref();
 });

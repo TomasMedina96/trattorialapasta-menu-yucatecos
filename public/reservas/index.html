@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservar mesa · Trattoria La Pasta</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body class="cliente">
+<div class="mod">
+  <header class="mod-head">
+    <div class="brand"><div class="logo">T</div><div><div class="name">Reservar mesa</div><div class="sub">Trattoria La Pasta · Paseo de Montejo</div></div></div>
+    <div class="steps" id="steps"><div class="on">Personas</div><div>Fecha y hora</div><div>Mesa</div><div>Tus datos</div></div>
+  </header>
+
+  <div id="pausado" class="aviso rojo hidden"></div>
+  <div id="cargando" class="muted small" style="padding:10px 0">Cargando disponibilidad…</div>
+
+  <!-- PASO 1 -->
+  <section id="p1" class="paso hidden">
+    <h2>¿Cuántas personas son?</h2>
+    <div class="chips" id="pax"></div>
+    <div id="paxMsg" class="aviso hidden" style="margin-top:12px"></div>
+    <p class="small muted" style="margin-top:14px">Asignamos la mesa según la cantidad exacta de personas. Una persona sola reserva en mesa de 2.</p>
+    <div class="nav"><span></span><button class="btn primary" id="b1" onclick="ir(2)">Elegir fecha →</button></div>
+  </section>
+
+  <!-- PASO 2 -->
+  <section id="p2" class="paso hidden">
+    <h2>¿Qué día y a qué hora?</h2>
+    <div class="cal-head"><button class="btn ghost sm" onclick="mes(-1)">‹</button><b id="calTitulo"></b><button class="btn ghost sm" onclick="mes(1)">›</button></div>
+    <div class="cal-dow"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+    <div class="cal" id="cal"></div>
+    <p class="small muted" id="calNota">Tomamos reservas de lunes a jueves. Para el mismo día, solo entre 9:00 y 17:00.</p>
+    <div id="horasWrap" class="hidden">
+      <h3 style="margin-top:18px">Hora de llegada</h3>
+      <div class="chips" id="horas"></div>
+      <p class="small muted">Servicio de 13:00 a 22:30. Cocina cierra a las 23:00.</p>
+    </div>
+    <div class="nav"><button class="btn ghost" onclick="ir(1)">← Personas</button><button class="btn primary" id="b2" disabled onclick="ir(3)">Elegir mesa →</button></div>
+  </section>
+
+  <!-- PASO 3 -->
+  <section id="p3" class="paso hidden">
+    <h2>Elegí tu mesa</h2>
+    <p class="small muted" id="planoInfo"></p><p class="small muted">El plano indica capacidad, no disponibilidad real. Revisaremos tu mesa preferida antes de confirmar.</p>
+    <div class="zonas-tabs" id="zonasTabs"></div>
+    <div class="zoom-wrap" id="zoomWrap">
+      <div class="zoom-inner" id="plano"></div>
+      <div class="zoom-ctl"><button id="zMas" aria-label="Acercar">+</button><button id="zMenos" aria-label="Alejar">−</button><button id="zReset" aria-label="Ajustar">⤢</button></div>
+    </div>
+    <p class="small muted" style="margin:6px 0 0">Pellizcá para acercar, arrastrá para moverte y tocá una mesa verde.</p>
+    <div class="leyenda"><span><i class="l-libre"></i>Compatible con tu grupo</span><span><i class="l-sel"></i>Tu elección</span><span><i class="l-off"></i>Otra capacidad</span><span>☀ Vista al Paseo de Montejo</span></div>
+    <div id="mesaCard" class="aviso" style="margin-top:12px">Tocá una mesa verde.</div>
+    <div class="nav"><button class="btn ghost" onclick="ir(2)">← Fecha y hora</button><button class="btn primary" id="b3" disabled onclick="ir(4)">Mis datos →</button></div>
+  </section>
+
+  <!-- PASO 4 -->
+  <section id="p4" class="paso hidden">
+    <h2>Tus datos</h2>
+    <div class="resumen" id="resumen"></div>
+    <label class="lbl" for="nombre">Nombre y apellido *</label><input type="text" id="nombre" maxlength="120" autocomplete="name">
+    <div class="g2">
+      <div><label class="lbl" for="tel">WhatsApp *</label><input type="tel" id="tel" maxlength="24" placeholder="999 123 4567" autocomplete="tel"></div>
+      <div><label class="lbl" for="email">Correo *</label><input type="email" id="email" maxlength="254" placeholder="tu@correo.com" autocomplete="email"></div>
+    </div>
+    <label class="lbl" for="comentarios">Comentarios (alergias, ocasión especial, etc.)</label>
+    <textarea id="comentarios" maxlength="1500" placeholder="Opcional"></textarea>
+    <div class="aviso" style="margin-top:14px">
+      <b>Importante:</b> esto es una <b>solicitud</b>. Te confirmamos por WhatsApp o correo. La mesa se mantiene <b>10 minutos</b> después de la hora reservada; pasado ese tiempo se libera.
+    </div>
+    <div hidden aria-hidden="true"><input id="website" name="website" tabindex="-1" autocomplete="off"></div><div id="errForm" role="alert" class="aviso rojo hidden" style="margin-top:10px"></div>
+    <div class="nav"><button class="btn ghost" onclick="ir(3)">← Mesa</button><button class="btn primary" id="bEnviar" onclick="enviar()">Enviar solicitud</button></div>
+  </section>
+
+  <!-- OK -->
+  <section id="pok" class="paso hidden">
+    <div class="ok">
+      <div class="ok-ico">✓</div>
+      <h2>Solicitud enviada</h2>
+      <p>Gracias, <b id="okNombre"></b>. Recibimos tu solicitud para el <b id="okFecha"></b> a las <b id="okHora"></b>, <b id="okPax"></b>, en <b id="okMesa"></b>.</p>
+      <p>Te confirmamos por WhatsApp o correo. Hasta recibir nuestra confirmación la reserva no está asegurada.</p>
+      <p class="small muted">Número de solicitud: <code id="okId"></code></p>
+      <button class="btn ghost" onclick="location.reload()">Hacer otra solicitud</button>
+    </div>
+  </section>
+  <footer class="mod-foot">Trattoria La Pasta · Paseo de Montejo, Mérida · Cocina cierra 23:00 · Restaurante cierra 23:30</footer>
+</div>
+
+<script src="config.js"></script>
+<script src="plano-config.js"></script>
+<script>
+/* ---------- UTILIDADES DE TIEMPO (siempre hora de Mérida) ---------- */
+const TZ = "America/Merida";
+function ahoraMerida(){
+  const p = new Intl.DateTimeFormat("en-CA",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date());
+  const o = {}; p.forEach(x=>o[x.type]=x.value);
+  return { iso:`${o.year}-${o.month}-${o.day}`, h:parseInt(o.hour)%24, m:parseInt(o.minute), min: (parseInt(o.hour)%24)*60+parseInt(o.minute) };
+}
+function isoDe(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; }
+function dDe(iso){ const [y,m,d]=iso.split("-").map(Number); return new Date(y,m-1,d); }
+function sumar(iso,n){ const d=dDe(iso); d.setDate(d.getDate()+n); return isoDe(d); }
+function bonita(iso){ return dDe(iso).toLocaleDateString("es-MX",{weekday:"long",day:"numeric",month:"long"}); }
+const DOW = iso => (dDe(iso).getDay()+6)%7; // 0=lunes … 6=domingo
+
+/* ---------- ESTADO ---------- */
+const S = { pax:null, fecha:null, hora:null, mesa:null, paso:1 };
+let CFG = { pausado:false, mensaje:"", bloqueos:[] };
+let calMes;
+let envioKey = "", envioPayload = ""; // Date del primer día del mes mostrado
+
+/* ---------- REGLAS DE FECHA ---------- */
+function motivoBloqueo(iso){
+  const now = ahoraMerida();
+  if (iso < now.iso) return "pasado";
+  const dow = DOW(iso);
+  if (dow >= 4) return "Viernes, sábado y domingo no tomamos reservas";
+  const b = CFG.bloqueos.find(x => x.fecha === iso);
+  if (b) return b.motivo ? `Cerrado: ${b.motivo}` : "Día no disponible";
+  if (iso === now.iso) {
+    if (now.h < 9)  return "Las reservas para hoy abren a las 9:00";
+    if (now.h >= 17) return "Después de las 17:00 ya no tomamos reservas para hoy";
+  }
+  if (iso === sumar(now.iso,1) && now.h >= 17) return "Para mañana se puede solicitar a partir de las 9:00";
+  const limite = sumar(now.iso, RESERVAS_CONFIG.diasAnticipacion);
+  if (iso > limite) return `Máximo ${RESERVAS_CONFIG.diasAnticipacion} días de anticipación`;
+  return null;
+}
+function horasDisponibles(iso){
+  const now = ahoraMerida(); const out=[];
+  for (let m = 13*60; m <= 22*60+30; m += 30){
+    if (iso === now.iso && m < now.min + RESERVAS_CONFIG.minutosMinimosMismoDia) continue;
+    out.push(`${String(Math.floor(m/60)).padStart(2,"0")}:${String(m%60).padStart(2,"0")}`);
+  }
+  return out;
+}
+
+/* ---------- RENDER ---------- */
+function ir(p){
+  if (p===2 && !S.pax) return;
+  if (p===3 && !(S.fecha && S.hora)) return;
+  if (p===4 && !S.mesa) return;
+  S.paso = p;
+  ["p1","p2","p3","p4"].forEach((id,i)=>document.getElementById(id).classList.toggle("hidden", i+1!==p));
+  [...document.getElementById("steps").children].forEach((d,i)=>d.className = i+1===p ? "on" : i+1<p ? "done" : "");
+  if (p===2) renderCal();
+  if (p===3) renderPlano();
+  parent.postMessage({tlpReservasPaso:true}, location.origin);
+  if (p===4) document.getElementById("resumen").innerHTML = `<b>${S.pax} ${S.pax===1?"persona":"personas"}</b> · ${bonita(S.fecha)} · <b>${S.hora} h</b> · <b>${zonaDe(S.mesa).nombre}</b>${PLANO.mesas.find(x=>x.id===S.mesa).vista?" · ☀ vista al Paseo":""}`;
+  window.scrollTo({top:0,behavior:"smooth"}); avisarAlto();
+}
+function zonaDe(id){ const m=PLANO.mesas.find(x=>x.id===id); return PLANO.zonas.find(z=>z.id===m.zona); }
+
+function renderPax(){
+  const c=document.getElementById("pax"); c.innerHTML="";
+  for (let p=1;p<=6;p++){ const b=document.createElement("button"); b.className="chip"+(S.pax===p?" on":""); b.textContent=p===1?"1 persona":`${p} personas`; b.onclick=()=>{S.pax=p; S.mesa=null; ZONA=null; document.getElementById("paxMsg").classList.add("hidden"); document.getElementById("b1").disabled=false; renderPax();}; c.appendChild(b); }
+  const b=document.createElement("button"); b.className="chip"; b.textContent="7 o más"; b.onclick=()=>{ S.pax=null; document.getElementById("b1").disabled=true; const m=document.getElementById("paxMsg"); m.textContent="No tomamos reservas de más de 6 personas por este medio."; m.classList.remove("hidden"); renderPax(); }; c.appendChild(b);
+  document.getElementById("b1").disabled = !S.pax;
+}
+
+function renderCal(){
+  if (!calMes){ const n=ahoraMerida(); calMes = new Date(dDe(n.iso).getFullYear(), dDe(n.iso).getMonth(), 1); }
+  document.getElementById("calTitulo").textContent = calMes.toLocaleDateString("es-MX",{month:"long",year:"numeric"});
+  const cal=document.getElementById("cal"); cal.innerHTML="";
+  const first = (calMes.getDay()+6)%7;
+  for (let i=0;i<first;i++) cal.appendChild(document.createElement("span"));
+  const dias = new Date(calMes.getFullYear(), calMes.getMonth()+1, 0).getDate();
+  for (let d=1; d<=dias; d++){
+    const iso = isoDe(new Date(calMes.getFullYear(), calMes.getMonth(), d));
+    const b=document.createElement("button"); b.textContent=d; const mot = motivoBloqueo(iso);
+    b.className = "dia" + (mot?" off":"") + (S.fecha===iso?" on":"") + (iso===ahoraMerida().iso?" hoy":"");
+    if (mot){ b.title = mot; b.onclick=()=>{ document.getElementById("calNota").textContent = mot; }; }
+    else b.onclick=()=>{ S.fecha=iso; S.hora=null; document.getElementById("calNota").textContent="Tomamos reservas de lunes a jueves. Para el mismo día, solo entre 9:00 y 17:00."; renderCal(); renderHoras(); };
+    cal.appendChild(b);
+  }
+  renderHoras();
+}
+function mes(n){ calMes = new Date(calMes.getFullYear(), calMes.getMonth()+n, 1); renderCal(); }
+function renderHoras(){
+  const w=document.getElementById("horasWrap"); const c=document.getElementById("horas"); c.innerHTML="";
+  if (!S.fecha){ w.classList.add("hidden"); document.getElementById("b2").disabled=true; return; }
+  w.classList.remove("hidden");
+  const hs = horasDisponibles(S.fecha);
+  if (!hs.length) c.innerHTML = `<span class="small muted">No quedan horarios disponibles para hoy.</span>`;
+  hs.forEach(h=>{ const b=document.createElement("button"); b.className="chip"+(S.hora===h?" on":""); b.textContent=h; b.onclick=()=>{S.hora=h; renderHoras();}; c.appendChild(b); });
+  document.getElementById("b2").disabled = !(S.fecha && S.hora);
+}
+
+let ZONA = null, zoomCtl = null;
+function capOkDe(){ return S.pax===1 ? 2 : S.pax; }
+function renderPlano(){
+  const capOk = capOkDe();
+  document.getElementById("planoInfo").textContent = `${S.pax} ${S.pax===1?"persona":"personas"} · ${bonita(S.fecha)} · ${S.hora} h`;
+  // pestañas por zona con cuántas mesas sirven para el grupo
+  const tabs = document.getElementById("zonasTabs"); tabs.innerHTML = "";
+  const disp = z => PLANO.mesas.filter(m => m.zona===z.id && m.cap===capOk).length;
+  if (!ZONA || !PLANO.zonas.some(z=>z.id===ZONA)) ZONA = S.mesa ? PLANO.mesas.find(x=>x.id===S.mesa).zona : (PLANO.zonas.find(z => disp(z) > 0) || PLANO.zonas[0]).id;
+  PLANO.zonas.forEach(z => { const n = disp(z); const b = document.createElement("button"); b.className = "ztab" + (ZONA===z.id?" on":"") + (n?"":" vacia"); b.innerHTML = `${z.nombre}<small>${n ? n + (n===1?" mesa":" mesas") : "sin mesas"}</small>`; b.onclick = () => { ZONA = z.id; if (zoomCtl) zoomCtl.reset(); renderPlano(); }; tabs.appendChild(b); });
+  const inner = document.getElementById("plano");
+  dibujarPlano(inner, m => m.cap!==capOk ? {cls:"apagada",tip:"otra capacidad"} : (S.mesa===m.id ? {cls:"libre sel",tip:"seleccionada"} : {cls:"libre",tip:"compatible con tu grupo"}), id => {
+    const m = PLANO.mesas.find(x=>x.id===id); if (m.cap!==capOk) return;
+    S.mesa = id; renderPlano();
+    document.getElementById("mesaCard").innerHTML = `<b>Mesa seleccionada</b> · ${zonaDe(id).nombre}${m.vista?" · ☀ vista al Paseo de Montejo":""}`;
+    document.getElementById("b3").disabled=false;
+  }, { labels: false, zona: ZONA });
+  const svg = inner.querySelector("svg"); const vb = svg.viewBox.baseVal; document.getElementById("zoomWrap").style.height = Math.round(inner.clientWidth * vb.height / vb.width) + "px";
+  if (!zoomCtl) zoomCtl = activarZoom(document.getElementById("zoomWrap"), inner, { mas: document.getElementById("zMas"), menos: document.getElementById("zMenos"), reset: document.getElementById("zReset") });
+}
+
+/* ---------- ENVÍO ---------- */
+async function enviar(){
+  const err=document.getElementById("errForm"); err.classList.add("hidden");
+  const nombre=val("nombre"), tel=val("tel").replace(/\D/g,""), email=val("email"), comentarios=val("comentarios");
+  if (nombre.length<3) return fallo("Escribí tu nombre y apellido.");
+  if (tel.length<10) return fallo("Revisá el número de WhatsApp (10 dígitos).");
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return fallo("Revisá el correo.");
+  const mot = motivoBloqueo(S.fecha); if (mot) return fallo("Esa fecha ya no está disponible: "+mot);
+  if (!S.hora || !horasDisponibles(S.fecha).includes(S.hora)) return fallo("Ese horario ya no se puede solicitar. Volvé a elegir fecha y hora.");
+  const data = { fecha:S.fecha, hora:S.hora, pax:S.pax, mesa:S.mesa, zona:zonaDe(S.mesa).nombre, nombre, telefono: tel.length===10 ? "52"+tel : tel, email, comentarios };
+  const payload = JSON.stringify(data);
+  if (payload !== envioPayload) { envioPayload = payload; envioKey = crypto.randomUUID(); }
+  const b=document.getElementById("bEnviar"); b.disabled=true; b.textContent="Enviando…";
+  try{
+    if (!RESERVAS_CONFIG.apiUrl) throw new Error("Falta configurar apiUrl en config.js");
+    const r = await fetch(RESERVAS_CONFIG.apiUrl, { method:"POST", headers:{"Content-Type":"application/json","X-Requested-With":"TrattoriaAdmin"}, body: JSON.stringify({ action:"solicitud", data, key:envioKey, website:val("website") }) });
+    const j = await r.json();
+    if (!r.ok || !j.ok) throw new Error(j.error||"Error");
+    document.getElementById("okNombre").textContent=nombre; document.getElementById("okFecha").textContent=bonita(S.fecha); document.getElementById("okHora").textContent=S.hora+" h";
+    document.getElementById("okPax").textContent=`${S.pax} ${S.pax===1?"persona":"personas"}`; document.getElementById("okMesa").textContent=zonaDe(S.mesa).nombre; document.getElementById("okId").textContent=j.id;
+    ["p4"].forEach(id=>document.getElementById(id).classList.add("hidden")); document.getElementById("pok").classList.remove("hidden"); document.getElementById("steps").classList.add("hidden");
+    window.scrollTo({top:0,behavior:"smooth"}); avisarAlto();
+  }catch(e){ fallo("No pudimos enviar la solicitud. Intentá de nuevo en un momento. ("+e.message+")"); b.disabled=false; b.textContent="Enviar solicitud"; }
+}
+function val(id){ return document.getElementById(id).value.trim(); }
+function fallo(t){ const e=document.getElementById("errForm"); e.textContent=t; e.classList.remove("hidden"); avisarAlto(); }
+
+/* ---------- ARRANQUE ---------- */
+async function init(){
+  try{
+    if (RESERVAS_CONFIG.apiUrl){
+      const r = await fetch(RESERVAS_CONFIG.apiUrl+"?action=config", {cache:"no-store"}); const j = await r.json();
+      if (!r.ok || !j.ok) throw new Error("No se pudo consultar el estado de las reservas");
+      CFG = j.config; window.PLANO = j.plan;
+      RESERVAS_CONFIG.diasAnticipacion = j.rules.daysAhead;
+      RESERVAS_CONFIG.minutosMinimosMismoDia = j.rules.sameDayMargin;
+    }
+  }catch(e){ const c=document.getElementById("cargando"); c.textContent="No se pudieron cargar las reservas. Recargá la página para intentar de nuevo."; c.setAttribute("role","alert"); return; }
+  document.getElementById("cargando").classList.add("hidden");
+  if (CFG.pausado){ const p=document.getElementById("pausado"); p.textContent = "Reservas en pausa. " + (CFG.mensaje||"Por el momento no estamos tomando reservas en línea."); p.classList.remove("hidden"); document.getElementById("steps").classList.add("hidden"); avisarAlto(); return; }
+  renderPax(); document.getElementById("p1").classList.remove("hidden"); avisarAlto();
+}
+/* Para el iframe en trattorialapasta.com: avisa su alto al padre */
+function avisarAlto(){ setTimeout(()=>{ try{ parent.postMessage({ tlpReservasAlto: document.body.scrollHeight }, location.origin); }catch(e){} }, 60); }
+new ResizeObserver(avisarAlto).observe(document.querySelector(".mod"));
+window.addEventListener("resize", avisarAlto);
+init();
+</script>
+</body>
+</html>

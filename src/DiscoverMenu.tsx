@@ -103,7 +103,7 @@ export function DiscoverMenu({ onClose, onDetails, modalOpen, products, availabl
       }}>
       <header className="discover-header">
         <div className="discover-header-actions">
-          <a className="discover-reserve" href="https://wa.link/v43rqq" target="_blank" rel="noreferrer">
+          <a className="discover-reserve" href="/reservas">
             <WhatsAppIcon />
             Reservar mesa
           </a>

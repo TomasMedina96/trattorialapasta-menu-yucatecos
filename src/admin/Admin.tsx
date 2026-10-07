@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { api, type Catalog, type MenuKind, type Product } from '../catalog';
 import { PopupManager } from './PopupManager';
 import { NewsManager } from './NewsManager';
+import { ReservationsManager } from './ReservationsManager';
 import './admin.css';
 
 export function Admin({ initial }: { initial: Catalog }) {
@@ -16,6 +17,7 @@ export function Admin({ initial }: { initial: Catalog }) {
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [reservationsOpen, setReservationsOpen] = useState(() => new URLSearchParams(window.location.search).get('reservas') === '1');
   useEffect(() => { api<{ authenticated: boolean }>('session').then(s => setAuthenticated(s.authenticated)).catch(e => setError(e.message)).finally(() => setChecking(false)); }, []);
   useEffect(() => {
     const prevent = (event: BeforeUnloadEvent) => { if (dirty) { event.preventDefault(); event.returnValue = ''; } };
@@ -60,6 +62,8 @@ export function Admin({ initial }: { initial: Catalog }) {
       try { await api('logout', { method: 'POST' }); window.location.reload(); } catch (e) { setError((e as Error).message); }
     }}>Cerrar sesión</button></header>
     <a className="admin-guide" href="/docs/explicativo.html" target="_blank" rel="noopener noreferrer">Ver guía de funcionalidades ↗</a>
+    <div className="reservation-toolbar"><button aria-pressed={!reservationsOpen} onClick={() => setReservationsOpen(false)}>Administrar menús</button><button aria-pressed={reservationsOpen} onClick={() => setReservationsOpen(true)}>Administrar reservas</button></div>
+    {reservationsOpen ? <ReservationsManager /> : <>
     <div className="admin-save"><span>{dirty ? 'Cambios pendientes de publicar' : 'Catálogo actualizado'}</span><button disabled={busy || !dirty} onClick={() => void save()}>{busy ? 'Guardando…' : 'Publicar cambios'}</button></div>
     {message && <p className="admin-success" role="status">{message}</p>}{error && <p className="admin-error" role="alert">{error}</p>}
     <fieldset disabled={busy} className="admin-fieldset">
@@ -109,5 +113,6 @@ export function Admin({ initial }: { initial: Catalog }) {
     <PopupManager popups={catalog.settings.popups} upload={upload} onSave={() => void save()}
       onChange={popups => change({ ...catalog, settings: { ...catalog.settings, popups } })} />
     </fieldset>
+    </>}
   </main>;
 }

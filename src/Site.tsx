@@ -3,6 +3,7 @@ import App from './App';
 import { Admin } from './admin/Admin';
 import { api, type Catalog } from './catalog';
 import { Announcement } from './admin/Announcement';
+import { Reservations } from './Reservations';
 
 export default function Site() {
   const [catalog, setCatalog] = useState<Catalog | null>(null);
@@ -16,7 +17,8 @@ export default function Site() {
     void refresh();
     return () => { disposed = true; };
   }, []);
-  useEffect(() => { document.title = `Trattoria La Pasta · ${admin ? 'Administración' : kind === 'normal' ? 'Menú' : 'Menú Yucatecos'}`; }, [kind, admin]);
+  useEffect(() => { document.title = `Trattoria La Pasta · ${admin ? 'Administración' : path === '/reservas' ? 'Reservas' : kind === 'normal' ? 'Menú' : 'Menú Yucatecos'}`; }, [kind, admin, path]);
+  if (path === '/reservas') return <Reservations />;
   if (!['/', '/menu', '/yucatecos', '/admin'].includes(path)) return <main className="site-status"><h1>Página no encontrada</h1><a href="/">Ir al menú</a></main>;
   if (!catalog) return <main className="site-status" aria-live="polite"><h1>Trattoria La Pasta</h1><p>{error || 'Preparando el menú…'}</p>{error && <button onClick={() => window.location.reload()}>Reintentar</button>}</main>;
   if (admin) return <Admin initial={catalog} />;

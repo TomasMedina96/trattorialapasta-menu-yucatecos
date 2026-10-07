@@ -19,11 +19,13 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 108px;
+  overflow-x: clip;
 }
 
 body {
   position: relative;
   margin: 0;
+  overflow-x: clip;
   background: var(--ink);
   color: var(--cream);
   font-family: "Avenir Next", Avenir, "Segoe UI", Arial, sans-serif;
@@ -45,6 +47,7 @@ body::before {
 .site-main {
   position: relative;
   z-index: 1;
+  overflow-x: clip;
 }
 
 img {
@@ -462,12 +465,19 @@ p {
     box-shadow 220ms ease;
 }
 
-.dish-card:hover {
-  z-index: 2;
-  border-color: rgba(241, 184, 60, 0.35);
-  background: #1b272e;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
-  transform: translateY(-2px) scale(1.1);
+@media (hover: hover) and (pointer: fine) {
+  .dish-card:hover {
+    z-index: 2;
+    border-color: rgba(241, 184, 60, 0.35);
+    background: #1b272e;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+  }
+}
+
+@media (min-width: 1101px) and (hover: hover) and (pointer: fine) {
+  .dish-card:hover {
+    transform: translateY(-2px) scale(1.1);
+  }
 }
 
 .dish-image-wrap {
@@ -487,8 +497,10 @@ p {
   transition: transform 400ms ease;
 }
 
-.dish-card:hover .dish-image {
-  transform: scale(1.035);
+@media (hover: hover) and (pointer: fine) {
+  .dish-card:hover .dish-image {
+    transform: scale(1.035);
+  }
 }
 
 .dish-card.is-spinning {
@@ -1184,6 +1196,7 @@ footer p {
 
   .dish-title-row h3 {
     overflow: visible;
+    overflow-wrap: anywhere;
     font-size: 19px;
     line-height: 1.18;
     white-space: normal;
