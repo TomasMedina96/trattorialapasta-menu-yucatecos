@@ -58,9 +58,16 @@ export function createMailer(env = process.env) {
     auth: { user: env.SMTP_USER, pass: env.SMTP_PASSWORD.replace(/\s/g, '') },
     connectionTimeout: 15000, greetingTimeout: 15000, socketTimeout: 20000,
     disableFileAccess: true, disableUrlAccess: true });
-  return { mode: 'smtp', send: message => transport.sendMail({ ...message, from: { name: 'Trattoria La Pasta · Reservas', address: env.SMTP_USER }, to: 'trattorialapasta@gmail.com' }), verify: () => transport.verify() };
+  return { mode: 'smtp', send: message => transport.sendMail({ ...message, from: { name: 'Trattoria La Pasta · Reservas', address: env.SMTP_USER }, to: message.to || 'trattorialapasta@gmail.com' }), verify: () => transport.verify() };
 }
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+export function clientResponse(record, status, id) {
+  const date = new Date(record.fecha + 'T12:00:00Z').toLocaleDateString('es-MX', { timeZone: rules.timezone, weekday: 'long', day: 'numeric', month: 'long' });
+  const accept = status === 'aceptada';
+  const body = accept ? `Hola ${record.nombre.split(' ')[0]}! Te confirmamos tu reserva en Trattoria La Pasta:\n📅 ${date} a las ${record.hora} h\n👥 ${record.pax} ${record.pax === 1 ? 'persona' : 'personas'}\n📍 Mesa ${record.mesa} · ${record.zona}\n\nTe esperamos en Paseo de Montejo. Mantenemos la mesa 10 minutos después de la hora reservada; pasado ese tiempo se libera.\n¡Grazie! 🇮🇹`
+    : `Hola ${record.nombre.split(' ')[0]}, gracias por tu solicitud para el ${date} a las ${record.hora} h.\nLamentablemente no tenemos disponible la mesa ${record.mesa} en ese horario. Si querés, respondé este mensaje con otra hora u otra mesa y lo revisamos.\nUn saludo, Trattoria La Pasta`;
+  return { id, to: record.email, replyTo: 'trattorialapasta@gmail.com', subject: accept ? 'Reserva confirmada · Trattoria La Pasta' : 'Sobre tu solicitud de reserva · Trattoria La Pasta', text: body, html: `<div style="font-family:Arial,sans-serif;white-space:pre-line">${esc(body)}</div>` };
+}
 export function notification(record, list, siteUrl) {
   const overlap = conflicts(record, list);
   const warning = overlap.length ? `Atención: ${overlap.length} solicitud(es) para esta mesa a menos de 2 horas: ${overlap.map(r => `${r.id} ${r.hora} (${r.estado})`).join(', ')}.` : '';
@@ -73,8 +80,7 @@ export function notification(record, list, siteUrl) {
   const buttons = [[true, accepted], [false, rejected]].map(([accept, message]) => {
     const label = accept ? 'Aceptar' : 'Rechazar';
     const wa = `https://wa.me/${record.telefono}?text=${encodeURIComponent(message)}`;
-    const mail = `mailto:${encodeURIComponent(record.email)}?subject=${encodeURIComponent(accept ? 'Reserva confirmada · Trattoria La Pasta' : 'Sobre tu solicitud de reserva')}&body=${encodeURIComponent(message)}`;
-    return `<p><a href="${esc(wa)}">${label} por WhatsApp</a> · <a href="${esc(mail)}">${label} por correo</a></p>`;
+    return `<p><a href="${esc(wa)}">${label} por WhatsApp</a>${manager ? ` · <a href="${esc(manager)}">${label} por correo desde el administrador</a>` : ''}</p>`;
   }).join('');
   return { id: record.id, subject: `Reserva ${record.fecha} ${record.hora} · ${record.pax}p · Mesa ${record.mesa} · ${record.id}`, replyTo: record.email,
     text: lines.join('\n') + `\n\nGestionar solicitudes: ${manager || '/admin?reservas=1'}`,
@@ -102,6 +108,7 @@ export async function createReservations({ dataDir, mailer = createMailer(), now
   const publicConfig = () => ({ ok: true, config: structuredClone(state.config), rules, plan });
   const snapshot = () => ({ solicitudes: structuredClone(state.solicitudes).reverse().map(({ key, fingerprint, ...r }) => ({ ...r, conflictos: conflicts(r, state.solicitudes).map(c => ({ id: c.id, hora: c.hora, estado: c.estado })) })), config: structuredClone(state.config), correoConfigurado: !!mailer, correoModo: mailer?.mode || null });
   let delivering = false;
+  const repliesInFlight = new Set();
   async function flush() {
     if (!mailer || delivering) return;
     delivering = true;
@@ -141,6 +148,38 @@ export async function createReservations({ dataDir, mailer = createMailer(), now
     },
     async manage(payload) {
       if (!payload || typeof payload !== 'object') fail('Acción inválida');
+      if (payload.action === 'responder') {
+        if (!['aceptada', 'rechazada'].includes(payload.estado)) fail('Respuesta inválida');
+        if (!mailer) fail('Configura el envío de correo antes de responder al cliente.', 503);
+        if (mailer.mode === 'https') fail('Configura Gmail API para enviar respuestas a clientes. El script alternativo solo envía avisos al restaurante.', 503);
+        if (repliesInFlight.has(payload.id)) fail('Ya se está enviando una respuesta para esta solicitud.', 409);
+        repliesInFlight.add(payload.id);
+        try {
+          const message = await transaction(d => {
+            const r = d.solicitudes.find(r => r.id === payload.id);
+            if (!r) fail('Solicitud no encontrada', 404);
+            if (r.respuesta?.estado === 'enviada' && r.respuesta.resultado === payload.estado && r.estado === payload.estado) return null;
+            if (payload.estado === 'aceptada' && conflicts(r, d.solicitudes).some(c => c.estado === 'aceptada' || (c.respuesta?.estado === 'enviando' && c.respuesta.resultado === 'aceptada')) && payload.confirmOverlap !== true) fail('Revisa el conflicto con otra confirmación para la misma mesa.', 409);
+            const id = r.respuesta?.resultado === payload.estado && r.respuesta.estado !== 'enviada' ? r.respuesta.id : 'TLP-' + randomUUID();
+            r.respuesta = { id, resultado: payload.estado, estado: 'enviando', iniciado: now().toISOString() };
+            return clientResponse(r, payload.estado, id);
+          });
+          if (!message) return { ok: true };
+          let delivery;
+          try { delivery = await mailer.send(message); }
+          catch {
+            await transaction(d => { const r = d.solicitudes.find(r => r.id === payload.id); r.respuesta.estado = 'fallida'; });
+            fail('No se pudo enviar el correo al cliente. El estado de la reserva no cambió. Puedes reintentar.', 503);
+          }
+          await transaction(d => {
+            const r = d.solicitudes.find(r => r.id === payload.id);
+            r.estado = payload.estado; r.respondido = now().toISOString();
+            r.respuesta.estado = 'enviada'; r.respuesta.enviado = r.respondido;
+            if (delivery?.id) r.respuesta.messageId = delivery.id;
+          });
+          return { ok: true };
+        } finally { repliesInFlight.delete(payload.id); }
+      }
       if (payload.action === 'verificar-correo') {
         if (!mailer?.verify) fail('El correo no está configurado', 503);
         try { await mailer.verify(); return { ok: true }; }
@@ -151,6 +190,7 @@ export async function createReservations({ dataDir, mailer = createMailer(), now
           if (!['pendiente', 'aceptada', 'rechazada'].includes(payload.estado)) fail('Estado inválido');
           const r = d.solicitudes.find(r => r.id === payload.id);
           if (!r) fail('Solicitud no encontrada', 404);
+          if (repliesInFlight.has(payload.id)) fail('Espera a que termine el envío de correo antes de cambiar el estado.', 409);
           if (payload.estado === 'aceptada' && conflicts(r, d.solicitudes).some(c => c.estado === 'aceptada') && payload.confirmOverlap !== true) fail('Ya hay una reserva aceptada para esa mesa a menos de 2 horas. Revisa y confirma el conflicto.', 409);
           r.estado = payload.estado; r.respondido = now().toISOString();
         } else if (payload.action === 'pausa') {

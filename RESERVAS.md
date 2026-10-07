@@ -4,7 +4,9 @@
 
 - `/reservas`: formulario de solicitudes integrado con el navbar. El formulario y el plano provienen del ZIP final; el contenido está aislado del CSS del menú.
 - `/admin?reservas=1`: gestión con el mismo usuario, contraseña y sesión del administrador actual. También se accede con **Administrar reservas** desde `/admin`.
-- Las solicitudes se guardan como pendientes. El encargado abre el mensaje preparado de WhatsApp o correo, lo envía y después marca la solicitud como aceptada o rechazada.
+- Las solicitudes se guardan como pendientes. **Aceptar por correo** y **Rechazar por correo** envían desde la cuenta del restaurante al correo registrado del cliente y actualizan automáticamente el estado cuando Gmail acepta el envío. No abren Outlook ni otro programa. Si falla el envío, el estado anterior se conserva y se permite reintentar explícitamente.
+- Por WhatsApp, se abre el mensaje preparado, el encargado lo envía y después marca el estado. Abrir WhatsApp no permite comprobar si se envió realmente el mensaje.
+- Las respuestas por correo requieren Gmail API o SMTP operativo. El script alternativo de avisos solo admite destinatario fijo y no se utiliza para enviar respuestas a clientes.
 - El plano muestra capacidad compatible, no disponibilidad en tiempo real. El panel y los correos avisan cuando hay solicitudes de la misma mesa a menos de dos horas. Si ya existe otra aceptada, confirmar el conflicto explícitamente permite aceptar también la nueva, conservando la decisión del encargado.
 - El administrador permite pausar/reactivar solicitudes, configurar el mensaje de pausa, bloquear/desbloquear fechas, buscar solicitudes, consultar el plano y reintentar avisos pendientes.
 - El panel consulta cambios cada 30 segundos mientras permanece abierto.

@@ -17,7 +17,7 @@ test('Gmail API refreshes via HTTPS and composes UTF-8 MIME with fixed recipient
   const params = new URLSearchParams(calls[0].options.body);
   assert.equal(params.get('refresh_token'), env.GMAIL_REFRESH_TOKEN);
   assert.equal(params.get('grant_type'), 'refresh_token');
-  const result = await mailer.send({ subject: 'Reserva miércoles · 2 personas', text: 'Texto español', html: '<p>Texto español</p>', replyTo: 'client@example.com', to: 'ignored@example.com' });
+  const result = await mailer.send({ subject: 'Reserva miércoles · 2 personas', text: 'Texto español', html: '<p>Texto español</p>', replyTo: 'client@example.com' });
   assert.equal(result.id, 'google-message');
   assert.equal(calls.length, 2);
   assert.equal(calls[1].url, 'https://gmail.googleapis.com/gmail/v1/users/me/messages/send');
@@ -30,6 +30,10 @@ test('Gmail API refreshes via HTTPS and composes UTF-8 MIME with fixed recipient
   assert(mime.includes('multipart/alternative'));
   assert(mime.includes('=?UTF-8?'));
   assert(!mime.includes('ignored@example.com'));
+  await mailer.send({ subject: 'Respuesta', text: 'Confirmada', html: '<p>Confirmada</p>', replyTo: 'trattorialapasta@gmail.com', to: 'client@example.com' });
+  const clientMime = Buffer.from(JSON.parse(calls[2].options.body).raw, 'base64url').toString('utf8');
+  assert(clientMime.includes('To: client@example.com'));
+  assert(clientMime.includes('Reply-To: trattorialapasta@gmail.com'));
 });
 test('Gmail API has priority and incomplete OAuth never falls back silently to SMTP', () => {
   assert.equal(createMailer({ ...env, SMTP_USER: 'unused', SMTP_PASSWORD: 'unused', MAIL_RELAY_URL: 'unused', MAIL_RELAY_TOKEN: 'unused' }).mode, 'gmail-api');

@@ -7,6 +7,7 @@ type Reservation = {
   id: string; creado: string; fecha: string; hora: string; pax: number; mesa: string; zona: string;
   nombre: string; telefono: string; email: string; comentarios: string; estado: Status;
   aviso: { estado: 'pendiente' | 'enviado'; intentos: number };
+  respuesta?: { estado: 'enviando' | 'enviada' | 'fallida'; resultado: Status };
   conflictos: { id: string; hora: string; estado: Status }[];
 };
 type Snapshot = { solicitudes: Reservation[]; correoConfigurado: boolean; correoModo: 'smtp' | 'https' | 'gmail-api' | null; config: { pausado: boolean; mensaje: string; bloqueos: { fecha: string; motivo: string }[] } };
@@ -48,7 +49,7 @@ export function ReservationsManager() {
   const list = data?.solicitudes.filter(r => (filter === 'todas' || (filter === 'proximas' ? r.estado === 'aceptada' && r.fecha >= today : r.estado === filter)) && `${r.nombre} ${r.telefono} ${r.fecha} ${r.mesa}`.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
   if (filter === 'proximas') list?.sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
   return <section className="reservation-manager">
-    <h2>Reservas</h2><p>Solicitudes de mesa · Las respuestas al cliente se envían manualmente. Después de enviar el mensaje, marca el estado.</p>
+    <h2>Reservas</h2><p>Por correo, el sistema envía la respuesta y actualiza el estado automáticamente. Por WhatsApp, envía el mensaje y después marca el estado.</p>
     {error && <p className="admin-error" role="alert">{error}</p>}
     {message && <p className="admin-success" role="status">{message}</p>}
     {!data ? <p>Cargando solicitudes…</p> : <>
@@ -69,14 +70,19 @@ export function ReservationsManager() {
           <p>{r.nombre} · +{r.telefono} · {r.email}</p>
           {r.comentarios && <p>Comentarios: {r.comentarios}</p>}
           <p>Estado: <strong>{r.estado}</strong> · Aviso al restaurante: {r.aviso.estado === 'enviado' ? 'enviado' : 'pendiente de envío'}</p>
+          {r.respuesta && <p>Respuesta por correo: {r.respuesta.estado === 'enviada' ? `enviada (${r.respuesta.resultado})` : r.respuesta.estado === 'fallida' ? 'falló el envío; puedes reintentar' : 'en proceso de envío'}</p>}
           {r.conflictos.length > 0 && <p className="reservation-conflict">Atención: misma mesa a menos de dos horas: {r.conflictos.map(c => `${c.hora} (${c.estado})`).join(', ')}.</p>}
           <details><summary>Ver mesa en el plano</summary><img className="reservation-map" src={`/reservas/mapa/${encodeURIComponent(r.mesa)}.png`} alt={`Plano de la mesa ${r.mesa}`} loading="lazy" /></details>
           <div className="reservation-actions">
             {[true, false].map(accept => {
-              const text = responseText(r, accept), subject = accept ? 'Reserva confirmada · Trattoria La Pasta' : 'Sobre tu solicitud de reserva';
+              const text = responseText(r, accept), status = accept ? 'aceptada' : 'rechazada';
               return <span key={String(accept)} className="reservation-actions">
                 <a href={`https://wa.me/${r.telefono}?text=${encodeURIComponent(text)}`} target="_blank" rel="noopener noreferrer">{accept ? 'Aceptar' : 'Rechazar'} por WhatsApp</a>
-                <a href={`mailto:${encodeURIComponent(r.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`}>{accept ? 'Aceptar' : 'Rechazar'} por correo</a>
+                <button disabled={busy || !data.correoConfigurado || (r.respuesta?.estado === 'enviada' && r.respuesta.resultado === status && r.estado === status)} onClick={() => {
+                  const overlap = accept && r.conflictos.some(c => c.estado === 'aceptada');
+                  if (overlap && !window.confirm('Ya hay otra reserva aceptada para esta mesa a menos de dos horas. ¿Enviar también esta confirmación?')) return;
+                  void action({ action: 'responder', id: r.id, estado: status, confirmOverlap: overlap }, `Correo enviado a ${r.email}. Reserva ${status}.`);
+                }}>{busy ? 'Procesando…' : accept ? 'Aceptar por correo' : 'Rechazar por correo'}</button>
               </span>;
             })}
           </div>

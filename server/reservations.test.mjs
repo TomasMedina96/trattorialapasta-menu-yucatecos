@@ -97,6 +97,48 @@ test('Gmail connection check reports failure safely without exposing credentials
   await assert.rejects(service.manage({ action: 'verificar-correo' }), error => error.status === 503 && !error.message.includes('secret-password'));
   assert.equal(sends, 0);
 });
+test('Accept and reject email the stored client and change status only after sending, without duplicate clicks', async t => {
+  const sent = [];
+  const { service } = await fixture(t, { mailer: { mode: 'gmail-api', send: async m => { sent.push(m); return { id: 'message-' + sent.length }; } } });
+  const { id } = await service.submit(payload());
+  await service.manage({ action: 'responder', id, estado: 'aceptada', to: 'attacker@example.com' });
+  assert.equal(sent[0].to, request.email);
+  assert.equal(sent[0].replyTo, 'trattorialapasta@gmail.com');
+  assert(sent[0].text.includes('Te confirmamos'));
+  assert.equal(service.snapshot().solicitudes[0].estado, 'aceptada');
+  await service.manage({ action: 'responder', id, estado: 'aceptada' });
+  assert.equal(sent.length, 1);
+  await service.manage({ action: 'responder', id, estado: 'rechazada' });
+  assert(sent[1].text.includes('Lamentablemente'));
+  assert.equal(service.snapshot().solicitudes[0].estado, 'rechazada');
+});
+test('Failed client email preserves reservation status and allows explicit retry', async t => {
+  let failing = true;
+  const { service, dir } = await fixture(t, { mailer: { mode: 'gmail-api', send: async () => { if (failing) throw new Error('private-secret'); return { id: 'sent' }; } } });
+  const { id } = await service.submit(payload());
+  await assert.rejects(service.manage({ action: 'responder', id, estado: 'rechazada' }), e => e.status === 503 && !e.message.includes('private-secret'));
+  assert.equal(service.snapshot().solicitudes[0].estado, 'pendiente');
+  assert.equal(service.snapshot().solicitudes[0].respuesta.estado, 'fallida');
+  failing = false;
+  await service.manage({ action: 'responder', id, estado: 'rechazada' });
+  const stored = JSON.parse(await fs.readFile(path.join(dir, 'reservations.json'), 'utf8'));
+  assert.equal(stored.solicitudes[0].estado, 'rechazada');
+  assert.equal(stored.solicitudes[0].respuesta.estado, 'enviada');
+});
+test('Concurrent clicks and manual status changes are blocked while a client response is sending', async t => {
+  let started, finish;
+  const began = new Promise(resolve => { started = resolve; });
+  const wait = new Promise(resolve => { finish = resolve; });
+  const { service } = await fixture(t, { mailer: { mode: 'gmail-api', send: async () => { started(); await wait; } } });
+  const { id } = await service.submit(payload());
+  const sending = service.manage({ action: 'responder', id, estado: 'aceptada' });
+  await began;
+  assert.equal(service.snapshot().solicitudes[0].estado, 'pendiente');
+  await assert.rejects(service.manage({ action: 'responder', id, estado: 'rechazada' }), /enviando/);
+  await assert.rejects(service.manage({ action: 'estado', id, estado: 'rechazada' }), /termine/);
+  finish(); await sending;
+  assert.equal(service.snapshot().solicitudes[0].estado, 'aceptada');
+});
 test('Mail safely escapes user text, preserves reply links and highlights table conflicts', () => {
   const r = { ...validateRequest({ ...request, nombre: '<img src=x>' }, config, now), id: 'test', estado: 'pendiente' };
   const mail = notification(r, [{ ...r, id: 'other', hora: '20:30' }], 'https://example.com');

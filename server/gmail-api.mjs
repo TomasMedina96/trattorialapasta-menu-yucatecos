@@ -40,7 +40,9 @@ export function createGmailApiMailer(env, fetcher = fetch, now = () => Date.now(
     mode: 'gmail-api',
     verify: async () => { await token(); return { ok: true }; },
     async send(message) {
-      const mime = await composer.sendMail({ from: { name: 'Trattoria La Pasta · Reservas', address: SENDER }, to: SENDER, replyTo: message.replyTo,
+      const recipient = message.to || SENDER;
+      if (typeof recipient !== 'string' || !/^[^\s@<>"\\,;]+@[^\s@<>"\\,;]+\.[^\s@<>"\\,;]+$/.test(recipient)) throw new Error('Destinatario de correo inválido');
+      const mime = await composer.sendMail({ from: { name: 'Trattoria La Pasta · Reservas', address: SENDER }, to: recipient, replyTo: message.replyTo,
         subject: message.subject, text: message.text, html: message.html });
       const raw = mime.message.toString('base64url');
       for (let attempt = 0; attempt < 2; attempt++) {
